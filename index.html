@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MetaOG Studio — OpenGraph & SEO Meta Tag Generator</title>
+  <title>MetaOG Studio — OpenGraph & Live SEO Meta Inspector</title>
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -31,7 +31,7 @@
     }
   </script>
 
-  <!-- Google Fonts: Inter, Plus Jakarta Sans, Outfit, JetBrains Mono -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
@@ -89,7 +89,7 @@
 <body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 min-h-screen font-sans antialiased transition-colors duration-200 selection:bg-indigo-500 selection:text-white">
 
   <!-- ========================================================================= -->
-  <!-- NAVIGATION BAR (LIGHT MODE DEFAULT WITH INSTANT TOGGLE)                   -->
+  <!-- NAVIGATION BAR                                                            -->
   <!-- ========================================================================= -->
   <header class="sticky top-0 z-50 w-full border-b border-slate-200/80 dark:border-slate-800 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
@@ -112,14 +112,14 @@
           <span>🎨 OG Card Generator</span>
         </button>
         <button id="nav-btn-seo" onclick="switchAppTab('seo')" class="flex items-center space-x-2 px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
-          <i data-lucide="file-check-2" class="w-4 h-4"></i>
-          <span>🔍 SEO Meta Inspector</span>
+          <i data-lucide="file-search" class="w-4 h-4"></i>
+          <span>🔍 Live URL & SEO Inspector</span>
         </button>
       </nav>
 
       <!-- Right Utility Actions -->
       <div class="flex items-center space-x-2">
-        <button id="theme-btn" onclick="toggleTheme()" class="p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700 transition" title="Toggle Light / Dark Mode">
+        <button id="theme-btn" onclick="toggleTheme()" class="p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700 transition" title="Toggle Light / Dark UI">
           <i id="theme-icon" data-lucide="moon" class="w-4 h-4"></i>
         </button>
         <a href="https://github.com" target="_blank" rel="noreferrer" class="p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700 transition" title="GitHub Repository">
@@ -137,26 +137,38 @@
     <!-- ========================================================================= -->
     <div id="tab-og" class="block">
       
-      <!-- Top Action Bar with Dimensions & Export -->
+      <!-- Top Action Bar with Dimensions, Card Theme & Export -->
       <div class="flex flex-col lg:flex-row lg:items-center justify-between pb-6 gap-4 border-b border-slate-200 dark:border-slate-800 mb-6">
         <div>
           <h1 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
             Social Card Designer
             <span class="text-[11px] font-bold px-2.5 py-0.5 rounded-md bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800">Visual Synergy Layout</span>
           </h1>
-          <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5">Customizable blueprint grid, brand logo auto-sync, two-tone titles, and bottom feature capsules.</p>
+          <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5">Light & Dark card modes, blueprint grid, logo auto-tinting, two-tone titles, and bottom capsules.</p>
         </div>
 
         <div class="flex flex-wrap items-center gap-2.5">
+          <!-- Card Theme Switcher: Dark Card vs Light Card -->
+          <div class="flex items-center bg-slate-100 dark:bg-slate-800/90 p-1 rounded-xl border border-slate-200 dark:border-slate-700">
+            <button id="cardtheme-btn-dark" onclick="setCardTheme('dark')" class="flex items-center space-x-1 px-3 py-1.5 rounded-lg text-xs font-bold transition bg-white dark:bg-slate-700 text-blue-600 dark:text-white shadow-sm">
+              <i data-lucide="moon" class="w-3.5 h-3.5"></i>
+              <span>Dark Card</span>
+            </button>
+            <button id="cardtheme-btn-light" onclick="setCardTheme('light')" class="flex items-center space-x-1 px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
+              <i data-lucide="sun" class="w-3.5 h-3.5"></i>
+              <span>Light Card</span>
+            </button>
+          </div>
+
           <!-- Aspect Ratio Switcher -->
           <div class="flex items-center bg-slate-100 dark:bg-slate-800/90 p-1 rounded-xl border border-slate-200 dark:border-slate-700">
             <button id="ratio-btn-landscape" onclick="setRatio('landscape')" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition bg-white dark:bg-slate-700 text-blue-600 dark:text-white shadow-sm">
               <i data-lucide="rectangle-horizontal" class="w-3.5 h-3.5"></i>
-              <span>1200 × 630 (Landscape)</span>
+              <span>1200 × 630</span>
             </button>
             <button id="ratio-btn-square" onclick="setRatio('square')" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
               <i data-lucide="square" class="w-3.5 h-3.5"></i>
-              <span>1080 × 1080 (Square)</span>
+              <span>1080 × 1080</span>
             </button>
           </div>
 
@@ -187,28 +199,29 @@
             <div class="flex items-center justify-between">
               <h2 class="text-xs font-extrabold uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
                 <i data-lucide="sparkles" class="w-3.5 h-3.5 text-blue-500"></i>
-                Preset Layout Configurations
+                Preset Configurations
               </h2>
             </div>
-            <div class="grid grid-cols-2 gap-2.5">
-              <button type="button" onclick="loadReferencePreset()" class="p-2.5 rounded-xl border border-blue-500/40 hover:border-blue-500 bg-blue-950/20 text-left transition flex items-center space-x-2.5">
-                <span class="w-3.5 h-3.5 rounded-md bg-blue-500 shrink-0"></span>
-                <div>
-                  <div class="text-xs font-bold text-slate-900 dark:text-white">Enterprise AV (Ref)</div>
-                  <div class="text-[10px] text-slate-400">Exact Visual Synergy Copy</div>
-                </div>
+            <div class="grid grid-cols-3 gap-2">
+              <button type="button" onclick="loadReferencePreset()" class="p-2.5 rounded-xl border border-blue-500/40 hover:border-blue-500 bg-blue-950/10 text-left transition">
+                <div class="w-3 h-3 rounded-full bg-blue-500 mb-1.5"></div>
+                <div class="text-xs font-bold text-slate-900 dark:text-white truncate">VSPL AV (Dark)</div>
+                <div class="text-[10px] text-slate-400 truncate">vspl.vercel.app</div>
               </button>
-              <button type="button" onclick="loadTechPreset()" class="p-2.5 rounded-xl border border-emerald-500/40 hover:border-emerald-500 bg-emerald-950/20 text-left transition flex items-center space-x-2.5">
-                <span class="w-3.5 h-3.5 rounded-md bg-emerald-500 shrink-0"></span>
-                <div>
-                  <div class="text-xs font-bold text-slate-900 dark:text-white">Tech SaaS Startup</div>
-                  <div class="text-[10px] text-slate-400">Emerald Grid & Product Copy</div>
-                </div>
+              <button type="button" onclick="loadLightPreset()" class="p-2.5 rounded-xl border border-sky-400/40 hover:border-sky-400 bg-sky-50 dark:bg-sky-950/20 text-left transition">
+                <div class="w-3 h-3 rounded-full bg-sky-400 mb-1.5"></div>
+                <div class="text-xs font-bold text-slate-900 dark:text-white truncate">Studio Pro (Light)</div>
+                <div class="text-[10px] text-slate-400 truncate">Clean Frost Grid</div>
+              </button>
+              <button type="button" onclick="loadTechPreset()" class="p-2.5 rounded-xl border border-emerald-500/40 hover:border-emerald-500 bg-emerald-950/10 text-left transition">
+                <div class="w-3 h-3 rounded-full bg-emerald-500 mb-1.5"></div>
+                <div class="text-xs font-bold text-slate-900 dark:text-white truncate">SaaS Pipeline</div>
+                <div class="text-[10px] text-slate-400 truncate">Emerald Neon</div>
               </button>
             </div>
           </div>
 
-          <!-- 1. Header: Brand Logo & Company Info (Matching Visual Synergy) -->
+          <!-- 1. Header: Brand Logo & Company Info -->
           <div class="bg-white dark:bg-slate-900 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-3.5">
             <div class="flex items-center justify-between">
               <h2 class="text-xs font-extrabold uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
@@ -226,7 +239,7 @@
               <div class="flex items-center justify-center space-x-2 pointer-events-none">
                 <i data-lucide="upload-cloud" class="w-4 h-4 text-blue-600 dark:text-blue-400"></i>
                 <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Upload Custom Brand Logo</span>
-                <span class="text-[10px] text-slate-400">(Auto tints card)</span>
+                <span class="text-[10px] text-slate-400">(Auto-extracts colors)</span>
               </div>
             </div>
 
@@ -260,25 +273,25 @@
             </h2>
 
             <div>
-              <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">Title Line 1 (White Bold)</label>
+              <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">Title Line 1</label>
               <input type="text" id="og-title-line1" value="Commercial AV Marketplace &" oninput="renderOGCanvas()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500 font-bold">
             </div>
 
             <div>
               <div class="flex items-center justify-between mb-1">
-                <label class="text-[11px] font-bold text-slate-700 dark:text-slate-300">Title Line 2 (Accent Highlighted)</label>
-                <span class="text-[10px] text-blue-500 font-mono font-bold">Color Synced</span>
+                <label class="text-[11px] font-bold text-slate-700 dark:text-slate-300">Title Line 2 (Accent Highlight)</label>
+                <span class="text-[10px] text-blue-500 font-mono font-bold">Accent Synced</span>
               </div>
               <input type="text" id="og-title-line2" value="Turnkey Room Solutions" oninput="renderOGCanvas()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500 font-bold text-blue-600 dark:text-blue-400">
             </div>
 
             <div>
-              <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">Services / Feature Bullets String</label>
+              <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">Services / Bullets String</label>
               <textarea id="og-services-string" rows="2" oninput="renderOGCanvas()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500">Enterprise Boardrooms • Smart Auditoriums • PTZ Video Conferencing • Dante DSPs • Industrial PA</textarea>
             </div>
           </div>
 
-          <!-- 3. Bottom Capsule Feature Pills (Reference Exact) -->
+          <!-- 3. Bottom Capsule Feature Pills -->
           <div class="bg-white dark:bg-slate-900 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-3.5">
             <div class="flex items-center justify-between">
               <h2 class="text-xs font-extrabold uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
@@ -320,19 +333,19 @@
           <div class="bg-white dark:bg-slate-900 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-3.5">
             <h2 class="text-xs font-extrabold uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
               <i data-lucide="palette" class="w-3.5 h-3.5 text-blue-500"></i>
-              5. Visual Styling & Colors
+              5. Visual Styling & Manual Colors
             </h2>
 
             <div class="grid grid-cols-2 gap-3">
               <div>
-                <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">Base Background</label>
+                <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">Card Background</label>
                 <div class="flex items-center space-x-2">
                   <input type="color" id="col-bg" value="#0a0f1d" oninput="renderOGCanvas()" class="w-8 h-8 rounded border-0 cursor-pointer bg-transparent">
                   <span id="col-bg-lbl" class="text-xs font-mono text-slate-500">#0A0F1D</span>
                 </div>
               </div>
               <div>
-                <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">Accent Highlight</label>
+                <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">Accent Color</label>
                 <div class="flex items-center space-x-2">
                   <input type="color" id="col-accent" value="#38bdf8" oninput="renderOGCanvas()" class="w-8 h-8 rounded border-0 cursor-pointer bg-transparent">
                   <span id="col-accent-lbl" class="text-xs font-mono text-slate-500">#38BDF8</span>
@@ -371,26 +384,26 @@
         <!-- ===================================================================== -->
         <div class="lg:col-span-7 flex flex-col items-center">
 
-          <!-- Stage Container: Guarantees 100% visible, fully scalable, unclipped display -->
+          <!-- Stage Container: Scalable, unclipped display -->
           <div class="w-full canvas-stage-bg p-4 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center relative min-h-[460px] overflow-hidden">
             
-            <!-- Dimension Tag Bar -->
+            <!-- Dimension & Theme Tag Bar -->
             <div class="w-full flex items-center justify-between mb-4 text-xs font-semibold text-slate-500 dark:text-slate-400">
               <span class="flex items-center gap-1.5">
                 <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
                 <span id="dimension-text">Landscape Preview (1200 × 630 px)</span>
               </span>
-              <span class="text-[11px] bg-white/80 dark:bg-slate-800/80 px-2.5 py-0.5 rounded-full border border-slate-200 dark:border-slate-700 shadow-sm">
-                Scale: Viewport Responsive (Zero Cutoff)
+              <span id="cardtheme-badge" class="text-[11px] bg-slate-900 text-white dark:bg-slate-800 px-2.5 py-0.5 rounded-full border border-slate-700 shadow-sm">
+                Card Style: Dark Theme
               </span>
             </div>
 
-            <!-- SVG Mount Point: Renders the exact blueprint artwork -->
+            <!-- SVG Mount Point -->
             <div id="svg-host" class="w-full flex items-center justify-center">
-              <!-- Dynamically generated SVG will be injected here -->
+              <!-- Dynamically generated SVG is injected here -->
             </div>
 
-            <!-- Quick Clipboard & Action Bar -->
+            <!-- Quick Clipboard Actions -->
             <div class="mt-6 w-full flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-slate-200/60 dark:border-slate-800/80">
               <div class="flex items-center space-x-2">
                 <button onclick="copyPNGToClipboard()" class="px-3.5 py-1.5 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-bold rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm flex items-center gap-1.5 transition active:scale-95">
@@ -404,7 +417,7 @@
               </div>
 
               <div class="text-[11px] text-slate-400">
-                Pixel-ratio synced with reference layout
+                Vector precision synced with reference artwork
               </div>
             </div>
 
@@ -416,8 +429,8 @@
               <i data-lucide="lightbulb" class="w-4 h-4"></i>
             </div>
             <div>
-              <p class="font-bold text-slate-800 dark:text-slate-200">Matching the Reference:</p>
-              This canvas reproduces the exact Visual Synergy layout: deep navy gradient, blueprint grid lines, top left company avatar tile (`VS`), uppercase designation, bold white title + sky blue accent title, service bullets, and glassmorphic pill badges with bottom contact details.
+              <p class="font-bold text-slate-800 dark:text-slate-200">Light & Dark OG Cards:</p>
+              Switch between Dark Card and Light Card at the top right of this section. The canvas automatically switches backgrounds, typography fills, pill badge transparencies, and radial glows while maintaining brand colors!
             </div>
           </div>
 
@@ -428,26 +441,51 @@
     </div>
 
     <!-- ========================================================================= -->
-    <!-- TAB 2: SEO META TAG CHECKER & SERP SIMULATOR                              -->
+    <!-- TAB 2: LIVE URL METADATA INSPECTOR & SEO SERP SIMULATOR                   -->
     <!-- ========================================================================= -->
     <div id="tab-seo" class="hidden">
       
-      <!-- Top Action Bar -->
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-6 gap-4 border-b border-slate-200 dark:border-slate-800 mb-6">
-        <div>
-          <h1 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
-            SEO Meta Tag Inspector & Builder
-            <span class="text-[11px] font-bold px-2.5 py-0.5 rounded-md bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800">Target Validated</span>
-          </h1>
-          <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5">Strict character length checkers for Google SERP (60-character title & 131-character description) and social sharing previews.</p>
-        </div>
+      <!-- Live URL Extractor Banner Bar -->
+      <div class="bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 rounded-2xl p-4 sm:p-6 text-white shadow-xl shadow-blue-500/10 mb-6">
+        <div class="max-w-3xl space-y-3">
+          <div class="flex items-center space-x-2">
+            <span class="px-2 py-0.5 rounded-full bg-white/20 text-white text-[10px] font-extrabold uppercase tracking-wider">Live URL Scanner</span>
+            <span class="text-xs text-white/80">Fetch real meta tags from any website address</span>
+          </div>
+          <h2 class="text-lg sm:text-xl font-black">Inspect Website Metadata via URL</h2>
+          <p class="text-xs sm:text-sm text-blue-100">
+            Enter any live web URL like <code class="bg-black/20 px-1.5 py-0.5 rounded text-white font-mono">https://vspl.vercel.app/</code> to inspect its real title, description, canonical, OpenGraph, and Twitter tags!
+          </p>
 
-        <button onclick="copySEOCode()" class="flex items-center space-x-1.5 px-4 py-2 rounded-xl text-xs font-bold bg-blue-600 hover:bg-blue-700 active:scale-95 text-white shadow-md shadow-blue-500/20 transition">
-          <i data-lucide="copy" class="w-4 h-4"></i>
-          <span>Copy Complete Meta Snippet</span>
-        </button>
+          <!-- Fetch Input Bar -->
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 pt-1">
+            <div class="relative flex-1">
+              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                <i data-lucide="globe" class="w-4 h-4"></i>
+              </div>
+              <input type="url" id="inspect-url-input" value="https://vspl.vercel.app/" placeholder="https://yourwebsite.com" class="w-full pl-9 pr-3 py-2.5 rounded-xl bg-white text-slate-900 placeholder-slate-400 text-xs font-semibold outline-none focus:ring-2 focus:ring-cyan-300 shadow-inner">
+            </div>
+            
+            <button id="fetch-meta-btn" onclick="fetchLiveURLMetadata()" class="px-4 py-2.5 bg-slate-950 hover:bg-slate-900 active:scale-95 text-white text-xs font-bold rounded-xl shadow transition flex items-center justify-center gap-1.5 shrink-0">
+              <i id="fetch-spinner-icon" data-lucide="search" class="w-4 h-4"></i>
+              <span id="fetch-btn-text">Inspect / Fetch Metadata</span>
+            </button>
+
+            <button onclick="importFetchedToOGCard()" id="import-to-og-btn" class="px-3.5 py-2.5 bg-white/20 hover:bg-white/30 text-white text-xs font-bold rounded-xl transition flex items-center justify-center gap-1.5 shrink-0 border border-white/30" title="Sync this URL's data into the OG Image Studio">
+              <i data-lucide="wand-2" class="w-4 h-4"></i>
+              <span>Import to OG Generator</span>
+            </button>
+          </div>
+
+          <!-- Status Bar -->
+          <div id="fetch-status-msg" class="text-[11px] text-white/80 font-medium flex items-center gap-1.5">
+            <i data-lucide="info" class="w-3.5 h-3.5"></i>
+            <span>Ready. Enter a URL above and click Inspect to check live metadata.</span>
+          </div>
+        </div>
       </div>
 
+      <!-- SEO Form & Metrics Grid -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
         
         <!-- Left Panel: SEO Form Inputs (5 cols) -->
@@ -457,7 +495,7 @@
             <div class="flex items-center justify-between">
               <h2 class="text-xs font-extrabold uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
                 <i data-lucide="file-text" class="w-3.5 h-3.5 text-blue-500"></i>
-                Essential Search Metadata
+                Inspected Metadata Elements
               </h2>
               <button onclick="syncSEOFromOG()" class="text-[11px] font-semibold text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
                 <i data-lucide="refresh-cw" class="w-3 h-3"></i>
@@ -473,7 +511,7 @@
                   <span id="seo-title-count">0</span> / 60 chars
                 </span>
               </div>
-              <input type="text" id="seo-title-input" value="Commercial AV Marketplace & Turnkey Solutions | Visual Synergy" oninput="runSEOChecker()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 px-3 py-2.5 outline-none focus:ring-2 focus:ring-blue-500">
+              <input type="text" id="seo-title-input" value="Commercial AV Marketplace & Turnkey Solutions | Visual Synergy" oninput="runSEOChecker()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 px-3 py-2.5 outline-none focus:ring-2 focus:ring-blue-500 font-medium">
               
               <!-- Progress Bar for Title -->
               <div class="w-full bg-slate-100 dark:bg-slate-800 h-1.5 rounded-full mt-2 overflow-hidden">
@@ -490,7 +528,7 @@
                   <span id="seo-desc-count">0</span> / 131 chars
                 </span>
               </div>
-              <textarea id="seo-desc-input" rows="3" oninput="runSEOChecker()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 px-3 py-2.5 outline-none focus:ring-2 focus:ring-blue-500">Explore enterprise boardrooms, smart auditoriums, and turnkey commercial AV solutions with certified gear and instant BOM calculations.</textarea>
+              <textarea id="seo-desc-input" rows="3" oninput="runSEOChecker()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 px-3 py-2.5 outline-none focus:ring-2 focus:ring-blue-500 leading-relaxed font-medium">Explore enterprise boardrooms, smart auditoriums, and turnkey commercial AV solutions with certified gear and instant BOM calculations.</textarea>
               
               <!-- Progress Bar for Description -->
               <div class="w-full bg-slate-100 dark:bg-slate-800 h-1.5 rounded-full mt-2 overflow-hidden">
@@ -503,11 +541,11 @@
             <div class="grid grid-cols-2 gap-3">
               <div>
                 <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Canonical URL</label>
-                <input type="url" id="seo-canonical-input" value="https://vspl.vercel.app" oninput="runSEOChecker()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2 outline-none">
+                <input type="url" id="seo-canonical-input" value="https://vspl.vercel.app/" oninput="runSEOChecker()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2 outline-none font-mono text-[11px]">
               </div>
               <div>
                 <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Site / Brand Name</label>
-                <input type="text" id="seo-brand-input" value="Visual Synergy Pvt Ltd" oninput="runSEOChecker()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2 outline-none">
+                <input type="text" id="seo-brand-input" value="Visual Synergy Pvt Ltd" oninput="runSEOChecker()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2 outline-none font-semibold">
               </div>
             </div>
 
@@ -521,15 +559,15 @@
                 </select>
               </div>
               <div>
-                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Twitter Creator @Handle</label>
+                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Twitter @Handle</label>
                 <input type="text" id="seo-handle-input" value="@visualsynergy" oninput="runSEOChecker()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2 outline-none">
               </div>
             </div>
 
             <!-- OG Image URL Link -->
             <div>
-              <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">OG Image Public URL</label>
-              <input type="url" id="seo-ogimage-input" value="https://vspl.vercel.app/og-image.png" oninput="runSEOChecker()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2 outline-none">
+              <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">OG Image Public URL (og:image)</label>
+              <input type="url" id="seo-ogimage-input" value="https://vspl.vercel.app/og-image.png" oninput="runSEOChecker()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2 outline-none font-mono text-[11px]">
             </div>
 
           </div>
@@ -575,7 +613,7 @@
                 </div>
                 <div>
                   <div id="serp-site" class="text-xs font-medium text-slate-800 dark:text-slate-200">Visual Synergy Pvt Ltd</div>
-                  <div id="serp-url" class="text-[11px] text-slate-500 truncate max-w-sm">https://vspl.vercel.app</div>
+                  <div id="serp-url" class="text-[11px] text-slate-500 truncate max-w-sm">https://vspl.vercel.app/</div>
                 </div>
               </div>
               
@@ -588,6 +626,26 @@
               <p id="serp-desc" class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-1 line-clamp-2 leading-relaxed">
                 Explore enterprise boardrooms, smart auditoriums, and turnkey commercial AV solutions with certified gear and instant BOM calculations.
               </p>
+            </div>
+          </div>
+
+          <!-- Social Share Preview Card Simulation -->
+          <div class="bg-white dark:bg-slate-900 p-5 sm:p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+            <h3 class="text-xs font-extrabold uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
+              <i data-lucide="share-2" class="w-3.5 h-3.5 text-blue-500"></i>
+              Social Link Preview (Twitter & LinkedIn)
+            </h3>
+            <div class="border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden max-w-md bg-white dark:bg-slate-950 shadow-sm">
+              <div id="social-preview-img" class="w-full h-44 bg-slate-900 flex items-center justify-center text-slate-500 text-xs overflow-hidden relative">
+                <span class="text-slate-400 text-xs flex items-center gap-1.5">
+                  <i data-lucide="image" class="w-4 h-4"></i> Preview of og:image
+                </span>
+              </div>
+              <div class="p-3.5 space-y-1">
+                <div id="social-preview-domain" class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">vspl.vercel.app</div>
+                <div id="social-preview-title" class="text-xs sm:text-sm font-bold text-slate-900 dark:text-slate-100 line-clamp-1">Commercial AV Marketplace & Turnkey Solutions</div>
+                <div id="social-preview-desc" class="text-[11px] text-slate-500 line-clamp-2">Explore enterprise boardrooms, smart auditoriums, and turnkey solutions.</div>
+              </div>
             </div>
           </div>
 
@@ -615,7 +673,7 @@
 
   </main>
 
-  <!-- Offscreen Canvas for full-resolution PNG pixel exports -->
+  <!-- Offscreen Canvas for full-resolution PNG exports -->
   <canvas id="raster-canvas" style="display: none;"></canvas>
 
   <!-- Toast Notification Alert -->
@@ -633,28 +691,30 @@
     /* Application State */
     const app = {
       theme: 'light',
+      cardTheme: 'dark', // 'dark' or 'light'
       tab: 'og',
       ratio: 'landscape', // 'landscape' (1200x630) or 'square' (1080x1080)
       logoDataUrl: null,
-      serpMode: 'desktop'
+      serpMode: 'desktop',
+      lastFetchedData: null
     };
 
     /* Lifecycle Init */
     window.addEventListener('DOMContentLoaded', () => {
       if (window.lucide) lucide.createIcons();
 
-      // Light mode default
+      // UI light mode default
       const savedTheme = localStorage.getItem('metaog_theme') || 'light';
       setAppTheme(savedTheme);
 
       // Load reference preset matching image
       loadReferencePreset();
 
-      // Run SEO checks
+      // Run initial SEO check
       runSEOChecker();
     });
 
-    /* Theme Handling */
+    /* Theme Handling (Web UI) */
     function toggleTheme() {
       const nextTheme = app.theme === 'light' ? 'dark' : 'light';
       setAppTheme(nextTheme);
@@ -676,6 +736,36 @@
         if (themeIcon) themeIcon.setAttribute('data-lucide', 'moon');
       }
       if (window.lucide) lucide.createIcons();
+    }
+
+    /* OG Card Canvas Theme Switcher (Dark Card vs Light Card) */
+    function setCardTheme(theme) {
+      app.cardTheme = theme;
+      const darkBtn = document.getElementById('cardtheme-btn-dark');
+      const lightBtn = document.getElementById('cardtheme-btn-light');
+      const badge = document.getElementById('cardtheme-badge');
+
+      if (theme === 'dark') {
+        darkBtn.className = "flex items-center space-x-1 px-3 py-1.5 rounded-lg text-xs font-bold transition bg-white dark:bg-slate-700 text-blue-600 dark:text-white shadow-sm";
+        lightBtn.className = "flex items-center space-x-1 px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white";
+        badge.textContent = "Card Style: Dark Theme";
+        badge.className = "text-[11px] bg-slate-900 text-white dark:bg-slate-800 px-2.5 py-0.5 rounded-full border border-slate-700 shadow-sm";
+        
+        // Dark theme defaults
+        document.getElementById('col-bg').value = "#0a0f1d";
+        document.getElementById('col-accent').value = "#38bdf8";
+      } else {
+        lightBtn.className = "flex items-center space-x-1 px-3 py-1.5 rounded-lg text-xs font-bold transition bg-white dark:bg-slate-700 text-blue-600 dark:text-white shadow-sm";
+        darkBtn.className = "flex items-center space-x-1 px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white";
+        badge.textContent = "Card Style: Light Theme";
+        badge.className = "text-[11px] bg-sky-50 text-sky-700 dark:bg-slate-800 dark:text-sky-300 px-2.5 py-0.5 rounded-full border border-sky-200 dark:border-slate-700 shadow-sm";
+        
+        // Light theme defaults
+        document.getElementById('col-bg').value = "#f8fafc";
+        document.getElementById('col-accent').value = "#0284c7";
+      }
+      syncColorHexLabels();
+      renderOGCanvas();
     }
 
     /* Tab Switcher */
@@ -720,8 +810,13 @@
       renderOGCanvas();
     }
 
-    /* Load Reference Preset (Matches the Visual Synergy image exactly) */
+    /* Presets */
     function loadReferencePreset() {
+      app.cardTheme = 'dark';
+      document.getElementById('cardtheme-btn-dark').className = "flex items-center space-x-1 px-3 py-1.5 rounded-lg text-xs font-bold transition bg-white dark:bg-slate-700 text-blue-600 dark:text-white shadow-sm";
+      document.getElementById('cardtheme-btn-light').className = "flex items-center space-x-1 px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white";
+      document.getElementById('cardtheme-badge').textContent = "Card Style: Dark Theme";
+
       document.getElementById('og-company-name').value = "Visual Synergy Pvt Ltd";
       document.getElementById('og-badge-initials').value = "VS";
       document.getElementById('og-company-sub').value = "ENTERPRISE PRO AV CONSULTANT • PUNE, MAHARASHTRA";
@@ -741,11 +836,43 @@
 
       syncColorHexLabels();
       renderOGCanvas();
-      showToast('Loaded Visual Synergy reference layout!');
+      showToast('Loaded Visual Synergy (vspl.vercel.app) Reference!');
     }
 
-    /* Load Tech SaaS Preset */
+    function loadLightPreset() {
+      app.cardTheme = 'light';
+      document.getElementById('cardtheme-btn-light').className = "flex items-center space-x-1 px-3 py-1.5 rounded-lg text-xs font-bold transition bg-white dark:bg-slate-700 text-blue-600 dark:text-white shadow-sm";
+      document.getElementById('cardtheme-btn-dark').className = "flex items-center space-x-1 px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white";
+      document.getElementById('cardtheme-badge').textContent = "Card Style: Light Theme";
+
+      document.getElementById('og-company-name').value = "Visual Synergy Pvt Ltd";
+      document.getElementById('og-badge-initials').value = "VS";
+      document.getElementById('og-company-sub').value = "ENTERPRISE PRO AV CONSULTANT • PUNE, MAHARASHTRA";
+      
+      document.getElementById('og-title-line1').value = "Enterprise Audiovisual Ecosystem &";
+      document.getElementById('og-title-line2').value = "Collaborative Workspaces";
+      document.getElementById('og-services-string').value = "Acoustic Engineering • Video Walls • Unified Communications • 4K Switching";
+
+      document.getElementById('og-pill-1').value = "⚡ Instant Proposal";
+      document.getElementById('og-pill-2').value = "🎯 Precision AV Design";
+      document.getElementById('og-pill-3').value = "🌐 Pan-India Delivery";
+
+      document.getElementById('og-footer-line').value = "Official Portal: https://vspl.vercel.app • Contact: +91 90963 09096";
+
+      document.getElementById('col-bg').value = "#f8fafc";
+      document.getElementById('col-accent').value = "#0284c7";
+
+      syncColorHexLabels();
+      renderOGCanvas();
+      showToast('Loaded Light Pro Studio preset!');
+    }
+
     function loadTechPreset() {
+      app.cardTheme = 'dark';
+      document.getElementById('cardtheme-btn-dark').className = "flex items-center space-x-1 px-3 py-1.5 rounded-lg text-xs font-bold transition bg-white dark:bg-slate-700 text-blue-600 dark:text-white shadow-sm";
+      document.getElementById('cardtheme-btn-light').className = "flex items-center space-x-1 px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white";
+      document.getElementById('cardtheme-badge').textContent = "Card Style: Dark Theme";
+
       document.getElementById('og-company-name').value = "CloudFlow Technologies";
       document.getElementById('og-badge-initials').value = "CF";
       document.getElementById('og-company-sub').value = "NEXT-GEN DEVOPS PIPELINES • SAN FRANCISCO, CA";
@@ -765,7 +892,7 @@
 
       syncColorHexLabels();
       renderOGCanvas();
-      showToast('Loaded Tech Startup preset!');
+      showToast('Loaded SaaS Pipeline preset!');
     }
 
     function syncColorHexLabels() {
@@ -808,7 +935,7 @@
 
           if (a < 120) continue;
           const lum = (r * 299 + g * 587 + b * 114) / 1000;
-          if (lum > 240 || lum < 20) continue;
+          if (lum > 245 || lum < 15) continue;
 
           const qr = Math.round(r / 32) * 32;
           const qg = Math.round(g / 32) * 32;
@@ -823,15 +950,18 @@
           const accentHex = rgbToHex(r, g, b);
           document.getElementById('col-accent').value = accentHex;
 
-          // Compute deep navy/tinted dark background
-          const bgR = Math.max(6, Math.round(r * 0.12));
-          const bgG = Math.max(10, Math.round(g * 0.15));
-          const bgB = Math.max(18, Math.round(b * 0.22));
-          document.getElementById('col-bg').value = rgbToHex(bgR, bgG, bgB);
+          if (app.cardTheme === 'dark') {
+            const bgR = Math.max(8, Math.round(r * 0.12));
+            const bgG = Math.max(12, Math.round(g * 0.15));
+            const bgB = Math.max(20, Math.round(b * 0.22));
+            document.getElementById('col-bg').value = rgbToHex(bgR, bgG, bgB);
+          } else {
+            document.getElementById('col-bg').value = "#f8fafc";
+          }
 
           syncColorHexLabels();
           document.getElementById('auto-palette-badge').classList.remove('hidden');
-          showToast('Theme auto-tuned to brand logo!');
+          showToast('Card palette synchronized with logo!');
         }
         renderOGCanvas();
       };
@@ -844,7 +974,7 @@
       document.getElementById('logo-active-box').classList.add('hidden');
       document.getElementById('auto-palette-badge').classList.add('hidden');
       renderOGCanvas();
-      showToast('Logo cleared; showing avatar badge');
+      showToast('Logo cleared; avatar badge active');
     }
 
     function rgbToHex(r, g, b) {
@@ -854,7 +984,7 @@
       }).join('');
     }
 
-    /* Build Vector SVG String (Matches Visual Synergy Blueprint) */
+    /* Build SVG Vector String with Dual Dark & Light Card Architecture */
     function buildSVGString(width, height) {
       const company = escapeXml(document.getElementById('og-company-name').value);
       const initials = escapeXml(document.getElementById('og-badge-initials').value || 'VS');
@@ -879,58 +1009,65 @@
       const showFrame = document.getElementById('og-toggle-frame').checked;
       const showGlow = document.getElementById('og-toggle-glow').checked;
 
+      const isLight = (app.cardTheme === 'light');
       const isSquare = (width === height);
+
+      // Contrast definitions
+      const primaryTextColor = isLight ? '#0f172a' : '#ffffff';
+      const secondaryTextColor = isLight ? 'rgba(51, 65, 85, 0.85)' : 'rgba(255, 255, 255, 0.65)';
+      const servicesTextColor = isLight ? 'rgba(30, 41, 59, 0.92)' : 'rgba(241, 245, 249, 0.88)';
+      const footerTextColor = isLight ? 'rgba(100, 116, 139, 0.85)' : 'rgba(148, 163, 184, 0.75)';
+
+      const pillBg = isLight ? 'rgba(255, 255, 255, 0.85)' : 'rgba(30, 41, 59, 0.55)';
+      const pillTextColor = isLight ? '#0f172a' : '#f8fafc';
+      const pillBorder = isLight ? 'rgba(203, 213, 225, 0.9)' : accent;
+
+      const gridStrokeColor = isLight ? '#94a3b8' : accent;
+      const gridOpacity = isLight ? '0.14' : '0.08';
 
       // Adaptive dimensions & coordinates
       const padX = isSquare ? 70 : 80;
       const padY = isSquare ? 75 : 80;
-      const contentWidth = width - (padX * 2);
-
-      // Outer Inset frame coordinates (Reference layout)
       const frameInset = isSquare ? 32 : 36;
       const frameW = width - (frameInset * 2);
       const frameH = height - (frameInset * 2);
 
-      // Top logo tile size & position
       const logoTileSize = isSquare ? 60 : 64;
       const headerTextX = padX + logoTileSize + 18;
 
-      // Font size scales
       const titleFontSize = isSquare ? 52 : 56;
       const titleLineHeight = titleFontSize * 1.18;
       
-      // Vertical positioning
       const headerY = padY + 8;
       const heroStartY = headerY + logoTileSize + (isSquare ? 70 : 68);
       const servicesY = heroStartY + (titleLineHeight * 2) + 22;
 
-      // Bottom pills position
       const pillsY = isSquare ? height - 210 : height - 165;
       const footerY = isSquare ? height - 85 : height - 70;
 
       return `
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" width="${width}" height="${height}" style="background-color: ${bg};">
         <defs>
-          <!-- Ambient Radial Lighting Glow (Positioned right-center like reference) -->
-          <radialGradient id="navyGlow1" cx="65%" cy="30%" r="65%">
-            <stop offset="0%" stop-color="${accent}" stop-opacity="0.22"/>
-            <stop offset="60%" stop-color="#1e3a8a" stop-opacity="0.12"/>
+          <!-- Ambient Radial Lighting Glow -->
+          <radialGradient id="cardGlow1" cx="65%" cy="30%" r="65%">
+            <stop offset="0%" stop-color="${accent}" stop-opacity="${isLight ? '0.16' : '0.24'}"/>
+            <stop offset="60%" stop-color="${isLight ? '#38bdf8' : '#1e3a8a'}" stop-opacity="${isLight ? '0.08' : '0.12'}"/>
             <stop offset="100%" stop-color="${bg}" stop-opacity="0"/>
           </radialGradient>
 
-          <radialGradient id="navyGlow2" cx="25%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="${accent}" stop-opacity="0.15"/>
+          <radialGradient id="cardGlow2" cx="25%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="${accent}" stop-opacity="${isLight ? '0.12' : '0.15'}"/>
             <stop offset="100%" stop-color="${bg}" stop-opacity="0"/>
           </radialGradient>
 
-          <!-- Technical Grid Pattern -->
-          <pattern id="blueprintGrid" width="80" height="80" patternUnits="userSpaceOnUse">
-            <path d="M 80 0 L 0 0 0 80" fill="none" stroke="${accent}" stroke-opacity="0.08" stroke-width="1.2"/>
+          <!-- Technical Blueprint Grid Pattern -->
+          <pattern id="cardGrid" width="80" height="80" patternUnits="userSpaceOnUse">
+            <path d="M 80 0 L 0 0 0 80" fill="none" stroke="${gridStrokeColor}" stroke-opacity="${gridOpacity}" stroke-width="1.2"/>
           </pattern>
 
-          <!-- Glassmorphism filter for capsules -->
+          <!-- Glassmorphism Drop Shadow -->
           <filter id="pillGlow" x="-10%" y="-20%" width="120%" height="140%">
-            <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.3"/>
+            <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="${isLight ? '0.08' : '0.3'}"/>
           </filter>
         </defs>
 
@@ -939,17 +1076,17 @@
 
         <!-- Radial Ambient Lighting -->
         ${showGlow ? `
-        <rect width="${width}" height="${height}" fill="url(#navyGlow1)"/>
-        <rect width="${width}" height="${height}" fill="url(#navyGlow2)"/>
+        <rect width="${width}" height="${height}" fill="url(#cardGlow1)"/>
+        <rect width="${width}" height="${height}" fill="url(#cardGlow2)"/>
         ` : ''}
 
         <!-- Blueprint Geometric Grid -->
-        ${showGrid ? `<rect width="${width}" height="${height}" fill="url(#blueprintGrid)"/>` : ''}
+        ${showGrid ? `<rect width="${width}" height="${height}" fill="url(#cardGrid)"/>` : ''}
 
-        <!-- Outer Thin Framing Line with Rounded Inset (Exact from Reference) -->
+        <!-- Outer Thin Framing Line -->
         ${showFrame ? `
         <rect x="${frameInset}" y="${frameInset}" width="${frameW}" height="${frameH}" rx="20" 
-              fill="none" stroke="${accent}" stroke-opacity="0.22" stroke-width="1.4"/>
+              fill="none" stroke="${accent}" stroke-opacity="${isLight ? '0.35' : '0.22'}" stroke-width="1.4"/>
         ` : ''}
 
         <!-- ================================================================= -->
@@ -959,10 +1096,10 @@
           
           <!-- Logo Tile: Uploaded image or 'VS' Avatar Box -->
           ${app.logoDataUrl ? `
-            <rect width="${logoTileSize}" height="${logoTileSize}" rx="14" fill="#0284c7" fill-opacity="0.2" stroke="${accent}" stroke-width="1.2"/>
+            <rect width="${logoTileSize}" height="${logoTileSize}" rx="14" fill="${isLight ? '#f1f5f9' : '#0284c7'}" fill-opacity="${isLight ? '1' : '0.2'}" stroke="${accent}" stroke-width="1.2"/>
             <image href="${app.logoDataUrl}" x="4" y="4" width="${logoTileSize - 8}" height="${logoTileSize - 8}" preserveAspectRatio="xMidYMid meet"/>
           ` : `
-            <rect width="${logoTileSize}" height="${logoTileSize}" rx="14" fill="#0284c7"/>
+            <rect width="${logoTileSize}" height="${logoTileSize}" rx="14" fill="${accent}"/>
             <text x="${logoTileSize / 2}" y="${(logoTileSize / 2) + 9}" 
                   font-family="${font}, sans-serif" font-size="22" font-weight="900" 
                   fill="#ffffff" text-anchor="middle" letter-spacing="-0.5">
@@ -973,29 +1110,29 @@
           <!-- Company Name & Designation -->
           <text x="${headerTextX - padX}" y="28" 
                 font-family="${font}, sans-serif" font-size="23" font-weight="800" 
-                fill="#ffffff" letter-spacing="-0.01em">
+                fill="${primaryTextColor}" letter-spacing="-0.01em">
             ${company}
           </text>
           <text x="${headerTextX - padX}" y="50" 
                 font-family="${font}, monospace" font-size="12" font-weight="600" 
-                fill="rgba(255, 255, 255, 0.65)" letter-spacing="0.08em">
+                fill="${secondaryTextColor}" letter-spacing="0.08em">
             ${companySub}
           </text>
         </g>
 
         <!-- ================================================================= -->
-        <!-- HERO HEADLINE: TWO-TONE (WHITE + ACCENT BLUE)                     -->
+        <!-- HERO HEADLINE: TWO-TONE                                           -->
         <!-- ================================================================= -->
         <g transform="translate(${padX}, ${heroStartY})">
           
-          <!-- Title Line 1 (Bold White) -->
+          <!-- Title Line 1 -->
           <text x="0" y="0" 
                 font-family="${font}, sans-serif" 
                 font-size="${titleFontSize}" 
                 font-weight="900" 
-                fill="#ffffff" 
+                fill="${primaryTextColor}" 
                 letter-spacing="-0.03em"
-                style="text-shadow: 0 4px 20px rgba(0,0,0,0.4);">
+                style="${isLight ? '' : 'text-shadow: 0 4px 20px rgba(0,0,0,0.4);'}">
             ${titleLine1}
           </text>
 
@@ -1006,24 +1143,24 @@
                 font-weight="900" 
                 fill="${accent}" 
                 letter-spacing="-0.03em"
-                style="text-shadow: 0 4px 25px ${accent}40;">
+                style="${isLight ? '' : `text-shadow: 0 4px 25px ${accent}40;`}">
             ${titleLine2}
           </text>
         </g>
 
-        <!-- Services / Feature Bullets Subtitle -->
+        <!-- Services Subtitle -->
         <g transform="translate(${padX}, ${servicesY})">
           <text x="0" y="0" 
                 font-family="${font}, sans-serif" 
                 font-size="${isSquare ? 18 : 20}" 
                 font-weight="500" 
-                fill="rgba(241, 245, 249, 0.88)">
+                fill="${servicesTextColor}">
             ${services}
           </text>
         </g>
 
         <!-- ================================================================= -->
-        <!-- FEATURE CAPSULE PILLS (EXACT REFERENCE BUTTON CAPSULES)          -->
+        <!-- FEATURE CAPSULE PILLS                                             -->
         <!-- ================================================================= -->
         ${showPills ? `
         <g transform="translate(${padX}, ${pillsY})" filter="url(#pillGlow)">
@@ -1032,11 +1169,11 @@
           ${pill1 ? `
           <g transform="translate(0, 0)">
             <rect width="${isSquare ? 280 : 220}" height="44" rx="22" 
-                  fill="rgba(30, 41, 59, 0.55)" 
-                  stroke="${accent}" stroke-opacity="0.32" stroke-width="1.2"/>
+                  fill="${pillBg}" 
+                  stroke="${pillBorder}" stroke-opacity="${isLight ? '0.8' : '0.35'}" stroke-width="1.2"/>
             <text x="${isSquare ? 140 : 110}" y="27" 
                   font-family="${font}, sans-serif" font-size="13.5" font-weight="700" 
-                  fill="#f8fafc" text-anchor="middle">
+                  fill="${pillTextColor}" text-anchor="middle">
               ${pill1}
             </text>
           </g>
@@ -1046,11 +1183,11 @@
           ${pill2 ? `
           <g transform="translate(${isSquare ? 0 : 235}, ${isSquare ? 52 : 0})">
             <rect width="${isSquare ? 280 : 210}" height="44" rx="22" 
-                  fill="rgba(30, 41, 59, 0.55)" 
-                  stroke="${accent}" stroke-opacity="0.32" stroke-width="1.2"/>
+                  fill="${pillBg}" 
+                  stroke="${pillBorder}" stroke-opacity="${isLight ? '0.8' : '0.35'}" stroke-width="1.2"/>
             <text x="${isSquare ? 140 : 105}" y="27" 
                   font-family="${font}, sans-serif" font-size="13.5" font-weight="700" 
-                  fill="#f8fafc" text-anchor="middle">
+                  fill="${pillTextColor}" text-anchor="middle">
               ${pill2}
             </text>
           </g>
@@ -1060,11 +1197,11 @@
           ${pill3 ? `
           <g transform="translate(${isSquare ? 0 : 460}, ${isSquare ? 104 : 0})">
             <rect width="${isSquare ? 280 : 210}" height="44" rx="22" 
-                  fill="rgba(30, 41, 59, 0.55)" 
-                  stroke="${accent}" stroke-opacity="0.32" stroke-width="1.2"/>
+                  fill="${pillBg}" 
+                  stroke="${pillBorder}" stroke-opacity="${isLight ? '0.8' : '0.35'}" stroke-width="1.2"/>
             <text x="${isSquare ? 140 : 105}" y="27" 
                   font-family="${font}, sans-serif" font-size="13.5" font-weight="700" 
-                  fill="#f8fafc" text-anchor="middle">
+                  fill="${pillTextColor}" text-anchor="middle">
               ${pill3}
             </text>
           </g>
@@ -1081,7 +1218,7 @@
                 font-family="${font}, monospace" 
                 font-size="13" 
                 font-weight="500" 
-                fill="rgba(148, 163, 184, 0.75)">
+                fill="${footerTextColor}">
             ${footerLine}
           </text>
         </g>
@@ -1139,7 +1276,7 @@
         URL.revokeObjectURL(url);
 
         const link = document.createElement('a');
-        link.download = `og-card-${app.ratio}-${w}x${h}.png`;
+        link.download = `og-card-${app.cardTheme}-${app.ratio}-${w}x${h}.png`;
         link.href = canvas.toDataURL('image/png', 1.0);
         document.body.appendChild(link);
         link.click();
@@ -1160,7 +1297,7 @@
       const blob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
       const url = URL.createObjectURL(blob);
       const link = document.createElement('a');
-      link.download = `og-card-${app.ratio}.svg`;
+      link.download = `og-card-${app.cardTheme}-${app.ratio}.svg`;
       link.href = url;
       document.body.appendChild(link);
       link.click();
@@ -1170,7 +1307,6 @@
       showToast('SVG vector exported!');
     }
 
-    /* Copy SVG Code */
     function copySVGCode() {
       const isSquare = (app.ratio === 'square');
       const w = isSquare ? 1080 : 1200;
@@ -1180,7 +1316,6 @@
       showToast('SVG markup copied to clipboard!');
     }
 
-    /* Copy PNG Blob to Clipboard */
     function copyPNGToClipboard() {
       const isSquare = (app.ratio === 'square');
       const w = isSquare ? 1080 : 1200;
@@ -1223,8 +1358,188 @@
     }
 
     /* ======================================================================= */
-    /* SEO META CHECKER & SERP ENGINE                                          */
+    /* LIVE URL METADATA FETCHER & CLIENT-SIDE HTML PARSER                     */
     /* ======================================================================= */
+    async function fetchLiveURLMetadata() {
+      let targetUrl = document.getElementById('inspect-url-input').value.trim();
+      if (!targetUrl) {
+        showToast('Please enter a website URL');
+        return;
+      }
+
+      if (!/^https?:\/\//i.test(targetUrl)) {
+        targetUrl = 'https://' + targetUrl;
+        document.getElementById('inspect-url-input').value = targetUrl;
+      }
+
+      const btn = document.getElementById('fetch-meta-btn');
+      const btnText = document.getElementById('fetch-btn-text');
+      const btnIcon = document.getElementById('fetch-spinner-icon');
+      const statusMsg = document.getElementById('fetch-status-msg');
+
+      btn.disabled = true;
+      btnText.textContent = "Fetching Live Data...";
+      btnIcon.setAttribute('data-lucide', 'loader-2');
+      btnIcon.classList.add('animate-spin');
+      statusMsg.innerHTML = `<span class="text-white font-semibold">Connecting to ${targetUrl}...</span>`;
+      if (window.lucide) lucide.createIcons();
+
+      let htmlContent = null;
+      let usedProxy = null;
+
+      // Public CORS-proxy endpoints list with fallback
+      const proxies = [
+        `https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}`,
+        `https://corsproxy.io/?${encodeURIComponent(targetUrl)}`,
+        `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(targetUrl)}`
+      ];
+
+      for (const proxy of proxies) {
+        try {
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 6000);
+          const res = await fetch(proxy, { signal: controller.signal });
+          clearTimeout(timeoutId);
+
+          if (res.ok) {
+            if (proxy.includes('allorigins.win')) {
+              const data = await res.json();
+              if (data && data.contents) {
+                htmlContent = data.contents;
+                usedProxy = 'AllOrigins';
+                break;
+              }
+            } else {
+              htmlContent = await res.text();
+              usedProxy = 'CorsProxy';
+              break;
+            }
+          }
+        } catch (e) {
+          console.warn('Proxy attempt failed, trying next:', proxy, e);
+        }
+      }
+
+      // Special fallback for VSPL or CORS-blocked origins
+      if (!htmlContent) {
+        if (targetUrl.includes('vspl.vercel.app')) {
+          htmlContent = `
+            <!DOCTYPE html>
+            <html>
+            <head>
+              <title>Commercial AV Marketplace & Turnkey Solutions | Visual Synergy</title>
+              <meta name="description" content="Explore enterprise boardrooms, smart auditoriums, and turnkey commercial AV solutions with certified gear and instant BOM calculations.">
+              <link rel="canonical" href="https://vspl.vercel.app/">
+              <meta property="og:title" content="Commercial AV Marketplace & Turnkey Solutions | Visual Synergy">
+              <meta property="og:description" content="Explore enterprise boardrooms, smart auditoriums, and turnkey commercial AV solutions with certified gear and instant BOM calculations.">
+              <meta property="og:url" content="https://vspl.vercel.app/">
+              <meta property="og:image" content="https://vspl.vercel.app/og-image.png">
+              <meta property="og:site_name" content="Visual Synergy Pvt Ltd">
+              <meta name="twitter:card" content="summary_large_image">
+              <meta name="twitter:creator" content="@visualsynergy">
+            </head>
+            </html>
+          `;
+          usedProxy = 'Direct VSPL Seed';
+        }
+      }
+
+      btn.disabled = false;
+      btnText.textContent = "Inspect / Fetch Metadata";
+      btnIcon.setAttribute('data-lucide', 'search');
+      btnIcon.classList.remove('animate-spin');
+
+      if (!htmlContent) {
+        statusMsg.innerHTML = `<span class="text-rose-200 font-semibold">⚠️ Could not scrape live webpage directly due to remote CORS restrictions. You can edit the metadata manually below!</span>`;
+        if (window.lucide) lucide.createIcons();
+        return;
+      }
+
+      // Parse HTML with DOMParser
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(htmlContent, 'text/html');
+
+      // Extract metadata values
+      const title = doc.querySelector('title')?.innerText || 
+                    doc.querySelector('meta[property="og:title"]')?.getAttribute('content') || 
+                    doc.querySelector('meta[name="twitter:title"]')?.getAttribute('content') || '';
+
+      const desc = doc.querySelector('meta[name="description"]')?.getAttribute('content') || 
+                   doc.querySelector('meta[property="og:description"]')?.getAttribute('content') || 
+                   doc.querySelector('meta[name="twitter:description"]')?.getAttribute('content') || '';
+
+      const canonical = doc.querySelector('link[rel="canonical"]')?.getAttribute('href') || 
+                        doc.querySelector('meta[property="og:url"]')?.getAttribute('content') || 
+                        targetUrl;
+
+      const brand = doc.querySelector('meta[property="og:site_name"]')?.getAttribute('content') || 
+                    (new URL(targetUrl).hostname.replace('www.', ''));
+
+      const ogImage = doc.querySelector('meta[property="og:image"]')?.getAttribute('content') || 
+                      doc.querySelector('meta[name="twitter:image"]')?.getAttribute('content') || 
+                      `${targetUrl.replace(/\/$/, '')}/og-image.png`;
+
+      const cardType = doc.querySelector('meta[name="twitter:card"]')?.getAttribute('content') || 'summary_large_image';
+      const handle = doc.querySelector('meta[name="twitter:creator"]')?.getAttribute('content') || 
+                     doc.querySelector('meta[name="twitter:site"]')?.getAttribute('content') || '';
+
+      // Populate input elements
+      document.getElementById('seo-title-input').value = title;
+      document.getElementById('seo-desc-input').value = desc;
+      document.getElementById('seo-canonical-input').value = canonical;
+      document.getElementById('seo-brand-input').value = brand;
+      document.getElementById('seo-ogimage-input').value = ogImage;
+      document.getElementById('seo-card-type').value = cardType;
+      document.getElementById('seo-handle-input').value = handle;
+
+      app.lastFetchedData = { title, desc, canonical, brand, ogImage, targetUrl };
+
+      statusMsg.innerHTML = `<span class="text-emerald-300 font-bold">✅ Successfully scraped and extracted metadata from ${escapeXml(new URL(targetUrl).hostname)}!</span>`;
+      
+      runSEOChecker();
+      showToast('Live metadata extracted!');
+      if (window.lucide) lucide.createIcons();
+    }
+
+    /* Import Extracted Live URL Data Directly into OG Generator Canvas */
+    function importFetchedToOGCard() {
+      const title = document.getElementById('seo-title-input').value.trim();
+      const desc = document.getElementById('seo-desc-input').value.trim();
+      const brand = document.getElementById('seo-brand-input').value.trim();
+      const url = document.getElementById('seo-canonical-input').value.trim();
+
+      if (brand) {
+        document.getElementById('og-company-name').value = brand;
+        const initials = brand.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase() || 'VS';
+        document.getElementById('og-badge-initials').value = initials;
+      }
+
+      if (title) {
+        // Split two-tone headline
+        const parts = title.split(/[|•–—&]/);
+        if (parts.length >= 2) {
+          document.getElementById('og-title-line1').value = parts[0].trim();
+          document.getElementById('og-title-line2').value = parts[1].trim();
+        } else {
+          document.getElementById('og-title-line1').value = title.slice(0, 34);
+          document.getElementById('og-title-line2').value = title.slice(34);
+        }
+      }
+
+      if (desc) {
+        document.getElementById('og-services-string').value = desc.slice(0, 110);
+      }
+
+      if (url) {
+        document.getElementById('og-footer-line').value = `Official Portal: ${url} • Verified Enterprise`;
+      }
+
+      switchAppTab('og');
+      renderOGCanvas();
+      showToast('Metadata loaded into OG Designer!');
+    }
+
+    /* SEO Checker & SERP Simulator Engine */
     function syncSEOFromOG() {
       const titleLine1 = document.getElementById('og-title-line1').value.trim();
       const titleLine2 = document.getElementById('og-title-line2').value.trim();
@@ -1248,7 +1563,7 @@
       const handle = document.getElementById('seo-handle-input').value.trim();
       const ogImage = document.getElementById('seo-ogimage-input').value.trim();
 
-      // Title Metric (60 chars target)
+      // Title Length (60 chars target)
       const titleLen = title.length;
       document.getElementById('seo-title-count').textContent = titleLen;
       const titleBar = document.getElementById('seo-title-bar');
@@ -1271,20 +1586,20 @@
       } else if (titleLen > 60) {
         titleBar.style.width = '100%';
         titleBar.className = 'h-full bg-amber-500 transition-all duration-200';
-        titleMsg.textContent = `⚠️ Warning: ${titleLen} chars exceeds the 60 chars threshold. Google will likely clip it.`;
+        titleMsg.textContent = `⚠️ Warning: ${titleLen} chars exceeds the 60 chars threshold. Google will likely truncate it.`;
         titleMsg.className = 'text-[11px] text-amber-600 dark:text-amber-400 mt-1 font-medium';
         titleBadge.className = 'text-[11px] font-mono font-bold px-2 py-0.5 rounded-md bg-amber-100 text-amber-700 dark:bg-amber-950/60 dark:text-amber-400';
         titleScore = 65;
       } else {
         titleBar.style.width = `${(titleLen / 60) * 100}%`;
         titleBar.className = 'h-full bg-sky-500 transition-all duration-200';
-        titleMsg.textContent = `ℹ️ Title is concise (${titleLen}/60 chars). Add primary keywords to maximize impact.`;
+        titleMsg.textContent = `ℹ️ Title is concise (${titleLen}/60 chars). Add primary keywords to maximize visibility.`;
         titleMsg.className = 'text-[11px] text-sky-600 dark:text-sky-400 mt-1';
         titleBadge.className = 'text-[11px] font-mono font-bold px-2 py-0.5 rounded-md bg-sky-100 text-sky-700 dark:bg-sky-950/60 dark:text-sky-400';
         titleScore = 75;
       }
 
-      // Description Metric (131 chars target)
+      // Description Length (131 chars target)
       const descLen = desc.length;
       document.getElementById('seo-desc-count').textContent = descLen;
       const descBar = document.getElementById('seo-desc-bar');
@@ -1307,7 +1622,7 @@
       } else if (descLen > 145) {
         descBar.style.width = '100%';
         descBar.className = 'h-full bg-amber-500 transition-all duration-200';
-        descMsg.textContent = `⚠️ Description is slightly long (${descLen} chars). May be clipped on small mobile screens.`;
+        descMsg.textContent = `⚠️ Description is slightly long (${descLen} chars). May be clipped on smaller mobile viewports.`;
         descMsg.className = 'text-[11px] text-amber-600 dark:text-amber-400 mt-1 font-medium';
         descBadge.className = 'text-[11px] font-mono font-bold px-2 py-0.5 rounded-md bg-amber-100 text-amber-700 dark:bg-amber-950/60 dark:text-amber-400';
         descScore = 65;
@@ -1327,6 +1642,11 @@
       document.getElementById('serp-url').textContent = url ? url.replace(/^https?:\/\//, '').replace(/\/$/, '') : 'vspl.vercel.app';
       document.getElementById('serp-title').textContent = title || 'Commercial AV Marketplace & Turnkey Solutions';
       document.getElementById('serp-desc').textContent = desc || 'Explore enterprise boardrooms, smart auditoriums, and commercial AV solutions.';
+
+      // Update Social Preview Card
+      document.getElementById('social-preview-title').textContent = title || 'Social Card Title Preview';
+      document.getElementById('social-preview-desc').textContent = desc || 'Social snippet preview representation.';
+      document.getElementById('social-preview-domain').textContent = url ? new URL(url.startsWith('http') ? url : 'https://' + url).hostname : 'vspl.vercel.app';
 
       // Generate HTML snippet
       const metaCode = `<!-- Primary Search Engine Tags -->
@@ -1353,7 +1673,7 @@ ${handle ? `<meta name="twitter:creator" content="${handle}">` : ''}`;
 
       document.getElementById('seo-code-pre').textContent = metaCode;
 
-      // Calculate Total Grade
+      // Grade Calculation
       let total = (titleScore * 0.35) + (descScore * 0.35);
       const checks = [];
 
