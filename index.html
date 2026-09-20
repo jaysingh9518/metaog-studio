@@ -34,7 +34,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -138,9 +138,9 @@
         <div>
           <h1 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
             Social Card Designer
-            <span class="text-[11px] font-bold px-2.5 py-0.5 rounded-md bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800">Vector Engine</span>
+            <span class="text-[11px] font-bold px-2.5 py-0.5 rounded-md bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800">Dynamic 1:1 & 1.91:1</span>
           </h1>
-          <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5">Customize borders, alignment, two-tone titles, capsule pills, and auto-sync palette from logo.</p>
+          <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5">Custom layout coordinates, responsive square mode, and 4 modular visual zone tabs.</p>
         </div>
 
         <div class="flex flex-wrap items-center gap-2.5">
@@ -164,7 +164,7 @@
             </button>
             <button id="ratio-btn-square" onclick="setRatio('square')" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
               <i data-lucide="square" class="w-3.5 h-3.5"></i>
-              <span>1080 × 1080</span>
+              <span>1080 × 1080 (Square)</span>
             </button>
           </div>
 
@@ -186,311 +186,371 @@
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 
         <!-- ===================================================================== -->
-        <!-- LEFT PANEL: CUSTOMIZATION CONTROLS                                    -->
+        <!-- LEFT PANEL: 4 VISUAL ZONE CUSTOMIZATION TABS                          -->
         <!-- ===================================================================== -->
-        <div class="lg:col-span-5 space-y-5">
+        <div class="lg:col-span-5 space-y-4">
 
-          <!-- 1. Header & Logo Customization Suite -->
-          <div class="bg-white dark:bg-slate-900 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
-            <div class="flex items-center justify-between">
-              <h2 class="text-xs font-extrabold uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
-                <i data-lucide="shield" class="w-3.5 h-3.5 text-blue-500"></i>
-                1. Logo & Header Configuration
-              </h2>
-              <button id="apply-extracted-btn" onclick="applyExtractedPalette()" class="hidden text-[10px] font-bold px-2 py-0.5 rounded-full bg-indigo-100 dark:bg-indigo-950/70 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 hover:scale-105 transition">
-                ⚡ Apply Logo Palette
-              </button>
-            </div>
-
-            <!-- Upload Custom Logo or URL -->
-            <div class="space-y-2">
-              <div class="relative border-2 border-dashed border-slate-300 dark:border-slate-700 hover:border-blue-500 rounded-xl p-3 text-center cursor-pointer transition">
-                <input type="file" id="logo-input" accept="image/png, image/jpeg, image/svg+xml, image/webp" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" onchange="handleLogoUpload(event)">
-                <div class="flex items-center justify-center space-x-2 pointer-events-none">
-                  <i data-lucide="upload-cloud" class="w-4 h-4 text-blue-600 dark:text-blue-400"></i>
-                  <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Upload Brand Logo (File)</span>
-                </div>
-              </div>
-
-              <div class="flex items-center space-x-2">
-                <input type="url" id="logo-url-input" placeholder="Or enter Logo image URL..." onchange="handleLogoUrlChange(this.value)" class="flex-1 text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500">
-                <button onclick="clearLogo()" class="text-rose-500 hover:text-rose-600 font-bold text-xs px-2 py-1">Reset</button>
-              </div>
-            </div>
-
-            <!-- Logo Sizing, Radius & Alignment Controls -->
-            <div class="bg-slate-50 dark:bg-slate-800/50 p-3.5 rounded-xl space-y-3 text-xs border border-slate-100 dark:border-slate-800">
-              <div class="flex items-center justify-between font-bold text-slate-700 dark:text-slate-300">
-                <span>Logo Dimensions & Shape</span>
-                <div class="flex items-center space-x-1 bg-white dark:bg-slate-700 p-0.5 rounded-lg border border-slate-200 dark:border-slate-600">
-                  <button type="button" onclick="setHeaderAlign('left')" id="align-btn-left" class="p-1 rounded bg-blue-50 dark:bg-blue-900/40 text-blue-600" title="Align Left">
-                    <i data-lucide="align-left" class="w-3.5 h-3.5"></i>
-                  </button>
-                  <button type="button" onclick="setHeaderAlign('center')" id="align-btn-center" class="p-1 rounded text-slate-400 hover:text-slate-600" title="Align Center">
-                    <i data-lucide="align-center" class="w-3.5 h-3.5"></i>
-                  </button>
-                  <button type="button" onclick="setHeaderAlign('right')" id="align-btn-right" class="p-1 rounded text-slate-400 hover:text-slate-600" title="Align Right">
-                    <i data-lucide="align-right" class="w-3.5 h-3.5"></i>
-                  </button>
-                </div>
-              </div>
-
-              <!-- Size Slider -->
-              <div class="space-y-1">
-                <div class="flex justify-between text-[11px] text-slate-500">
-                  <span>Logo Size</span>
-                  <span id="lbl-logo-size" class="font-mono">64px</span>
-                </div>
-                <input type="range" id="logo-size" min="32" max="160" value="64" oninput="updateLogoSlider('size', this.value)" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg cursor-pointer">
-              </div>
-
-              <!-- Radius Slider -->
-              <div class="space-y-1">
-                <div class="flex justify-between text-[11px] text-slate-500">
-                  <span>Border Radius</span>
-                  <span id="lbl-logo-radius" class="font-mono">14px</span>
-                </div>
-                <input type="range" id="logo-radius" min="0" max="80" value="14" oninput="updateLogoSlider('radius', this.value)" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg cursor-pointer">
-              </div>
-
-              <!-- Padding Slider -->
-              <div class="space-y-1">
-                <div class="flex justify-between text-[11px] text-slate-500">
-                  <span>Inner Padding</span>
-                  <span id="lbl-logo-padding" class="font-mono">4px</span>
-                </div>
-                <input type="range" id="logo-padding" min="0" max="30" value="4" oninput="updateLogoSlider('padding', this.value)" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg cursor-pointer">
-              </div>
-
-              <!-- Logo Background & Transparency Suite -->
-              <div class="pt-2 border-t border-slate-200 dark:border-slate-700/60 space-y-2.5">
-                <div class="flex items-center justify-between">
-                  <label class="flex items-center space-x-1.5 font-bold text-slate-700 dark:text-slate-300 cursor-pointer">
-                    <input type="checkbox" id="logo-bg-transparent-toggle" onchange="toggleLogoTransparent(this.checked)" class="rounded text-blue-600 focus:ring-blue-500">
-                    <span>Transparent Background</span>
-                  </label>
-                  <span id="logo-bg-status-badge" class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-slate-500">Solid</span>
-                </div>
-
-                <!-- Background Color Picker & Hex -->
-                <div id="logo-bg-color-wrapper" class="grid grid-cols-2 gap-2 items-center transition-opacity duration-150">
-                  <div>
-                    <label class="block text-[10px] text-slate-500 mb-1 font-bold">Tile Background</label>
-                    <div class="flex items-center space-x-1.5">
-                      <input type="color" id="logo-bg-color" value="#0284c7" oninput="updateLogoBgFromColor(this.value)" class="w-6 h-6 rounded border-0 cursor-pointer bg-transparent">
-                      <input type="text" id="logo-bg-color-hex" value="#0284c7" onchange="syncHexToColor('logo-bg-color', this.value); updateLogoBgFromColor(this.value);" class="w-full text-[11px] font-mono p-1 rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 uppercase">
-                    </div>
-                  </div>
-                  <div>
-                    <label class="block text-[10px] text-slate-500 mb-1 font-bold">Quick Presets</label>
-                    <div class="flex flex-wrap gap-1">
-                      <button type="button" onclick="setLogoBgPreset('transparent')" class="px-1.5 py-0.5 text-[10px] font-bold rounded border border-slate-300 dark:border-slate-600 bg-slate-100 dark:bg-slate-700 hover:border-blue-500 transition">Transp.</button>
-                      <button type="button" onclick="setLogoBgPreset('primary')" class="px-1.5 py-0.5 text-[10px] font-bold rounded border border-slate-300 dark:border-slate-600 bg-blue-600 text-white hover:opacity-90 transition">Brand</button>
-                      <button type="button" onclick="setLogoBgPreset('navy')" class="px-1.5 py-0.5 text-[10px] font-bold rounded border border-slate-300 dark:border-slate-600 bg-slate-900 text-white hover:opacity-90 transition">Navy</button>
-                      <button type="button" onclick="setLogoBgPreset('white')" class="px-1.5 py-0.5 text-[10px] font-bold rounded border border-slate-300 dark:border-slate-600 bg-white text-slate-900 hover:opacity-90 transition">White</button>
-                      <button type="button" onclick="setLogoBgPreset('glass')" class="px-1.5 py-0.5 text-[10px] font-bold rounded border border-slate-300 dark:border-slate-600 bg-slate-200/60 dark:bg-slate-700/60 hover:border-blue-500 transition">Glass</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Border Controls -->
-              <div class="pt-2 border-t border-slate-200 dark:border-slate-700/60 space-y-2.5">
-                <div class="flex items-center justify-between">
-                  <label class="flex items-center space-x-1.5 font-bold cursor-pointer">
-                    <input type="checkbox" id="logo-border-toggle" checked onchange="renderOGCanvas()" class="rounded text-blue-600">
-                    <span>Enable Logo Border</span>
-                  </label>
-                  <div class="flex items-center space-x-1.5">
-                    <span class="text-[11px] text-slate-500 font-mono" id="lbl-logo-border-w">1.5px</span>
-                    <input type="range" id="logo-border-width" min="0" max="10" step="0.5" value="1.5" oninput="updateLogoSlider('border-width', this.value)" class="w-16 h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg cursor-pointer">
-                  </div>
-                </div>
-
-                <div class="grid grid-cols-2 gap-2">
-                  <div>
-                    <label class="block text-[10px] text-slate-500 mb-1 font-bold">Border Color</label>
-                    <div class="flex items-center space-x-1.5">
-                      <input type="color" id="logo-border-color" value="#38bdf8" oninput="renderOGCanvas()" class="w-6 h-6 rounded border-0 cursor-pointer bg-transparent">
-                      <input type="text" id="logo-border-color-hex" value="#38bdf8" onchange="syncHexToColor('logo-border-color', this.value)" class="w-full text-[11px] font-mono p-1 rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 uppercase">
-                    </div>
-                  </div>
-                  <div>
-                    <label class="block text-[10px] text-slate-500 mb-1 font-bold">Border Style</label>
-                    <select id="logo-border-style" onchange="renderOGCanvas()" class="w-full text-xs rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-1.5">
-                      <option value="solid">Solid Line</option>
-                      <option value="dashed">Dashed</option>
-                      <option value="dotted">Dotted</option>
-                      <option value="double">Double</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div>
-                  <label class="block text-[10px] text-slate-500 mb-1 font-bold">Fallback Initials</label>
-                  <input type="text" id="og-badge-initials" value="VS" maxlength="3" oninput="renderOGCanvas()" class="w-full text-xs rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-1.5 font-mono uppercase font-bold text-center">
-                </div>
-              </div>
-            </div>
-
-            <!-- Brand Name & Tagline Inputs -->
-            <div class="space-y-2.5">
-              <div class="grid grid-cols-3 gap-2">
-                <div class="col-span-2">
-                  <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">Company / Brand Name</label>
-                  <input type="text" id="og-company-name" value="Visual Synergy Pvt Ltd" oninput="renderOGCanvas()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2 outline-none font-bold">
-                </div>
-                <div>
-                  <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">Brand Color</label>
-                  <input type="color" id="og-company-color" value="#ffffff" oninput="renderOGCanvas()" class="w-full h-8 rounded-xl border-0 cursor-pointer bg-transparent">
-                </div>
-              </div>
-
-              <div>
-                <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">Tagline / Location (Uppercase)</label>
-                <input type="text" id="og-company-sub" value="ENTERPRISE PRO AV CONSULTANT • PUNE, MAHARASHTRA" oninput="renderOGCanvas()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2 outline-none font-mono text-[11px]">
-              </div>
-            </div>
+          <!-- 4 Visual Area Selector Tabs -->
+          <div class="grid grid-cols-4 gap-1 p-1 bg-slate-200/70 dark:bg-slate-800/90 rounded-2xl border border-slate-200 dark:border-slate-700 text-xs font-bold">
+            <button type="button" id="zone-tab-btn-header" onclick="switchZoneTab('header')" class="py-2 rounded-xl transition bg-white dark:bg-slate-700 text-blue-600 dark:text-white shadow-sm flex flex-col items-center gap-1">
+              <i data-lucide="shield" class="w-3.5 h-3.5"></i>
+              <span>1. Header</span>
+            </button>
+            <button type="button" id="zone-tab-btn-titles" onclick="switchZoneTab('titles')" class="py-2 rounded-xl transition text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white flex flex-col items-center gap-1">
+              <i data-lucide="type" class="w-3.5 h-3.5"></i>
+              <span>2. Titles</span>
+            </button>
+            <button type="button" id="zone-tab-btn-features" onclick="switchZoneTab('features')" class="py-2 rounded-xl transition text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white flex flex-col items-center gap-1">
+              <i data-lucide="layers" class="w-3.5 h-3.5"></i>
+              <span>3. Features</span>
+            </button>
+            <button type="button" id="zone-tab-btn-frame" onclick="switchZoneTab('frame')" class="py-2 rounded-xl transition text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white flex flex-col items-center gap-1">
+              <i data-lucide="sliders" class="w-3.5 h-3.5"></i>
+              <span>4. Frame</span>
+            </button>
           </div>
 
-          <!-- 2. Two-Tone Headline Section -->
-          <div class="bg-white dark:bg-slate-900 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-3.5">
-            <div class="flex items-center justify-between">
-              <h2 class="text-xs font-extrabold uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
-                <i data-lucide="type" class="w-3.5 h-3.5 text-blue-500"></i>
-                2. Headline & Content Alignment
-              </h2>
-              <div class="flex items-center space-x-1">
-                <button type="button" onclick="setContentAlign('left')" id="cnt-align-left" class="px-2 py-0.5 rounded text-[11px] font-bold bg-blue-50 dark:bg-blue-900/40 text-blue-600">Left</button>
-                <button type="button" onclick="setContentAlign('center')" id="cnt-align-center" class="px-2 py-0.5 rounded text-[11px] font-bold text-slate-400 hover:text-slate-600">Center</button>
+          <!-- =================================================================== -->
+          <!-- ZONE TAB 1: HEADER & LOGO CONFIGURATION                             -->
+          <!-- =================================================================== -->
+          <div id="zone-panel-header" class="space-y-4">
+            
+            <div class="bg-white dark:bg-slate-900 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+              <div class="flex items-center justify-between">
+                <h3 class="text-xs font-black uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
+                  <i data-lucide="image" class="w-3.5 h-3.5 text-blue-500"></i>
+                  Brand Logo & Header Alignment
+                </h3>
+                <button id="apply-extracted-btn" onclick="applyExtractedPalette()" class="hidden text-[10px] font-bold px-2 py-0.5 rounded-full bg-indigo-100 dark:bg-indigo-950/70 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 hover:scale-105 transition">
+                  ⚡ Sync Palette from Logo
+                </button>
               </div>
-            </div>
 
-            <!-- Primary Title -->
-            <div class="grid grid-cols-4 gap-2 items-end">
-              <div class="col-span-3">
-                <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">Title Part 1 (Primary)</label>
-                <input type="text" id="og-title-line1" value="Commercial AV Marketplace &" oninput="renderOGCanvas()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2 outline-none font-bold">
-              </div>
-              <div>
-                <label class="block text-[10px] font-bold text-slate-500 mb-1">Color</label>
-                <input type="color" id="col-title1" value="#ffffff" oninput="renderOGCanvas()" class="w-full h-8 rounded-xl border-0 cursor-pointer bg-transparent">
-              </div>
-            </div>
+              <!-- Upload Custom Logo or URL -->
+              <div class="space-y-2">
+                <div class="relative border-2 border-dashed border-slate-300 dark:border-slate-700 hover:border-blue-500 rounded-xl p-3 text-center cursor-pointer transition">
+                  <input type="file" id="logo-input" accept="image/png, image/jpeg, image/svg+xml, image/webp" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" onchange="handleLogoUpload(event)">
+                  <div class="flex items-center justify-center space-x-2 pointer-events-none">
+                    <i data-lucide="upload-cloud" class="w-4 h-4 text-blue-600 dark:text-blue-400"></i>
+                    <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Upload Brand Logo (PNG, SVG, JPG)</span>
+                  </div>
+                </div>
 
-            <!-- Accent Title -->
-            <div class="grid grid-cols-4 gap-2 items-end">
-              <div class="col-span-3">
-                <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">Title Part 2 (Accent Highlight)</label>
-                <input type="text" id="og-title-line2" value="Turnkey Room Solutions" oninput="renderOGCanvas()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2 outline-none font-bold text-blue-600 dark:text-blue-400">
-              </div>
-              <div>
-                <label class="block text-[10px] font-bold text-slate-500 mb-1">Accent</label>
-                <input type="color" id="col-accent" value="#38bdf8" oninput="renderOGCanvas()" class="w-full h-8 rounded-xl border-0 cursor-pointer bg-transparent">
-              </div>
-            </div>
-
-            <!-- Font Size & Family -->
-            <div class="grid grid-cols-2 gap-3 pt-1">
-              <div>
-                <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">Title Font Size</label>
                 <div class="flex items-center space-x-2">
-                  <input type="range" id="og-title-size" min="36" max="72" value="56" oninput="updateTitleSize(this.value)" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg cursor-pointer">
-                  <span id="lbl-title-size" class="text-xs font-mono text-slate-500 w-8">56px</span>
+                  <input type="url" id="logo-url-input" placeholder="Or enter Logo image URL..." onchange="handleLogoUrlChange(this.value)" class="flex-1 text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500">
+                  <button onclick="clearLogo()" class="text-rose-500 hover:text-rose-600 font-bold text-xs px-2 py-1">Reset</button>
                 </div>
               </div>
-              <div>
-                <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">Typography</label>
-                <select id="og-font-select" onchange="renderOGCanvas()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-2.5 py-1.5 outline-none">
-                  <option value="Plus Jakarta Sans">Plus Jakarta Sans</option>
-                  <option value="Inter">Inter Clean</option>
-                  <option value="Outfit">Outfit</option>
-                </select>
+
+              <!-- Logo Sizing, Radius & Alignment Controls -->
+              <div class="bg-slate-50 dark:bg-slate-800/50 p-3.5 rounded-xl space-y-3 text-xs border border-slate-100 dark:border-slate-800">
+                <div class="flex items-center justify-between font-bold text-slate-700 dark:text-slate-300">
+                  <span>Logo Dimensions & Shape</span>
+                  <div class="flex items-center space-x-1 bg-white dark:bg-slate-700 p-0.5 rounded-lg border border-slate-200 dark:border-slate-600">
+                    <button type="button" onclick="setHeaderAlign('left')" id="align-btn-left" class="p-1 rounded bg-blue-50 dark:bg-blue-900/40 text-blue-600" title="Align Left">
+                      <i data-lucide="align-left" class="w-3.5 h-3.5"></i>
+                    </button>
+                    <button type="button" onclick="setHeaderAlign('center')" id="align-btn-center" class="p-1 rounded text-slate-400 hover:text-slate-600" title="Align Center">
+                      <i data-lucide="align-center" class="w-3.5 h-3.5"></i>
+                    </button>
+                    <button type="button" onclick="setHeaderAlign('right')" id="align-btn-right" class="p-1 rounded text-slate-400 hover:text-slate-600" title="Align Right">
+                      <i data-lucide="align-right" class="w-3.5 h-3.5"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Size Slider -->
+                <div class="space-y-1">
+                  <div class="flex justify-between text-[11px] text-slate-500">
+                    <span>Base Logo Size (Scales in Square Mode)</span>
+                    <span id="lbl-logo-size" class="font-mono">68px</span>
+                  </div>
+                  <input type="range" id="logo-size" min="36" max="180" value="68" oninput="updateLogoSlider('size', this.value)" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg cursor-pointer">
+                </div>
+
+                <!-- Radius Slider -->
+                <div class="space-y-1">
+                  <div class="flex justify-between text-[11px] text-slate-500">
+                    <span>Border Radius</span>
+                    <span id="lbl-logo-radius" class="font-mono">16px</span>
+                  </div>
+                  <input type="range" id="logo-radius" min="0" max="90" value="16" oninput="updateLogoSlider('radius', this.value)" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg cursor-pointer">
+                </div>
+
+                <!-- Padding Slider -->
+                <div class="space-y-1">
+                  <div class="flex justify-between text-[11px] text-slate-500">
+                    <span>Inner Padding</span>
+                    <span id="lbl-logo-padding" class="font-mono">4px</span>
+                  </div>
+                  <input type="range" id="logo-padding" min="0" max="30" value="4" oninput="updateLogoSlider('padding', this.value)" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg cursor-pointer">
+                </div>
+
+                <!-- Logo Background & Transparency Suite -->
+                <div class="pt-2 border-t border-slate-200 dark:border-slate-700/60 space-y-2.5">
+                  <div class="flex items-center justify-between">
+                    <label class="flex items-center space-x-1.5 font-bold text-slate-700 dark:text-slate-300 cursor-pointer">
+                      <input type="checkbox" id="logo-bg-transparent-toggle" onchange="toggleLogoTransparent(this.checked)" class="rounded text-blue-600 focus:ring-blue-500">
+                      <span>Transparent Background</span>
+                    </label>
+                    <span id="logo-bg-status-badge" class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-slate-500">Solid</span>
+                  </div>
+
+                  <!-- Background Color Picker & Presets -->
+                  <div id="logo-bg-color-wrapper" class="grid grid-cols-2 gap-2 items-center transition-opacity duration-150">
+                    <div>
+                      <label class="block text-[10px] text-slate-500 mb-1 font-bold">Tile Background</label>
+                      <div class="flex items-center space-x-1.5">
+                        <input type="color" id="logo-bg-color" value="#0284c7" oninput="updateLogoBgFromColor(this.value)" class="w-6 h-6 rounded border-0 cursor-pointer bg-transparent">
+                        <input type="text" id="logo-bg-color-hex" value="#0284c7" onchange="syncHexToColor('logo-bg-color', this.value); updateLogoBgFromColor(this.value);" class="w-full text-[11px] font-mono p-1 rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 uppercase">
+                      </div>
+                    </div>
+                    <div>
+                      <label class="block text-[10px] text-slate-500 mb-1 font-bold">Quick Presets</label>
+                      <div class="flex flex-wrap gap-1">
+                        <button type="button" onclick="setLogoBgPreset('transparent')" class="px-1.5 py-0.5 text-[10px] font-bold rounded border border-slate-300 dark:border-slate-600 bg-slate-100 dark:bg-slate-700 hover:border-blue-500 transition">Transp.</button>
+                        <button type="button" onclick="setLogoBgPreset('primary')" class="px-1.5 py-0.5 text-[10px] font-bold rounded border border-slate-300 dark:border-slate-600 bg-blue-600 text-white hover:opacity-90 transition">Brand</button>
+                        <button type="button" onclick="setLogoBgPreset('navy')" class="px-1.5 py-0.5 text-[10px] font-bold rounded border border-slate-300 dark:border-slate-600 bg-slate-900 text-white hover:opacity-90 transition">Navy</button>
+                        <button type="button" onclick="setLogoBgPreset('white')" class="px-1.5 py-0.5 text-[10px] font-bold rounded border border-slate-300 dark:border-slate-600 bg-white text-slate-900 hover:opacity-90 transition">White</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Border Controls -->
+                <div class="pt-2 border-t border-slate-200 dark:border-slate-700/60 space-y-2.5">
+                  <div class="flex items-center justify-between">
+                    <label class="flex items-center space-x-1.5 font-bold cursor-pointer">
+                      <input type="checkbox" id="logo-border-toggle" checked onchange="renderOGCanvas()" class="rounded text-blue-600">
+                      <span>Enable Logo Border</span>
+                    </label>
+                    <div class="flex items-center space-x-1.5">
+                      <span class="text-[11px] text-slate-500 font-mono" id="lbl-logo-border-w">1.5px</span>
+                      <input type="range" id="logo-border-width" min="0" max="10" step="0.5" value="1.5" oninput="updateLogoSlider('border-width', this.value)" class="w-16 h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg cursor-pointer">
+                    </div>
+                  </div>
+
+                  <div class="grid grid-cols-2 gap-2">
+                    <div>
+                      <label class="block text-[10px] text-slate-500 mb-1 font-bold">Border Color</label>
+                      <div class="flex items-center space-x-1.5">
+                        <input type="color" id="logo-border-color" value="#38bdf8" oninput="renderOGCanvas()" class="w-6 h-6 rounded border-0 cursor-pointer bg-transparent">
+                        <input type="text" id="logo-border-color-hex" value="#38bdf8" onchange="syncHexToColor('logo-border-color', this.value)" class="w-full text-[11px] font-mono p-1 rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 uppercase">
+                      </div>
+                    </div>
+                    <div>
+                      <label class="block text-[10px] text-slate-500 mb-1 font-bold">Border Style</label>
+                      <select id="logo-border-style" onchange="renderOGCanvas()" class="w-full text-xs rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-1.5">
+                        <option value="solid">Solid Line</option>
+                        <option value="dashed">Dashed</option>
+                        <option value="dotted">Dotted</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label class="block text-[10px] text-slate-500 mb-1 font-bold">Fallback Initials (When No Image)</label>
+                    <input type="text" id="og-badge-initials" value="VS" maxlength="3" oninput="renderOGCanvas()" class="w-full text-xs rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-1.5 font-mono uppercase font-bold text-center">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Brand Name & Location Typography -->
+              <div class="space-y-3 pt-1">
+                <div class="grid grid-cols-3 gap-2">
+                  <div class="col-span-2">
+                    <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">Company / Brand Name</label>
+                    <input type="text" id="og-company-name" value="Visual Synergy Pvt Ltd" oninput="renderOGCanvas()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2 outline-none font-bold">
+                  </div>
+                  <div>
+                    <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">Color</label>
+                    <input type="color" id="og-company-color" value="#ffffff" oninput="renderOGCanvas()" class="w-full h-8 rounded-xl border-0 cursor-pointer bg-transparent">
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">Tagline / Location (Uppercase)</label>
+                  <input type="text" id="og-company-sub" value="ENTERPRISE PRO AV CONSULTANT • PUNE, MAHARASHTRA" oninput="renderOGCanvas()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2 outline-none font-mono text-[11px]">
+                </div>
               </div>
             </div>
 
-            <!-- Services String -->
-            <div>
-              <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">Services / Bullet Items</label>
-              <textarea id="og-services-string" rows="2" oninput="renderOGCanvas()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2 outline-none">Enterprise Boardrooms • Smart Auditoriums • PTZ Video Conferencing • Dante DSPs • Industrial PA</textarea>
-            </div>
           </div>
 
-          <!-- 3. Feature Capsule Pills Section -->
-          <div class="bg-white dark:bg-slate-900 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-3.5">
-            <div class="flex items-center justify-between">
-              <h2 class="text-xs font-extrabold uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
+          <!-- =================================================================== -->
+          <!-- ZONE TAB 2: TWO-TONE HEADLINES CONFIGURATION                        -->
+          <!-- =================================================================== -->
+          <div id="zone-panel-titles" class="hidden space-y-4">
+            
+            <div class="bg-white dark:bg-slate-900 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+              <div class="flex items-center justify-between">
+                <h3 class="text-xs font-black uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
+                  <i data-lucide="type" class="w-3.5 h-3.5 text-blue-500"></i>
+                  Two-Tone Headline & Typography
+                </h3>
+                <div class="flex items-center space-x-1">
+                  <button type="button" onclick="setContentAlign('left')" id="cnt-align-left" class="px-2 py-0.5 rounded text-[11px] font-bold bg-blue-50 dark:bg-blue-900/40 text-blue-600">Left</button>
+                  <button type="button" onclick="setContentAlign('center')" id="cnt-align-center" class="px-2 py-0.5 rounded text-[11px] font-bold text-slate-400 hover:text-slate-600">Center</button>
+                </div>
+              </div>
+
+              <!-- Primary Title -->
+              <div class="grid grid-cols-4 gap-2 items-end">
+                <div class="col-span-3">
+                  <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">Title Part 1 (Primary)</label>
+                  <input type="text" id="og-title-line1" value="Commercial AV Marketplace &" oninput="renderOGCanvas()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2 outline-none font-bold">
+                </div>
+                <div>
+                  <label class="block text-[10px] font-bold text-slate-500 mb-1">Color</label>
+                  <input type="color" id="col-title1" value="#ffffff" oninput="renderOGCanvas()" class="w-full h-8 rounded-xl border-0 cursor-pointer bg-transparent">
+                </div>
+              </div>
+
+              <!-- Accent Title -->
+              <div class="grid grid-cols-4 gap-2 items-end">
+                <div class="col-span-3">
+                  <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">Title Part 2 (Accent Highlight)</label>
+                  <input type="text" id="og-title-line2" value="Turnkey Room Solutions" oninput="renderOGCanvas()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2 outline-none font-bold text-blue-600 dark:text-blue-400">
+                </div>
+                <div>
+                  <label class="block text-[10px] font-bold text-slate-500 mb-1">Accent</label>
+                  <input type="color" id="col-accent" value="#38bdf8" oninput="renderOGCanvas()" class="w-full h-8 rounded-xl border-0 cursor-pointer bg-transparent">
+                </div>
+              </div>
+
+              <!-- Typography & Size Sliders -->
+              <div class="grid grid-cols-2 gap-3 pt-2">
+                <div>
+                  <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">Headline Font Family</label>
+                  <select id="og-font-select" onchange="renderOGCanvas()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-2.5 py-1.5 outline-none">
+                    <option value="Plus Jakarta Sans">Plus Jakarta Sans</option>
+                    <option value="Inter">Inter Clean</option>
+                    <option value="Outfit">Outfit Bold</option>
+                    <option value="Poppins">Poppins</option>
+                    <option value="Space Grotesk">Space Grotesk</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">Font Weight</label>
+                  <select id="og-title-weight" onchange="renderOGCanvas()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-2.5 py-1.5 outline-none font-semibold">
+                    <option value="700">Bold (700)</option>
+                    <option value="800">ExtraBold (800)</option>
+                    <option value="900" selected>Black (900)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="space-y-1 pt-1">
+                <div class="flex justify-between text-[11px] text-slate-500">
+                  <span>Base Title Font Size (Landscape)</span>
+                  <span id="lbl-title-size" class="font-mono">54px</span>
+                </div>
+                <input type="range" id="og-title-size" min="36" max="72" value="54" oninput="updateTitleSize(this.value)" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg cursor-pointer">
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- =================================================================== -->
+          <!-- ZONE TAB 3: FEATURES & CAPSULE PILLS CONFIGURATION                  -->
+          <!-- =================================================================== -->
+          <div id="zone-panel-features" class="hidden space-y-4">
+            
+            <div class="bg-white dark:bg-slate-900 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+              <h3 class="text-xs font-black uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
                 <i data-lucide="layers" class="w-3.5 h-3.5 text-blue-500"></i>
-                3. Feature Capsule Pills
-              </h2>
-              <label class="flex items-center space-x-1.5 cursor-pointer">
-                <input type="checkbox" id="og-toggle-pills" checked onchange="renderOGCanvas()" class="rounded text-blue-600 h-3.5 w-3.5">
-                <span class="text-[11px] font-semibold text-slate-500">Show Pills</span>
-              </label>
-            </div>
+                Capabilities Line & Feature Capsules
+              </h3>
 
-            <div class="space-y-2">
-              <div class="flex items-center space-x-2">
-                <span class="text-xs font-mono text-slate-400 w-5">#1</span>
-                <input type="text" id="og-pill-1" value="⚡ Interactive BOM Builder" oninput="renderOGCanvas()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-1.5 outline-none">
-              </div>
-              <div class="flex items-center space-x-2">
-                <span class="text-xs font-mono text-slate-400 w-5">#2</span>
-                <input type="text" id="og-pill-2" value="📊 AV ROI Calculator" oninput="renderOGCanvas()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-1.5 outline-none">
-              </div>
-              <div class="flex items-center space-x-2">
-                <span class="text-xs font-mono text-slate-400 w-5">#3</span>
-                <input type="text" id="og-pill-3" value="🛡️ 100% Certified Gear" oninput="renderOGCanvas()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-1.5 outline-none">
-              </div>
-            </div>
-          </div>
-
-          <!-- 4. Portal Footer & Visual Backdrops -->
-          <div class="bg-white dark:bg-slate-900 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-3.5">
-            <h2 class="text-xs font-extrabold uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
-              <i data-lucide="sliders" class="w-3.5 h-3.5 text-blue-500"></i>
-              4. Footer & Card Backgrounds
-            </h2>
-
-            <div>
-              <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">Bottom Footer Line</label>
-              <input type="text" id="og-footer-line" value="Official Portal: https://vspl.vercel.app • Contact: +91 90963 09096" oninput="renderOGCanvas()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2 outline-none font-mono text-[11px]">
-            </div>
-
-            <div class="grid grid-cols-2 gap-3 pt-2">
+              <!-- Services String -->
               <div>
-                <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">Card Background Fill</label>
-                <div class="flex items-center space-x-2">
-                  <input type="color" id="col-bg" value="#0a0f1d" oninput="renderOGCanvas()" class="w-8 h-8 rounded border-0 cursor-pointer bg-transparent">
-                  <input type="text" id="col-bg-hex" value="#0A0F1D" onchange="syncHexToColor('col-bg', this.value)" class="w-20 text-xs font-mono p-1 rounded bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 uppercase">
+                <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">Services / Bullet Items (Wraps Automatically)</label>
+                <textarea id="og-services-string" rows="2" oninput="renderOGCanvas()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2 outline-none leading-relaxed">Enterprise Boardrooms • Smart Auditoriums • PTZ Video Conferencing • Dante DSPs • Industrial PA</textarea>
+              </div>
+
+              <!-- Feature Capsule Pills Switch -->
+              <div class="pt-2 border-t border-slate-200 dark:border-slate-800 space-y-3">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-slate-700 dark:text-slate-300">Feature Capsule Pills</span>
+                  <label class="flex items-center space-x-1.5 cursor-pointer">
+                    <input type="checkbox" id="og-toggle-pills" checked onchange="renderOGCanvas()" class="rounded text-blue-600 h-3.5 w-3.5">
+                    <span class="text-[11px] font-semibold text-slate-500">Show Pills</span>
+                  </label>
+                </div>
+
+                <div class="space-y-2">
+                  <div class="flex items-center space-x-2">
+                    <span class="text-xs font-mono text-slate-400 w-5">#1</span>
+                    <input type="text" id="og-pill-1" value="⚡ Interactive BOM Builder" oninput="renderOGCanvas()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-1.5 outline-none">
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <span class="text-xs font-mono text-slate-400 w-5">#2</span>
+                    <input type="text" id="og-pill-2" value="📊 AV ROI Calculator" oninput="renderOGCanvas()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-1.5 outline-none">
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <span class="text-xs font-mono text-slate-400 w-5">#3</span>
+                    <input type="text" id="og-pill-3" value="🛡️ 100% Certified Gear" oninput="renderOGCanvas()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-1.5 outline-none">
+                  </div>
                 </div>
               </div>
-              <div class="space-y-1.5">
-                <label class="flex items-center space-x-2 cursor-pointer text-xs">
-                  <input type="checkbox" id="og-toggle-grid" checked onchange="renderOGCanvas()" class="rounded text-blue-600 h-4 w-4">
-                  <span class="font-semibold">Blueprint Grid</span>
-                </label>
-                <label class="flex items-center space-x-2 cursor-pointer text-xs">
-                  <input type="checkbox" id="og-toggle-frame" checked onchange="renderOGCanvas()" class="rounded text-blue-600 h-4 w-4">
-                  <span class="font-semibold">Outer Border Line</span>
-                </label>
-                <label class="flex items-center space-x-2 cursor-pointer text-xs">
-                  <input type="checkbox" id="og-toggle-glow" checked onchange="renderOGCanvas()" class="rounded text-blue-600 h-4 w-4">
-                  <span class="font-semibold">Radial Glow</span>
-                </label>
+
+            </div>
+
+          </div>
+
+          <!-- =================================================================== -->
+          <!-- ZONE TAB 4: FRAME, FOOTER & BACKGROUNDS                             -->
+          <!-- =================================================================== -->
+          <div id="zone-panel-frame" class="hidden space-y-4">
+            
+            <div class="bg-white dark:bg-slate-900 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+              <h3 class="text-xs font-black uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
+                <i data-lucide="sliders" class="w-3.5 h-3.5 text-blue-500"></i>
+                Footer Line, Grid & Atmospheric Backdrop
+              </h3>
+
+              <div>
+                <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">Bottom Footer Line</label>
+                <input type="text" id="og-footer-line" value="Official Portal: https://vspl.vercel.app • Contact: +91 90963 09096" oninput="renderOGCanvas()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2 outline-none font-mono text-[11px]">
+              </div>
+
+              <div class="grid grid-cols-2 gap-3 pt-2">
+                <div>
+                  <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">Card Background Fill</label>
+                  <div class="flex items-center space-x-2">
+                    <input type="color" id="col-bg" value="#0a0f1d" oninput="renderOGCanvas()" class="w-8 h-8 rounded border-0 cursor-pointer bg-transparent">
+                    <input type="text" id="col-bg-hex" value="#0A0F1D" onchange="syncHexToColor('col-bg', this.value)" class="w-20 text-xs font-mono p-1 rounded bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 uppercase">
+                  </div>
+                </div>
+                <div class="space-y-1.5">
+                  <label class="flex items-center space-x-2 cursor-pointer text-xs">
+                    <input type="checkbox" id="og-toggle-grid" checked onchange="renderOGCanvas()" class="rounded text-blue-600 h-4 w-4">
+                    <span class="font-semibold">Blueprint Grid</span>
+                  </label>
+                  <label class="flex items-center space-x-2 cursor-pointer text-xs">
+                    <input type="checkbox" id="og-toggle-frame" checked onchange="renderOGCanvas()" class="rounded text-blue-600 h-4 w-4">
+                    <span class="font-semibold">Outer Border Frame</span>
+                  </label>
+                  <label class="flex items-center space-x-2 cursor-pointer text-xs">
+                    <input type="checkbox" id="og-toggle-glow" checked onchange="renderOGCanvas()" class="rounded text-blue-600 h-4 w-4">
+                    <span class="font-semibold">Radial Glow</span>
+                  </label>
+                </div>
               </div>
             </div>
+
           </div>
 
         </div>
 
         <!-- ===================================================================== -->
-        <!-- RIGHT PANEL: UNCLIPPED REAL-TIME CARD PREVIEW                         -->
+        <!-- RIGHT PANEL: REAL-TIME CANVASES WITH SEAMLESS 1:1 SQUARE REDISTRIBUTION-->
         <!-- ===================================================================== -->
         <div class="lg:col-span-7 flex flex-col items-center">
 
           <!-- Stage Container -->
-          <div class="w-full canvas-stage-bg p-4 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center relative min-h-[460px] overflow-hidden">
+          <div class="w-full canvas-stage-bg p-4 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center relative min-h-[500px] overflow-hidden">
             
             <!-- Dimension & Theme Tag Bar -->
             <div class="w-full flex items-center justify-between mb-4 text-xs font-semibold text-slate-500 dark:text-slate-400">
@@ -505,10 +565,10 @@
 
             <!-- SVG Mount Point -->
             <div id="svg-host" class="w-full flex items-center justify-center">
-              <!-- Dynamically generated SVG injected here -->
+              <!-- SVG dynamically generated here -->
             </div>
 
-            <!-- Quick Actions -->
+            <!-- Quick Actions Bar -->
             <div class="mt-6 w-full flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-slate-200/60 dark:border-slate-800/80">
               <div class="flex items-center space-x-2">
                 <button onclick="copyPNGToClipboard()" class="px-3.5 py-1.5 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-bold rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm flex items-center gap-1.5 transition active:scale-95">
@@ -522,7 +582,7 @@
               </div>
 
               <div class="text-[11px] text-slate-400">
-                Vector precision with custom logo borders & layout
+                1080×1080 square & 1200×630 landscape optimized
               </div>
             </div>
 
@@ -638,8 +698,8 @@
 
             <!-- OG Image URL Link -->
             <div>
-              <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">OG Image Public URL (og:image)</label>
-              <input type="url" id="seo-ogimage-input" value="" placeholder="https://.../og-image.png" oninput="runSEOChecker()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2 outline-none font-mono text-[11px]">
+              <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">OG Image Public URL (og:image / .svg)</label>
+              <input type="url" id="seo-ogimage-input" value="" placeholder="https://.../og-image.svg" oninput="runSEOChecker()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2 outline-none font-mono text-[11px]">
             </div>
 
           </div>
@@ -654,13 +714,13 @@
               <span id="seo-score-badge" class="text-sm font-extrabold px-3 py-1 rounded-xl bg-slate-300 dark:bg-slate-700 text-slate-800 dark:text-slate-200 shadow-sm">0%</span>
             </div>
             <div id="seo-checklist" class="space-y-2 text-xs">
-              <!-- Dynamically populated checklist -->
+              <!-- Checklist items populate dynamically -->
             </div>
           </div>
 
         </div>
 
-        <!-- Right Panel: Google SERP & Code Snippet (7 cols) -->
+        <!-- Right Panel: Google SERP & OpenGraph Previews (7 cols) -->
         <div class="lg:col-span-7 space-y-5">
 
           <!-- Google SERP Simulation -->
@@ -698,6 +758,28 @@
             </div>
           </div>
 
+          <!-- Social Share Preview (Render Scraped SVG / Raster OG Image) -->
+          <div class="bg-white dark:bg-slate-900 p-5 sm:p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+            <h3 class="text-xs font-extrabold uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
+              <i data-lucide="share-2" class="w-3.5 h-3.5 text-blue-500"></i>
+              Social Card Media Preview (SVG / PNG)
+            </h3>
+            
+            <div class="rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden bg-slate-950 text-white max-w-xl">
+              <div id="social-image-container" class="w-full bg-slate-900 flex items-center justify-center min-h-[180px] max-h-[260px] overflow-hidden relative">
+                <div class="text-xs text-slate-500 flex items-center gap-1.5">
+                  <i data-lucide="image" class="w-4 h-4"></i>
+                  <span>No OpenGraph image detected yet</span>
+                </div>
+              </div>
+              <div class="p-3 bg-slate-900/90 border-t border-slate-800">
+                <div id="social-card-domain" class="text-[11px] uppercase tracking-wider text-slate-400 font-mono">EXAMPLE.COM</div>
+                <div id="social-card-title" class="text-xs sm:text-sm font-bold truncate text-slate-100">Page Social Title</div>
+                <div id="social-card-desc" class="text-[11px] text-slate-400 truncate mt-0.5">Social description snippet</div>
+              </div>
+            </div>
+          </div>
+
           <!-- HTML Code Snippet Output with Copy -->
           <div class="bg-white dark:bg-slate-900 p-5 sm:p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
             <div class="flex items-center justify-between">
@@ -711,7 +793,7 @@
               </button>
             </div>
 
-            <pre class="w-full p-4 rounded-xl bg-slate-950 text-slate-200 font-mono text-xs overflow-x-auto border border-slate-800 max-h-72 leading-relaxed selection:bg-blue-600"><code id="seo-code-pre"><!-- Snippet is built dynamically --></code></pre>
+            <pre class="w-full p-4 rounded-xl bg-slate-950 text-slate-200 font-mono text-xs overflow-x-auto border border-slate-800 max-h-60 leading-relaxed selection:bg-blue-600"><code id="seo-code-pre"><!-- Snippet is built dynamically --></code></pre>
           </div>
 
         </div>
@@ -742,6 +824,7 @@
       theme: 'light',
       cardTheme: 'dark',
       tab: 'og',
+      zoneTab: 'header',
       ratio: 'landscape',
       headerAlign: 'left',
       contentAlign: 'left',
@@ -805,6 +888,7 @@
         document.getElementById('col-bg-hex').value = "#0A0F1D";
         document.getElementById('col-title1').value = "#ffffff";
         document.getElementById('col-accent').value = "#38bdf8";
+        document.getElementById('og-company-color').value = "#ffffff";
         document.getElementById('logo-border-color').value = "#38bdf8";
         document.getElementById('logo-border-color-hex').value = "#38BDF8";
       } else {
@@ -817,13 +901,14 @@
         document.getElementById('col-bg-hex').value = "#F8FAFC";
         document.getElementById('col-title1').value = "#0f172a";
         document.getElementById('col-accent').value = "#0284c7";
+        document.getElementById('og-company-color').value = "#0f172a";
         document.getElementById('logo-border-color').value = "#0284c7";
         document.getElementById('logo-border-color-hex').value = "#0284C7";
       }
       renderOGCanvas();
     }
 
-    /* Tab Switcher */
+    /* Tab Switcher: App Level */
     function switchAppTab(tab) {
       app.tab = tab;
       const ogTab = document.getElementById('tab-og');
@@ -844,6 +929,24 @@
         btnOg.className = "flex items-center space-x-2 px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white";
         runSEOChecker();
       }
+    }
+
+    /* 4 Visual Zone Tab Switcher */
+    function switchZoneTab(zone) {
+      app.zoneTab = zone;
+      const zones = ['header', 'titles', 'features', 'frame'];
+      zones.forEach(z => {
+        const btn = document.getElementById(`zone-tab-btn-${z}`);
+        const panel = document.getElementById(`zone-panel-${z}`);
+        if (z === zone) {
+          btn.className = "py-2 rounded-xl transition bg-white dark:bg-slate-700 text-blue-600 dark:text-white shadow-sm flex flex-col items-center gap-1";
+          panel.classList.remove('hidden');
+        } else {
+          btn.className = "py-2 rounded-xl transition text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white flex flex-col items-center gap-1";
+          panel.classList.add('hidden');
+        }
+      });
+      if (window.lucide) lucide.createIcons();
     }
 
     /* Aspect Ratio Switcher */
@@ -872,6 +975,18 @@
       if (key === 'padding') document.getElementById('lbl-logo-padding').textContent = `${val}px`;
       if (key === 'border-width') document.getElementById('lbl-logo-border-w').textContent = `${val}px`;
       renderOGCanvas();
+    }
+
+    function updateTitleSize(val) {
+      document.getElementById('lbl-title-size').textContent = `${val}px`;
+      renderOGCanvas();
+    }
+
+    function syncHexToColor(colorInputId, hexVal) {
+      if (/^#[0-9A-F]{6}$/i.test(hexVal)) {
+        document.getElementById(colorInputId).value = hexVal;
+        renderOGCanvas();
+      }
     }
 
     /* Logo Background Transparency & Preset Logic */
@@ -925,8 +1040,6 @@
         targetColor = '#0f172a';
       } else if (preset === 'white') {
         targetColor = '#ffffff';
-      } else if (preset === 'glass') {
-        targetColor = app.cardTheme === 'dark' ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.05)';
       }
 
       if (targetColor.startsWith('#')) {
@@ -938,19 +1051,7 @@
       }
 
       renderOGCanvas();
-      showToast(`Logo background preset '${preset}' applied`);
-    }
-
-    function updateTitleSize(val) {
-      document.getElementById('lbl-title-size').textContent = `${val}px`;
-      renderOGCanvas();
-    }
-
-    function syncHexToColor(colorInputId, hexVal) {
-      if (/^#[0-9A-F]{6}$/i.test(hexVal)) {
-        document.getElementById(colorInputId).value = hexVal;
-        renderOGCanvas();
-      }
+      showToast(`Logo preset '${preset}' applied`);
     }
 
     /* Alignments */
@@ -1021,32 +1122,36 @@
         canvas.height = 64;
         ctx.drawImage(img, 0, 0, 64, 64);
 
-        const imgData = ctx.getImageData(0, 0, 64, 64).data;
-        const colorCounts = {};
+        try {
+          const imgData = ctx.getImageData(0, 0, 64, 64).data;
+          const colorCounts = {};
 
-        for (let i = 0; i < imgData.length; i += 16) {
-          const r = imgData[i];
-          const g = imgData[i + 1];
-          const b = imgData[i + 2];
-          const a = imgData[i + 3];
+          for (let i = 0; i < imgData.length; i += 16) {
+            const r = imgData[i];
+            const g = imgData[i + 1];
+            const b = imgData[i + 2];
+            const a = imgData[i + 3];
 
-          if (a < 120) continue;
-          const lum = (r * 299 + g * 587 + b * 114) / 1000;
-          if (lum > 245 || lum < 15) continue;
+            if (a < 120) continue;
+            const lum = (r * 299 + g * 587 + b * 114) / 1000;
+            if (lum > 245 || lum < 15) continue;
 
-          const qr = Math.round(r / 32) * 32;
-          const qg = Math.round(g / 32) * 32;
-          const qb = Math.round(b / 32) * 32;
-          const key = `${qr},${qg},${qb}`;
-          colorCounts[key] = (colorCounts[key] || 0) + 1;
-        }
+            const qr = Math.round(r / 32) * 32;
+            const qg = Math.round(g / 32) * 32;
+            const qb = Math.round(b / 32) * 32;
+            const key = `${qr},${qg},${qb}`;
+            colorCounts[key] = (colorCounts[key] || 0) + 1;
+          }
 
-        const sorted = Object.entries(colorCounts).sort((a, b) => b[1] - a[1]);
-        if (sorted.length > 0) {
-          const [r, g, b] = sorted[0][0].split(',').map(Number);
-          const accentHex = rgbToHex(r, g, b);
-          app.extractedPalette = { accent: accentHex, r, g, b };
-          document.getElementById('apply-extracted-btn').classList.remove('hidden');
+          const sorted = Object.entries(colorCounts).sort((a, b) => b[1] - a[1]);
+          if (sorted.length > 0) {
+            const [r, g, b] = sorted[0][0].split(',').map(Number);
+            const accentHex = rgbToHex(r, g, b);
+            app.extractedPalette = { accent: accentHex, r, g, b };
+            document.getElementById('apply-extracted-btn').classList.remove('hidden');
+          }
+        } catch (e) {
+          console.warn('CORS restricted palette extraction', e);
         }
         renderOGCanvas();
       };
@@ -1079,8 +1184,14 @@
       }).join('');
     }
 
-    /* Build SVG Vector String */
+    /* ======================================================================= */
+    /* DYNAMIC SVG BUILDER (LANDSCAPE 1200x630 & SQUARE 1080x1080 OPTIMIZED)   */
+    /* ======================================================================= */
     function buildSVGString(width, height) {
+      const isSquare = (width === height);
+      const isLight = (app.cardTheme === 'light');
+
+      // User values
       const company = escapeXml(document.getElementById('og-company-name').value);
       const companyColor = document.getElementById('og-company-color').value;
       const companySub = escapeXml(document.getElementById('og-company-sub').value);
@@ -1100,58 +1211,74 @@
       const bg = document.getElementById('col-bg').value;
       const accent = document.getElementById('col-accent').value;
       const font = document.getElementById('og-font-select').value;
-      const titleFontSize = parseInt(document.getElementById('og-title-size').value, 10);
+      const titleWeight = document.getElementById('og-title-weight').value || '900';
 
       const showGrid = document.getElementById('og-toggle-grid').checked;
       const showFrame = document.getElementById('og-toggle-frame').checked;
       const showGlow = document.getElementById('og-toggle-glow').checked;
 
-      // Logo Specific Styling
-      const logoSize = parseInt(document.getElementById('logo-size').value, 10);
+      // Base logo controls
+      const baseLogoSize = parseInt(document.getElementById('logo-size').value, 10);
       const logoRadius = parseInt(document.getElementById('logo-radius').value, 10);
       const logoPadding = parseInt(document.getElementById('logo-padding').value, 10);
       const enableBorder = document.getElementById('logo-border-toggle').checked;
       const borderWidth = enableBorder ? parseFloat(document.getElementById('logo-border-width').value) : 0;
       const borderColor = document.getElementById('logo-border-color').value;
+      const borderStyle = document.getElementById('logo-border-style').value;
+      const initials = escapeXml(document.getElementById('og-badge-initials').value || 'VS');
 
-      // Determine Logo Background Fill (Transparent or Solid/Glass)
+      // Transparency
       const isTransparentBg = document.getElementById('logo-bg-transparent-toggle').checked;
       let logoBg = 'none';
       if (!isTransparentBg) {
         logoBg = app.logoBgCustom || document.getElementById('logo-bg-color').value || '#0284c7';
       }
 
-      const borderStyle = document.getElementById('logo-border-style').value;
-      const initials = escapeXml(document.getElementById('og-badge-initials').value || 'VS');
-
-      const isLight = (app.cardTheme === 'light');
-      const isSquare = (width === height);
-
-      // Dasharray mapping
       let strokeDash = 'none';
       if (borderStyle === 'dashed') strokeDash = '6,4';
       if (borderStyle === 'dotted') strokeDash = '2,3';
 
-      // Contrast parameters
+      // Contrast definitions
       const secondaryTextColor = isLight ? 'rgba(51, 65, 85, 0.85)' : 'rgba(255, 255, 255, 0.65)';
-      const servicesTextColor = isLight ? 'rgba(30, 41, 59, 0.92)' : 'rgba(241, 245, 249, 0.88)';
+      const servicesTextColor = isLight ? 'rgba(30, 41, 59, 0.94)' : 'rgba(241, 245, 249, 0.90)';
       const footerTextColor = isLight ? 'rgba(100, 116, 139, 0.85)' : 'rgba(148, 163, 184, 0.75)';
 
-      const pillBg = isLight ? 'rgba(255, 255, 255, 0.85)' : 'rgba(30, 41, 59, 0.55)';
+      const pillBg = isLight ? 'rgba(255, 255, 255, 0.92)' : 'rgba(30, 41, 59, 0.65)';
       const pillTextColor = isLight ? '#0f172a' : '#f8fafc';
       const pillBorder = isLight ? 'rgba(203, 213, 225, 0.9)' : accent;
 
       const gridStrokeColor = isLight ? '#94a3b8' : accent;
       const gridOpacity = isLight ? '0.14' : '0.08';
 
-      // Adaptive dimensions & coordinates
-      const padX = isSquare ? 70 : 80;
-      const padY = isSquare ? 75 : 80;
-      const frameInset = isSquare ? 32 : 36;
+      // =======================================================================
+      // DYNAMIC LAYOUT REDISTRIBUTION FOR SQUARE (1080x1080) VS LANDSCAPE (1200x630)
+      // =======================================================================
+      const padX = isSquare ? 80 : 80;
+      const padY = isSquare ? 90 : 75;
+      const frameInset = isSquare ? 40 : 36;
       const frameW = width - (frameInset * 2);
       const frameH = height - (frameInset * 2);
 
-      // Positioning for header alignment
+      // Logo Scale in Square mode
+      const logoSize = isSquare ? Math.round(baseLogoSize * 1.25) : baseLogoSize;
+
+      // Base user font size
+      const baseTitleSize = parseInt(document.getElementById('og-title-size').value, 10);
+      const titleFontSize = isSquare ? Math.round(baseTitleSize * 1.16) : baseTitleSize;
+      const titleLineHeight = titleFontSize * 1.20;
+
+      // Vertical coordinates
+      const headerY = padY;
+      const heroStartY = isSquare 
+        ? headerY + logoSize + 85 
+        : headerY + logoSize + 48;
+      
+      const servicesY = heroStartY + (titleLineHeight * 2) + (isSquare ? 40 : 22);
+
+      // Footer position
+      const footerY = isSquare ? height - 90 : height - 70;
+
+      // Horizontal Alignment Anchors
       let headerX = padX;
       let textAnchor = "start";
       let contentX = padX;
@@ -1170,13 +1297,109 @@
         contentAnchor = "middle";
       }
 
-      const titleLineHeight = titleFontSize * 1.18;
-      const headerY = padY;
-      const heroStartY = headerY + logoSize + (isSquare ? 55 : 50);
-      const servicesY = heroStartY + (titleLineHeight * 2) + 20;
+      // Break services line if in square mode for clean wrapping
+      let servicesSvgNodes = '';
+      if (isSquare && services.length > 50) {
+        const midPoint = services.lastIndexOf('•', Math.floor(services.length * 0.55));
+        const line1 = midPoint !== -1 ? services.slice(0, midPoint).trim() : services.slice(0, 50).trim();
+        const line2 = midPoint !== -1 ? services.slice(midPoint + 1).trim() : services.slice(50).trim();
+        servicesSvgNodes = `
+          <text x="0" y="0" font-family="${font}, sans-serif" font-size="22" font-weight="500" text-anchor="${contentAnchor}" fill="${servicesTextColor}">
+            ${line1}
+          </text>
+          <text x="0" y="34" font-family="${font}, sans-serif" font-size="22" font-weight="500" text-anchor="${contentAnchor}" fill="${servicesTextColor}">
+            ${line2}
+          </text>
+        `;
+      } else {
+        servicesSvgNodes = `
+          <text x="0" y="0" font-family="${font}, sans-serif" font-size="${isSquare ? 23 : 20}" font-weight="500" text-anchor="${contentAnchor}" fill="${servicesTextColor}">
+            ${services}
+          </text>
+        `;
+      }
 
-      const pillsY = isSquare ? height - 210 : height - 165;
-      const footerY = isSquare ? height - 85 : height - 70;
+      // Feature Capsule Pills Layout (Horizontal Row in Landscape vs 2-Tier Stack in Square)
+      let pillsSvgMarkup = '';
+      if (showPills) {
+        if (isSquare) {
+          // In square mode: Pill 1 & Pill 2 on row 1, Pill 3 centered below
+          const pillGridY = height - 260;
+          const pW = 420;
+          const pH = 52;
+          const pGap = 20;
+
+          pillsSvgMarkup = `
+          <g transform="translate(${contentAnchor === 'middle' ? (width - (pW * 2 + pGap)) / 2 : padX}, ${pillGridY})" filter="url(#pillGlow)">
+            <!-- Row 1: Pill 1 & Pill 2 -->
+            ${pill1 ? `
+            <g transform="translate(0, 0)">
+              <rect width="${pW}" height="${pH}" rx="${pH / 2}" fill="${pillBg}" stroke="${pillBorder}" stroke-opacity="${isLight ? '0.8' : '0.35'}" stroke-width="1.3"/>
+              <text x="${pW / 2}" y="32" font-family="${font}, sans-serif" font-size="16.5" font-weight="700" fill="${pillTextColor}" text-anchor="middle">
+                ${pill1}
+              </text>
+            </g>
+            ` : ''}
+
+            ${pill2 ? `
+            <g transform="translate(${pW + pGap}, 0)">
+              <rect width="${pW}" height="${pH}" rx="${pH / 2}" fill="${pillBg}" stroke="${pillBorder}" stroke-opacity="${isLight ? '0.8' : '0.35'}" stroke-width="1.3"/>
+              <text x="${pW / 2}" y="32" font-family="${font}, sans-serif" font-size="16.5" font-weight="700" fill="${pillTextColor}" text-anchor="middle">
+                ${pill2}
+              </text>
+            </g>
+            ` : ''}
+
+            <!-- Row 2: Pill 3 centered -->
+            ${pill3 ? `
+            <g transform="translate(${(pW * 2 + pGap - 460) / 2}, ${pH + 18})">
+              <rect width="460" height="${pH}" rx="${pH / 2}" fill="${pillBg}" stroke="${pillBorder}" stroke-opacity="${isLight ? '0.8' : '0.35'}" stroke-width="1.3"/>
+              <text x="230" y="32" font-family="${font}, sans-serif" font-size="16.5" font-weight="700" fill="${pillTextColor}" text-anchor="middle">
+                ${pill3}
+              </text>
+            </g>
+            ` : ''}
+          </g>
+          `;
+        } else {
+          // In landscape mode: 3 Pills along a single horizontal row
+          const pillsLandscapeY = height - 165;
+          const pW = 215;
+          const pH = 44;
+          const pGap = 20;
+
+          pillsSvgMarkup = `
+          <g transform="translate(${contentAnchor === 'middle' ? (width - ((pW * 3) + (pGap * 2))) / 2 : padX}, ${pillsLandscapeY})" filter="url(#pillGlow)">
+            ${pill1 ? `
+            <g transform="translate(0, 0)">
+              <rect width="${pW}" height="${pH}" rx="${pH / 2}" fill="${pillBg}" stroke="${pillBorder}" stroke-opacity="${isLight ? '0.8' : '0.35'}" stroke-width="1.2"/>
+              <text x="${pW / 2}" y="27" font-family="${font}, sans-serif" font-size="13.5" font-weight="700" fill="${pillTextColor}" text-anchor="middle">
+                ${pill1}
+              </text>
+            </g>
+            ` : ''}
+
+            ${pill2 ? `
+            <g transform="translate(${pW + pGap}, 0)">
+              <rect width="${pW}" height="${pH}" rx="${pH / 2}" fill="${pillBg}" stroke="${pillBorder}" stroke-opacity="${isLight ? '0.8' : '0.35'}" stroke-width="1.2"/>
+              <text x="${pW / 2}" y="27" font-family="${font}, sans-serif" font-size="13.5" font-weight="700" fill="${pillTextColor}" text-anchor="middle">
+                ${pill2}
+              </text>
+            </g>
+            ` : ''}
+
+            ${pill3 ? `
+            <g transform="translate(${(pW + pGap) * 2}, 0)">
+              <rect width="${pW}" height="${pH}" rx="${pH / 2}" fill="${pillBg}" stroke="${pillBorder}" stroke-opacity="${isLight ? '0.8' : '0.35'}" stroke-width="1.2"/>
+              <text x="${pW / 2}" y="27" font-family="${font}, sans-serif" font-size="13.5" font-weight="700" fill="${pillTextColor}" text-anchor="middle">
+                ${pill3}
+              </text>
+            </g>
+            ` : ''}
+          </g>
+          `;
+        }
+      }
 
       return `
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" width="${width}" height="${height}" style="background-color: ${bg};">
@@ -1215,16 +1438,16 @@
 
         <!-- Inset Border -->
         ${showFrame ? `
-        <rect x="${frameInset}" y="${frameInset}" width="${frameW}" height="${frameH}" rx="20" 
-              fill="none" stroke="${accent}" stroke-opacity="${isLight ? '0.35' : '0.22'}" stroke-width="1.4"/>
+        <rect x="${frameInset}" y="${frameInset}" width="${frameW}" height="${frameH}" rx="${isSquare ? 28 : 20}" 
+              fill="none" stroke="${accent}" stroke-opacity="${isLight ? '0.35' : '0.22'}" stroke-width="${isSquare ? '1.8' : '1.4'}"/>
         ` : ''}
 
         <!-- ================================================================= -->
-        <!-- HEADER: FULLY CUSTOM LOGO + BRAND NAME                            -->
+        <!-- ZONE 1: HEADER & LOGO                                             -->
         <!-- ================================================================= -->
         <g transform="translate(${headerX}, ${headerY})">
           
-          <!-- Logo Tile Component -->
+          <!-- Logo Tile -->
           <g transform="translate(${app.headerAlign === 'center' ? -logoSize / 2 : (app.headerAlign === 'right' ? -logoSize : 0)}, 0)">
             <rect width="${logoSize}" height="${logoSize}" rx="${logoRadius}" 
                   fill="${logoBg}" 
@@ -1241,7 +1464,7 @@
                      preserveAspectRatio="xMidYMid meet"/>
             ` : `
               <text x="${logoSize / 2}" y="${(logoSize / 2) + (logoSize * 0.14)}" 
-                    font-family="${font}, sans-serif" font-size="${Math.round(logoSize * 0.36)}" font-weight="900" 
+                    font-family="${font}, sans-serif" font-size="${Math.round(logoSize * 0.38)}" font-weight="900" 
                     fill="${isTransparentBg ? accent : '#ffffff'}" text-anchor="middle">
                 ${initials}
               </text>
@@ -1249,14 +1472,14 @@
           </g>
 
           <!-- Text Labels -->
-          <g transform="translate(${app.headerAlign === 'left' ? logoSize + 18 : (app.headerAlign === 'right' ? -(logoSize + 18) : 0)}, ${app.headerAlign === 'center' ? logoSize + 22 : 0})">
-            <text x="0" y="${app.headerAlign === 'center' ? 0 : 28}" 
-                  font-family="${font}, sans-serif" font-size="23" font-weight="800" 
+          <g transform="translate(${app.headerAlign === 'left' ? logoSize + (isSquare ? 22 : 18) : (app.headerAlign === 'right' ? -(logoSize + (isSquare ? 22 : 18)) : 0)}, ${app.headerAlign === 'center' ? logoSize + (isSquare ? 28 : 22) : 0})">
+            <text x="0" y="${app.headerAlign === 'center' ? 0 : (isSquare ? 32 : 28)}" 
+                  font-family="${font}, sans-serif" font-size="${isSquare ? 27 : 23}" font-weight="800" 
                   fill="${companyColor}" text-anchor="${textAnchor}" letter-spacing="-0.01em">
               ${company}
             </text>
-            <text x="0" y="${app.headerAlign === 'center' ? 20 : 50}" 
-                  font-family="${font}, monospace" font-size="12" font-weight="600" 
+            <text x="0" y="${app.headerAlign === 'center' ? (isSquare ? 26 : 20) : (isSquare ? 58 : 50)}" 
+                  font-family="${font}, monospace" font-size="${isSquare ? 13.5 : 12}" font-weight="600" 
                   fill="${secondaryTextColor}" text-anchor="${textAnchor}" letter-spacing="0.08em">
               ${companySub}
             </text>
@@ -1264,13 +1487,13 @@
         </g>
 
         <!-- ================================================================= -->
-        <!-- TWO-TONE HEADLINE                                                 -->
+        <!-- ZONE 2: TWO-TONE HEADLINE                                         -->
         <!-- ================================================================= -->
         <g transform="translate(${contentX}, ${heroStartY})">
           <text x="0" y="0" 
                 font-family="${font}, sans-serif" 
                 font-size="${titleFontSize}" 
-                font-weight="900" 
+                font-weight="${titleWeight}" 
                 fill="${colTitle1}" 
                 text-anchor="${contentAnchor}"
                 letter-spacing="-0.03em"
@@ -1281,7 +1504,7 @@
           <text x="0" y="${titleLineHeight}" 
                 font-family="${font}, sans-serif" 
                 font-size="${titleFontSize}" 
-                font-weight="900" 
+                font-weight="${titleWeight}" 
                 fill="${accent}" 
                 text-anchor="${contentAnchor}"
                 letter-spacing="-0.03em"
@@ -1290,69 +1513,21 @@
           </text>
         </g>
 
-        <!-- Services Subtitle -->
+        <!-- ZONE 3: CAPABILITIES SUBTITLE -->
         <g transform="translate(${contentX}, ${servicesY})">
-          <text x="0" y="0" 
-                font-family="${font}, sans-serif" 
-                font-size="${isSquare ? 18 : 20}" 
-                font-weight="500" 
-                text-anchor="${contentAnchor}"
-                fill="${servicesTextColor}">
-            ${services}
-          </text>
+          ${servicesSvgNodes}
         </g>
 
+        <!-- ZONE 3: FEATURE CAPSULE PILLS -->
+        ${pillsSvgMarkup}
+
         <!-- ================================================================= -->
-        <!-- FEATURE CAPSULE PILLS                                             -->
+        <!-- ZONE 4: FOOTER LINE                                               -->
         <!-- ================================================================= -->
-        ${showPills ? `
-        <g transform="translate(${app.contentAlign === 'center' ? (width - (isSquare ? 280 : 670)) / 2 : padX}, ${pillsY})" filter="url(#pillGlow)">
-          ${pill1 ? `
-          <g transform="translate(0, 0)">
-            <rect width="${isSquare ? 280 : 220}" height="44" rx="22" 
-                  fill="${pillBg}" 
-                  stroke="${pillBorder}" stroke-opacity="${isLight ? '0.8' : '0.35'}" stroke-width="1.2"/>
-            <text x="${isSquare ? 140 : 110}" y="27" 
-                  font-family="${font}, sans-serif" font-size="13.5" font-weight="700" 
-                  fill="${pillTextColor}" text-anchor="middle">
-              ${pill1}
-            </text>
-          </g>
-          ` : ''}
-
-          ${pill2 ? `
-          <g transform="translate(${isSquare ? 0 : 235}, ${isSquare ? 52 : 0})">
-            <rect width="${isSquare ? 280 : 210}" height="44" rx="22" 
-                  fill="${pillBg}" 
-                  stroke="${pillBorder}" stroke-opacity="${isLight ? '0.8' : '0.35'}" stroke-width="1.2"/>
-            <text x="${isSquare ? 140 : 105}" y="27" 
-                  font-family="${font}, sans-serif" font-size="13.5" font-weight="700" 
-                  fill="${pillTextColor}" text-anchor="middle">
-              ${pill2}
-            </text>
-          </g>
-          ` : ''}
-
-          ${pill3 ? `
-          <g transform="translate(${isSquare ? 0 : 460}, ${isSquare ? 104 : 0})">
-            <rect width="${isSquare ? 280 : 210}" height="44" rx="22" 
-                  fill="${pillBg}" 
-                  stroke="${pillBorder}" stroke-opacity="${isLight ? '0.8' : '0.35'}" stroke-width="1.2"/>
-            <text x="${isSquare ? 140 : 105}" y="27" 
-                  font-family="${font}, sans-serif" font-size="13.5" font-weight="700" 
-                  fill="${pillTextColor}" text-anchor="middle">
-              ${pill3}
-            </text>
-          </g>
-          ` : ''}
-        </g>
-        ` : ''}
-
-        <!-- Bottom Footer -->
         <g transform="translate(${contentX}, ${footerY})">
           <text x="0" y="0" 
                 font-family="${font}, monospace" 
-                font-size="13" 
+                font-size="${isSquare ? 14 : 13}" 
                 font-weight="500" 
                 text-anchor="${contentAnchor}"
                 fill="${footerTextColor}">
@@ -1526,7 +1701,6 @@
         `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(targetUrl)}`
       ];
 
-      // Try proxies sequentially
       for (const proxy of proxies) {
         try {
           const controller = new AbortController();
@@ -1543,7 +1717,6 @@
         }
       }
 
-      // Final attempt: Direct fetch
       if (!htmlContent) {
         try {
           const controller = new AbortController();
@@ -1567,7 +1740,6 @@
         return;
       }
 
-      // Parse HTML with DOMParser
       const parser = new DOMParser();
       const doc = parser.parseFromString(htmlContent, 'text/html');
       const urlOrigin = new URL(targetUrl).origin;
@@ -1590,7 +1762,6 @@
       const brand = doc.querySelector('meta[property="og:site_name"]')?.getAttribute('content') || 
                     new URL(targetUrl).hostname.replace('www.', '');
 
-      // Resolve relative URLs
       if (canonical && !canonical.startsWith('http')) {
         canonical = new URL(canonical, urlOrigin).href;
       }
@@ -1598,7 +1769,6 @@
         ogImage = new URL(ogImage, urlOrigin).href;
       }
 
-      // Populate form
       document.getElementById('seo-title-input').value = title;
       document.getElementById('seo-desc-input').value = desc;
       document.getElementById('seo-canonical-input').value = canonical;
@@ -1607,11 +1777,64 @@
 
       app.lastFetchedData = { title, desc, canonical, brand, ogImage, targetUrl };
 
+      // Render social image preview
+      renderSocialImagePreview(ogImage, title, desc, canonical || targetUrl);
+
       statusMsg.innerHTML = `<span class="text-emerald-300 font-bold">✅ Metadata extracted from ${escapeXml(new URL(targetUrl).hostname)}!</span>`;
       
       runSEOChecker();
       showToast('Live metadata extracted!');
       if (window.lucide) lucide.createIcons();
+    }
+
+    /* Render Scraped Media (SVG & Raster) */
+    function renderSocialImagePreview(imageUrl, title, desc, canonical) {
+      const container = document.getElementById('social-image-container');
+      const domainLabel = document.getElementById('social-card-domain');
+      const titleLabel = document.getElementById('social-card-title');
+      const descLabel = document.getElementById('social-card-desc');
+
+      try {
+        domainLabel.textContent = new URL(canonical).hostname.replace('www.', '');
+      } catch (e) {
+        domainLabel.textContent = 'WEBSITE PREVIEW';
+      }
+      titleLabel.textContent = title || 'Page Title';
+      descLabel.textContent = desc || 'Description snippet';
+
+      if (!imageUrl) {
+        container.innerHTML = `
+          <div class="text-xs text-slate-500 flex items-center gap-1.5">
+            <i data-lucide="image" class="w-4 h-4"></i>
+            <span>No og:image tag provided</span>
+          </div>`;
+        if (window.lucide) lucide.createIcons();
+        return;
+      }
+
+      // If SVG image
+      if (imageUrl.toLowerCase().endsWith('.svg') || imageUrl.includes('.svg?')) {
+        fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(imageUrl)}`)
+          .then(res => res.text())
+          .then(svgText => {
+            if (svgText && svgText.includes('<svg')) {
+              container.innerHTML = `<div class="w-full h-full flex items-center justify-center p-2">${svgText}</div>`;
+              const svgEl = container.querySelector('svg');
+              if (svgEl) {
+                svgEl.style.width = '100%';
+                svgEl.style.maxHeight = '240px';
+                svgEl.style.height = 'auto';
+              }
+            } else {
+              container.innerHTML = `<img src="${imageUrl}" alt="OG SVG" class="w-full h-auto max-h-[260px] object-cover" onerror="this.parentElement.innerHTML='<div class=\\'p-4 text-xs text-slate-500\\'>SVG load blocked by CORS</div>'">`;
+            }
+          })
+          .catch(() => {
+            container.innerHTML = `<img src="${imageUrl}" alt="OG Image" class="w-full h-auto max-h-[260px] object-cover">`;
+          });
+      } else {
+        container.innerHTML = `<img src="${imageUrl}" alt="OG Image" class="w-full h-auto max-h-[260px] object-cover" onerror="this.parentElement.innerHTML='<div class=\\'p-4 text-xs text-slate-500\\'>Image could not be rendered</div>'">`;
+      }
     }
 
     /* Import Extracted Data Directly to OG Generator */
