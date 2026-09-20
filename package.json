@@ -1,0 +1,31 @@
+{
+  "name": "metaog-studio",
+  "version": "1.0.0",
+  "description": "Client-side OpenGraph card designer (1200x630 & 1080x1080 square) with auto-palette logo sync, floating PiP preview, and real-time SEO meta tag inspector.",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx live-server --port=3000 --entry-file=index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YOUR_USERNAME/metaog-studio.git"
+  },
+  "keywords": [
+    "opengraph",
+    "og-image-generator",
+    "social-preview",
+    "seo",
+    "meta-tags",
+    "serp-simulator",
+    "svg-export",
+    "png-export",
+    "github-pages"
+  ],
+  "author": "MetaOG Studio Contributors",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/YOUR_USERNAME/metaog-studio/issues"
+  },
+  "homepage": "https://YOUR_USERNAME.github.io/metaog-studio"
+}
