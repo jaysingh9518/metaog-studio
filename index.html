@@ -31,10 +31,10 @@
     }
   </script>
 
-  <!-- Google Fonts -->
+  <!-- Google Fonts: 7 Hand-Picked Curated Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Outfit:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,600&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Roboto+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
   
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -77,7 +77,7 @@
     #svg-host svg {
       width: 100%;
       height: auto;
-      max-height: 520px;
+      max-height: 540px;
       display: block;
       border-radius: 0.85rem;
       box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.45);
@@ -140,7 +140,7 @@
             Social Card Designer
             <span class="text-[11px] font-bold px-2.5 py-0.5 rounded-md bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800">Dynamic 1:1 & 1.91:1</span>
           </h1>
-          <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5">Custom layout coordinates, responsive square mode, and 4 modular visual zone tabs.</p>
+          <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5">Interactive section spacing, editable typography, dynamic capsule pills manager, and responsive square distribution.</p>
         </div>
 
         <div class="flex flex-wrap items-center gap-2.5">
@@ -206,7 +206,7 @@
             </button>
             <button type="button" id="zone-tab-btn-frame" onclick="switchZoneTab('frame')" class="py-2 rounded-xl transition text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white flex flex-col items-center gap-1">
               <i data-lucide="sliders" class="w-3.5 h-3.5"></i>
-              <span>4. Frame</span>
+              <span>4. Frame & Spacing</span>
             </button>
           </div>
 
@@ -262,7 +262,7 @@
                 <!-- Size Slider -->
                 <div class="space-y-1">
                   <div class="flex justify-between text-[11px] text-slate-500">
-                    <span>Base Logo Size (Scales in Square Mode)</span>
+                    <span>Base Logo Size</span>
                     <span id="lbl-logo-size" class="font-mono">68px</span>
                   </div>
                   <input type="range" id="logo-size" min="36" max="180" value="68" oninput="updateLogoSlider('size', this.value)" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg cursor-pointer">
@@ -355,22 +355,130 @@
                 </div>
               </div>
 
-              <!-- Brand Name & Location Typography -->
-              <div class="space-y-3 pt-1">
-                <div class="grid grid-cols-3 gap-2">
-                  <div class="col-span-2">
-                    <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">Company / Brand Name</label>
-                    <input type="text" id="og-company-name" value="Visual Synergy Pvt Ltd" oninput="renderOGCanvas()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2 outline-none font-bold">
+              <!-- Brand Name & Full Typography Toolbar -->
+              <div class="space-y-4 pt-2 border-t border-slate-200 dark:border-slate-800">
+                <div class="space-y-2">
+                  <div class="flex items-center justify-between">
+                    <label class="text-[11px] font-bold text-slate-700 dark:text-slate-300">Company / Brand Name</label>
+                    <span class="text-[10px] font-mono text-slate-400">Header Primary</span>
                   </div>
-                  <div>
-                    <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">Color</label>
-                    <input type="color" id="og-company-color" value="#ffffff" oninput="renderOGCanvas()" class="w-full h-8 rounded-xl border-0 cursor-pointer bg-transparent">
+                  <input type="text" id="og-company-name" value="Visual Synergy Pvt Ltd" oninput="renderOGCanvas()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2 outline-none font-bold">
+
+                  <!-- Company Typography Controls -->
+                  <div class="bg-slate-50 dark:bg-slate-800/40 p-2.5 rounded-xl space-y-2 border border-slate-200/60 dark:border-slate-800">
+                    <div class="grid grid-cols-3 gap-2">
+                      <div>
+                        <label class="block text-[9px] font-bold text-slate-400 uppercase">Font</label>
+                        <select id="og-comp-font" onchange="renderOGCanvas()" class="w-full text-[11px] rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-1">
+                          <option value="Plus Jakarta Sans">Plus Jakarta</option>
+                          <option value="Inter">Inter</option>
+                          <option value="Outfit">Outfit</option>
+                          <option value="Poppins">Poppins</option>
+                          <option value="Space Grotesk">Space Grotesk</option>
+                          <option value="Playfair Display">Playfair</option>
+                          <option value="Roboto Mono">Mono</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label class="block text-[9px] font-bold text-slate-400 uppercase">Weight</label>
+                        <select id="og-comp-weight" onchange="renderOGCanvas()" class="w-full text-[11px] rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-1">
+                          <option value="400">Normal (400)</option>
+                          <option value="600">Semibold (600)</option>
+                          <option value="700">Bold (700)</option>
+                          <option value="800" selected>ExtraBold (800)</option>
+                          <option value="900">Black (900)</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label class="block text-[9px] font-bold text-slate-400 uppercase">Color</label>
+                        <input type="color" id="og-company-color" value="#ffffff" oninput="renderOGCanvas()" class="w-full h-6 rounded border-0 cursor-pointer bg-transparent">
+                      </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2 text-[10px]">
+                      <div>
+                        <div class="flex justify-between text-slate-400">
+                          <span>Size</span>
+                          <span id="lbl-comp-size" class="font-mono">23px</span>
+                        </div>
+                        <input type="range" id="og-comp-size" min="14" max="44" value="23" oninput="document.getElementById('lbl-comp-size').textContent=this.value+'px'; renderOGCanvas()" class="w-full h-1 bg-slate-200 dark:bg-slate-700 rounded cursor-pointer">
+                      </div>
+                      <div>
+                        <div class="flex justify-between text-slate-400">
+                          <span>Letter Spacing</span>
+                          <span id="lbl-comp-spacing" class="font-mono">-0.01em</span>
+                        </div>
+                        <input type="range" id="og-comp-spacing" min="-2" max="10" value="-1" oninput="document.getElementById('lbl-comp-spacing').textContent=(this.value/100)+'em'; renderOGCanvas()" class="w-full h-1 bg-slate-200 dark:bg-slate-700 rounded cursor-pointer">
+                      </div>
+                    </div>
+
+                    <div class="flex items-center justify-between pt-1 border-t border-slate-200 dark:border-slate-700">
+                      <div class="flex items-center space-x-1 text-[10px]">
+                        <button type="button" onclick="toggleStyleBtn(this, 'comp-italic'); renderOGCanvas();" id="btn-comp-italic" class="px-1.5 py-0.5 rounded border border-slate-300 dark:border-slate-700 italic">I</button>
+                        <button type="button" onclick="toggleStyleBtn(this, 'comp-underline'); renderOGCanvas();" id="btn-comp-underline" class="px-1.5 py-0.5 rounded border border-slate-300 dark:border-slate-700 underline">U</button>
+                      </div>
+                      <select id="og-comp-transform" onchange="renderOGCanvas()" class="text-[10px] rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-0.5">
+                        <option value="none">Normal Case</option>
+                        <option value="uppercase">UPPERCASE</option>
+                        <option value="lowercase">lowercase</option>
+                        <option value="capitalize">Capitalize</option>
+                      </select>
+                    </div>
                   </div>
                 </div>
 
-                <div>
-                  <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">Tagline / Location (Uppercase)</label>
+                <!-- Tagline / Location Typography Controls -->
+                <div class="space-y-2 pt-2 border-t border-slate-200 dark:border-slate-800">
+                  <div class="flex items-center justify-between">
+                    <label class="text-[11px] font-bold text-slate-700 dark:text-slate-300">Tagline / Location</label>
+                    <span class="text-[10px] font-mono text-slate-400">Header Sub</span>
+                  </div>
                   <input type="text" id="og-company-sub" value="ENTERPRISE PRO AV CONSULTANT • PUNE, MAHARASHTRA" oninput="renderOGCanvas()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2 outline-none font-mono text-[11px]">
+
+                  <div class="bg-slate-50 dark:bg-slate-800/40 p-2.5 rounded-xl space-y-2 border border-slate-200/60 dark:border-slate-800">
+                    <div class="grid grid-cols-3 gap-2">
+                      <div>
+                        <label class="block text-[9px] font-bold text-slate-400 uppercase">Font</label>
+                        <select id="og-sub-font" onchange="renderOGCanvas()" class="w-full text-[11px] rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-1">
+                          <option value="JetBrains Mono">JetBrains Mono</option>
+                          <option value="Inter">Inter</option>
+                          <option value="Plus Jakarta Sans">Plus Jakarta</option>
+                          <option value="Outfit">Outfit</option>
+                          <option value="Space Grotesk">Space Grotesk</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label class="block text-[9px] font-bold text-slate-400 uppercase">Weight</label>
+                        <select id="og-sub-weight" onchange="renderOGCanvas()" class="w-full text-[11px] rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-1">
+                          <option value="400">Normal (400)</option>
+                          <option value="500">Medium (500)</option>
+                          <option value="600" selected>Semibold (600)</option>
+                          <option value="700">Bold (700)</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label class="block text-[9px] font-bold text-slate-400 uppercase">Color</label>
+                        <input type="color" id="og-sub-color" value="#94a3b8" oninput="renderOGCanvas()" class="w-full h-6 rounded border-0 cursor-pointer bg-transparent">
+                      </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2 text-[10px]">
+                      <div>
+                        <div class="flex justify-between text-slate-400">
+                          <span>Size</span>
+                          <span id="lbl-sub-size" class="font-mono">12px</span>
+                        </div>
+                        <input type="range" id="og-sub-size" min="9" max="24" value="12" oninput="document.getElementById('lbl-sub-size').textContent=this.value+'px'; renderOGCanvas()" class="w-full h-1 bg-slate-200 dark:bg-slate-700 rounded cursor-pointer">
+                      </div>
+                      <div>
+                        <div class="flex justify-between text-slate-400">
+                          <span>Tracking</span>
+                          <span id="lbl-sub-spacing" class="font-mono">0.08em</span>
+                        </div>
+                        <input type="range" id="og-sub-spacing" min="0" max="25" value="8" oninput="document.getElementById('lbl-sub-spacing').textContent=(this.value/100)+'em'; renderOGCanvas()" class="w-full h-1 bg-slate-200 dark:bg-slate-700 rounded cursor-pointer">
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -394,58 +502,112 @@
                 </div>
               </div>
 
-              <!-- Primary Title -->
-              <div class="grid grid-cols-4 gap-2 items-end">
-                <div class="col-span-3">
-                  <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">Title Part 1 (Primary)</label>
-                  <input type="text" id="og-title-line1" value="Commercial AV Marketplace &" oninput="renderOGCanvas()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2 outline-none font-bold">
+              <!-- Primary Title Block -->
+              <div class="space-y-2 p-3 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200/60 dark:border-slate-800">
+                <div class="flex items-center justify-between">
+                  <label class="text-[11px] font-bold text-slate-700 dark:text-slate-300">Title Part 1 (Primary Headline)</label>
+                  <div class="flex items-center space-x-1">
+                    <input type="color" id="col-title1" value="#ffffff" oninput="renderOGCanvas()" class="w-5 h-5 rounded cursor-pointer bg-transparent border-0">
+                  </div>
                 </div>
-                <div>
-                  <label class="block text-[10px] font-bold text-slate-500 mb-1">Color</label>
-                  <input type="color" id="col-title1" value="#ffffff" oninput="renderOGCanvas()" class="w-full h-8 rounded-xl border-0 cursor-pointer bg-transparent">
+                <input type="text" id="og-title-line1" value="Commercial AV Marketplace &" oninput="renderOGCanvas()" class="w-full text-xs rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2 outline-none font-bold">
+
+                <div class="grid grid-cols-2 gap-2 text-[10px]">
+                  <div>
+                    <label class="block text-[9px] font-bold text-slate-400 uppercase">Font Family</label>
+                    <select id="og-title1-font" onchange="renderOGCanvas()" class="w-full text-[11px] rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-1">
+                      <option value="Plus Jakarta Sans">Plus Jakarta Sans</option>
+                      <option value="Inter">Inter Clean</option>
+                      <option value="Outfit">Outfit Bold</option>
+                      <option value="Poppins">Poppins</option>
+                      <option value="Space Grotesk">Space Grotesk</option>
+                      <option value="Playfair Display">Playfair Serif</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-[9px] font-bold text-slate-400 uppercase">Weight</label>
+                    <select id="og-title1-weight" onchange="renderOGCanvas()" class="w-full text-[11px] rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-1">
+                      <option value="600">Semibold (600)</option>
+                      <option value="700">Bold (700)</option>
+                      <option value="800">ExtraBold (800)</option>
+                      <option value="900" selected>Black (900)</option>
+                    </select>
+                  </div>
                 </div>
               </div>
 
-              <!-- Accent Title -->
-              <div class="grid grid-cols-4 gap-2 items-end">
-                <div class="col-span-3">
-                  <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">Title Part 2 (Accent Highlight)</label>
-                  <input type="text" id="og-title-line2" value="Turnkey Room Solutions" oninput="renderOGCanvas()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2 outline-none font-bold text-blue-600 dark:text-blue-400">
+              <!-- Accent Title Block -->
+              <div class="space-y-2 p-3 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200/60 dark:border-slate-800">
+                <div class="flex items-center justify-between">
+                  <label class="text-[11px] font-bold text-slate-700 dark:text-slate-300">Title Part 2 (Accent Headline Highlight)</label>
+                  <div class="flex items-center space-x-1">
+                    <input type="color" id="col-accent" value="#38bdf8" oninput="renderOGCanvas()" class="w-5 h-5 rounded cursor-pointer bg-transparent border-0">
+                  </div>
                 </div>
-                <div>
-                  <label class="block text-[10px] font-bold text-slate-500 mb-1">Accent</label>
-                  <input type="color" id="col-accent" value="#38bdf8" oninput="renderOGCanvas()" class="w-full h-8 rounded-xl border-0 cursor-pointer bg-transparent">
+                <input type="text" id="og-title-line2" value="Turnkey Room Solutions" oninput="renderOGCanvas()" class="w-full text-xs rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2 outline-none font-bold text-blue-600 dark:text-blue-400">
+
+                <div class="grid grid-cols-2 gap-2 text-[10px]">
+                  <div>
+                    <label class="block text-[9px] font-bold text-slate-400 uppercase">Font Family</label>
+                    <select id="og-title2-font" onchange="renderOGCanvas()" class="w-full text-[11px] rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-1">
+                      <option value="Plus Jakarta Sans">Plus Jakarta Sans</option>
+                      <option value="Inter">Inter Clean</option>
+                      <option value="Outfit">Outfit Bold</option>
+                      <option value="Poppins">Poppins</option>
+                      <option value="Space Grotesk">Space Grotesk</option>
+                      <option value="Playfair Display">Playfair Serif</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-[9px] font-bold text-slate-400 uppercase">Weight</label>
+                    <select id="og-title2-weight" onchange="renderOGCanvas()" class="w-full text-[11px] rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-1">
+                      <option value="600">Semibold (600)</option>
+                      <option value="700">Bold (700)</option>
+                      <option value="800">ExtraBold (800)</option>
+                      <option value="900" selected>Black (900)</option>
+                    </select>
+                  </div>
                 </div>
               </div>
 
-              <!-- Typography & Size Sliders -->
-              <div class="grid grid-cols-2 gap-3 pt-2">
-                <div>
-                  <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">Headline Font Family</label>
-                  <select id="og-font-select" onchange="renderOGCanvas()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-2.5 py-1.5 outline-none">
-                    <option value="Plus Jakarta Sans">Plus Jakarta Sans</option>
-                    <option value="Inter">Inter Clean</option>
-                    <option value="Outfit">Outfit Bold</option>
-                    <option value="Poppins">Poppins</option>
-                    <option value="Space Grotesk">Space Grotesk</option>
+              <!-- Shared Headline Size & Spacing -->
+              <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200/60 dark:border-slate-800 space-y-3">
+                <div class="space-y-1">
+                  <div class="flex justify-between text-[11px] text-slate-500">
+                    <span>Base Title Size (Landscape)</span>
+                    <span id="lbl-title-size" class="font-mono">54px</span>
+                  </div>
+                  <input type="range" id="og-title-size" min="32" max="76" value="54" oninput="updateTitleSize(this.value)" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg cursor-pointer">
+                </div>
+
+                <div class="grid grid-cols-2 gap-2 text-[10px]">
+                  <div>
+                    <div class="flex justify-between text-slate-400">
+                      <span>Tracking</span>
+                      <span id="lbl-title-spacing" class="font-mono">-0.03em</span>
+                    </div>
+                    <input type="range" id="og-title-spacing" min="-5" max="8" value="-3" oninput="document.getElementById('lbl-title-spacing').textContent=(this.value/100)+'em'; renderOGCanvas()" class="w-full h-1 bg-slate-200 dark:bg-slate-700 rounded cursor-pointer">
+                  </div>
+                  <div>
+                    <div class="flex justify-between text-slate-400">
+                      <span>Line Height Multiplier</span>
+                      <span id="lbl-title-lh" class="font-mono">1.20</span>
+                    </div>
+                    <input type="range" id="og-title-lh" min="100" max="150" value="120" oninput="document.getElementById('lbl-title-lh').textContent=(this.value/100).toFixed(2); renderOGCanvas()" class="w-full h-1 bg-slate-200 dark:bg-slate-700 rounded cursor-pointer">
+                  </div>
+                </div>
+
+                <div class="flex items-center justify-between pt-1 border-t border-slate-200 dark:border-slate-700">
+                  <div class="flex items-center space-x-1.5 text-xs">
+                    <button type="button" onclick="toggleStyleBtn(this, 'title-italic'); renderOGCanvas();" id="btn-title-italic" class="px-2 py-0.5 rounded border border-slate-300 dark:border-slate-700 italic text-[11px]">Italic</button>
+                    <button type="button" onclick="toggleStyleBtn(this, 'title-underline'); renderOGCanvas();" id="btn-title-underline" class="px-2 py-0.5 rounded border border-slate-300 dark:border-slate-700 underline text-[11px]">Underline</button>
+                  </div>
+                  <select id="og-title-transform" onchange="renderOGCanvas()" class="text-[11px] rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-1">
+                    <option value="none">Normal Case</option>
+                    <option value="uppercase">UPPERCASE</option>
+                    <option value="capitalize">Capitalize Words</option>
                   </select>
                 </div>
-                <div>
-                  <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">Font Weight</label>
-                  <select id="og-title-weight" onchange="renderOGCanvas()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-2.5 py-1.5 outline-none font-semibold">
-                    <option value="700">Bold (700)</option>
-                    <option value="800">ExtraBold (800)</option>
-                    <option value="900" selected>Black (900)</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="space-y-1 pt-1">
-                <div class="flex justify-between text-[11px] text-slate-500">
-                  <span>Base Title Font Size (Landscape)</span>
-                  <span id="lbl-title-size" class="font-mono">54px</span>
-                </div>
-                <input type="range" id="og-title-size" min="36" max="72" value="54" oninput="updateTitleSize(this.value)" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg cursor-pointer">
               </div>
 
             </div>
@@ -453,7 +615,7 @@
           </div>
 
           <!-- =================================================================== -->
-          <!-- ZONE TAB 3: FEATURES & CAPSULE PILLS CONFIGURATION                  -->
+          <!-- ZONE TAB 3: FEATURES & DYNAMIC CAPSULE PILLS MANAGER                -->
           <!-- =================================================================== -->
           <div id="zone-panel-features" class="hidden space-y-4">
             
@@ -464,34 +626,92 @@
               </h3>
 
               <!-- Services String -->
-              <div>
-                <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">Services / Bullet Items (Wraps Automatically)</label>
-                <textarea id="og-services-string" rows="2" oninput="renderOGCanvas()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2 outline-none leading-relaxed">Enterprise Boardrooms • Smart Auditoriums • PTZ Video Conferencing • Dante DSPs • Industrial PA</textarea>
+              <div class="space-y-2">
+                <div class="flex items-center justify-between">
+                  <label class="text-[11px] font-bold text-slate-700 dark:text-slate-300">Capabilities Subtitle</label>
+                  <span class="text-[10px] text-slate-400 font-mono">Auto-wraps in 1:1</span>
+                </div>
+                <textarea id="og-services-string" rows="2" oninput="renderOGCanvas()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2 outline-none leading-relaxed font-medium">Enterprise Boardrooms • Smart Auditoriums • PTZ Video Conferencing • Dante DSPs • Industrial PA</textarea>
+
+                <div class="bg-slate-50 dark:bg-slate-800/40 p-2.5 rounded-xl grid grid-cols-3 gap-2 border border-slate-200/60 dark:border-slate-800">
+                  <div>
+                    <label class="block text-[9px] font-bold text-slate-400 uppercase">Font</label>
+                    <select id="og-services-font" onchange="renderOGCanvas()" class="w-full text-[11px] rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-1">
+                      <option value="Plus Jakarta Sans">Plus Jakarta</option>
+                      <option value="Inter">Inter</option>
+                      <option value="Outfit">Outfit</option>
+                      <option value="Space Grotesk">Space Grotesk</option>
+                      <option value="Roboto Mono">Mono</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-[9px] font-bold text-slate-400 uppercase">Weight</label>
+                    <select id="og-services-weight" onchange="renderOGCanvas()" class="w-full text-[11px] rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-1">
+                      <option value="400">Normal (400)</option>
+                      <option value="500" selected>Medium (500)</option>
+                      <option value="600">Semibold (600)</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-[9px] font-bold text-slate-400 uppercase">Size</label>
+                    <input type="range" id="og-services-size" min="14" max="28" value="20" oninput="renderOGCanvas()" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded cursor-pointer mt-2">
+                  </div>
+                </div>
               </div>
 
-              <!-- Feature Capsule Pills Switch -->
-              <div class="pt-2 border-t border-slate-200 dark:border-slate-800 space-y-3">
+              <!-- DYNAMIC FEATURE CAPSULE PILLS SUITE -->
+              <div class="pt-3 border-t border-slate-200 dark:border-slate-800 space-y-3">
                 <div class="flex items-center justify-between">
-                  <span class="text-xs font-bold text-slate-700 dark:text-slate-300">Feature Capsule Pills</span>
-                  <label class="flex items-center space-x-1.5 cursor-pointer">
-                    <input type="checkbox" id="og-toggle-pills" checked onchange="renderOGCanvas()" class="rounded text-blue-600 h-3.5 w-3.5">
-                    <span class="text-[11px] font-semibold text-slate-500">Show Pills</span>
-                  </label>
+                  <div class="flex items-center space-x-2">
+                    <span class="text-xs font-bold text-slate-700 dark:text-slate-300">Feature Capsule Pills</span>
+                    <span id="pill-count-badge" class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-blue-100 dark:bg-blue-900/60 text-blue-700 dark:text-blue-300 font-bold">3 Active</span>
+                  </div>
+                  
+                  <div class="flex items-center space-x-2">
+                    <button type="button" onclick="addNewPill()" class="px-2.5 py-1 text-[11px] font-bold rounded-lg bg-blue-600 hover:bg-blue-700 text-white flex items-center gap-1 shadow-sm transition active:scale-95">
+                      <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                      <span>Add Pill</span>
+                    </button>
+                    <label class="flex items-center space-x-1.5 cursor-pointer">
+                      <input type="checkbox" id="og-toggle-pills" checked onchange="renderOGCanvas()" class="rounded text-blue-600 h-3.5 w-3.5">
+                      <span class="text-[11px] font-semibold text-slate-500">Show</span>
+                    </label>
+                  </div>
                 </div>
 
-                <div class="space-y-2">
-                  <div class="flex items-center space-x-2">
-                    <span class="text-xs font-mono text-slate-400 w-5">#1</span>
-                    <input type="text" id="og-pill-1" value="⚡ Interactive BOM Builder" oninput="renderOGCanvas()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-1.5 outline-none">
+                <!-- Global Pill Font & Style Controls -->
+                <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200/60 dark:border-slate-800 grid grid-cols-3 gap-2 text-[10px]">
+                  <div>
+                    <label class="block font-bold text-slate-400 uppercase">Pills Font</label>
+                    <select id="og-pills-font" onchange="renderOGCanvas()" class="w-full rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-1">
+                      <option value="Plus Jakarta Sans">Plus Jakarta</option>
+                      <option value="Inter">Inter</option>
+                      <option value="Outfit">Outfit</option>
+                      <option value="Space Grotesk">Space Grotesk</option>
+                      <option value="Roboto Mono">Mono</option>
+                    </select>
                   </div>
-                  <div class="flex items-center space-x-2">
-                    <span class="text-xs font-mono text-slate-400 w-5">#2</span>
-                    <input type="text" id="og-pill-2" value="📊 AV ROI Calculator" oninput="renderOGCanvas()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-1.5 outline-none">
+                  <div>
+                    <label class="block font-bold text-slate-400 uppercase">Weight</label>
+                    <select id="og-pills-weight" onchange="renderOGCanvas()" class="w-full rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-1">
+                      <option value="600">Semibold (600)</option>
+                      <option value="700" selected>Bold (700)</option>
+                      <option value="800">ExtraBold (800)</option>
+                    </select>
                   </div>
-                  <div class="flex items-center space-x-2">
-                    <span class="text-xs font-mono text-slate-400 w-5">#3</span>
-                    <input type="text" id="og-pill-3" value="🛡️ 100% Certified Gear" oninput="renderOGCanvas()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-1.5 outline-none">
+                  <div>
+                    <label class="block font-bold text-slate-400 uppercase">Transform</label>
+                    <select id="og-pills-transform" onchange="renderOGCanvas()" class="w-full rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-1">
+                      <option value="none">Normal</option>
+                      <option value="uppercase">UPPERCASE</option>
+                      <option value="capitalize">Capitalize</option>
+                    </select>
                   </div>
+                </div>
+
+                <!-- Dynamic Pills List Container -->
+                <div id="pills-list-container" class="space-y-2 max-h-64 overflow-y-auto pr-1">
+                  <!-- Populated via JavaScript dynamically with Delete buttons -->
                 </div>
               </div>
 
@@ -500,22 +720,102 @@
           </div>
 
           <!-- =================================================================== -->
-          <!-- ZONE TAB 4: FRAME, FOOTER & BACKGROUNDS                             -->
+          <!-- ZONE TAB 4: FRAME, SECTION SPACING & BACKGROUNDS                    -->
           <!-- =================================================================== -->
           <div id="zone-panel-frame" class="hidden space-y-4">
             
+            <!-- SECTION SPACING & CANVAS OFFSETS SUITE -->
+            <div class="bg-white dark:bg-slate-900 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+              <div class="flex items-center justify-between">
+                <h3 class="text-xs font-black uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
+                  <i data-lucide="move-vertical" class="w-3.5 h-3.5 text-blue-500"></i>
+                  Section Spacing & Canvas Offsets
+                </h3>
+                <button type="button" onclick="resetSectionSpacings()" class="text-[10px] font-bold px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 hover:bg-blue-50 dark:hover:bg-blue-950/50 text-slate-600 dark:text-slate-300 hover:text-blue-600 transition flex items-center gap-1">
+                  <i data-lucide="rotate-ccw" class="w-3 h-3"></i>
+                  <span>Reset Gaps</span>
+                </button>
+              </div>
+
+              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200/60 dark:border-slate-800 space-y-3 text-xs">
+                
+                <!-- Spacing 1: Top Canvas Margin / Offset -->
+                <div class="space-y-1">
+                  <div class="flex justify-between text-[11px] text-slate-600 dark:text-slate-400 font-medium">
+                    <span>Top Canvas Inset (Pad Y)</span>
+                    <span id="lbl-gap-top" class="font-mono text-blue-600 dark:text-blue-400 font-bold">75px</span>
+                  </div>
+                  <input type="range" id="og-gap-top" min="30" max="150" value="75" oninput="updateSpacingSlider('top', this.value)" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg cursor-pointer">
+                  <p class="text-[10px] text-slate-400">Vertical offset of the Header block from the top canvas border.</p>
+                </div>
+
+                <!-- Spacing 2: Header to Title Gap -->
+                <div class="space-y-1 pt-1.5 border-t border-slate-200 dark:border-slate-700/60">
+                  <div class="flex justify-between text-[11px] text-slate-600 dark:text-slate-400 font-medium">
+                    <span>Header → Title Gap</span>
+                    <span id="lbl-gap-header-title" class="font-mono text-blue-600 dark:text-blue-400 font-bold">48px</span>
+                  </div>
+                  <input type="range" id="og-gap-header-title" min="10" max="140" value="48" oninput="updateSpacingSlider('header-title', this.value)" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg cursor-pointer">
+                  <p class="text-[10px] text-slate-400">Space separating company logo/brand bar from the primary headline.</p>
+                </div>
+
+                <!-- Spacing 3: Title to Subtitle Gap -->
+                <div class="space-y-1 pt-1.5 border-t border-slate-200 dark:border-slate-700/60">
+                  <div class="flex justify-between text-[11px] text-slate-600 dark:text-slate-400 font-medium">
+                    <span>Title → Subtitle Gap</span>
+                    <span id="lbl-gap-title-sub" class="font-mono text-blue-600 dark:text-blue-400 font-bold">32px</span>
+                  </div>
+                  <input type="range" id="og-gap-title-sub" min="10" max="120" value="32" oninput="updateSpacingSlider('title-sub', this.value)" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg cursor-pointer">
+                  <p class="text-[10px] text-slate-400">Space separating accent headline from capabilities subtitle string.</p>
+                </div>
+
+                <!-- Spacing 4: Subtitle to Feature Pills Gap -->
+                <div class="space-y-1 pt-1.5 border-t border-slate-200 dark:border-slate-700/60">
+                  <div class="flex justify-between text-[11px] text-slate-600 dark:text-slate-400 font-medium">
+                    <span>Subtitle → Feature Pills Gap</span>
+                    <span id="lbl-gap-sub-pills" class="font-mono text-blue-600 dark:text-blue-400 font-bold">44px</span>
+                  </div>
+                  <input type="range" id="og-gap-sub-pills" min="10" max="120" value="44" oninput="updateSpacingSlider('sub-pills', this.value)" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg cursor-pointer">
+                  <p class="text-[10px] text-slate-400">Space separating capabilities line from the capsule buttons row/grid.</p>
+                </div>
+
+              </div>
+            </div>
+
             <div class="bg-white dark:bg-slate-900 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
               <h3 class="text-xs font-black uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
                 <i data-lucide="sliders" class="w-3.5 h-3.5 text-blue-500"></i>
                 Footer Line, Grid & Atmospheric Backdrop
               </h3>
 
-              <div>
-                <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">Bottom Footer Line</label>
+              <!-- Footer Line & Typography -->
+              <div class="space-y-2">
+                <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-300">Bottom Footer Line</label>
                 <input type="text" id="og-footer-line" value="Official Portal: https://vspl.vercel.app • Contact: +91 90963 09096" oninput="renderOGCanvas()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2 outline-none font-mono text-[11px]">
+
+                <div class="bg-slate-50 dark:bg-slate-800/40 p-2.5 rounded-xl grid grid-cols-3 gap-2 border border-slate-200/60 dark:border-slate-800">
+                  <div>
+                    <label class="block text-[9px] font-bold text-slate-400 uppercase">Font</label>
+                    <select id="og-footer-font" onchange="renderOGCanvas()" class="w-full text-[11px] rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-1">
+                      <option value="JetBrains Mono">JetBrains Mono</option>
+                      <option value="Roboto Mono">Roboto Mono</option>
+                      <option value="Inter">Inter</option>
+                      <option value="Plus Jakarta Sans">Plus Jakarta</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-[9px] font-bold text-slate-400 uppercase">Color</label>
+                    <input type="color" id="og-footer-color" value="#94a3b8" oninput="renderOGCanvas()" class="w-full h-6 rounded border-0 cursor-pointer bg-transparent">
+                  </div>
+                  <div>
+                    <label class="block text-[9px] font-bold text-slate-400 uppercase">Size</label>
+                    <input type="range" id="og-footer-size" min="10" max="18" value="13" oninput="renderOGCanvas()" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded cursor-pointer mt-2">
+                  </div>
+                </div>
               </div>
 
-              <div class="grid grid-cols-2 gap-3 pt-2">
+              <!-- Card Background & Glow Controls -->
+              <div class="grid grid-cols-2 gap-3 pt-2 border-t border-slate-200 dark:border-slate-800">
                 <div>
                   <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">Card Background Fill</label>
                   <div class="flex items-center space-x-2">
@@ -550,7 +850,7 @@
         <div class="lg:col-span-7 flex flex-col items-center">
 
           <!-- Stage Container -->
-          <div class="w-full canvas-stage-bg p-4 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center relative min-h-[500px] overflow-hidden">
+          <div class="w-full canvas-stage-bg p-4 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center relative min-h-[520px] overflow-hidden">
             
             <!-- Dimension & Theme Tag Bar -->
             <div class="w-full flex items-center justify-between mb-4 text-xs font-semibold text-slate-500 dark:text-slate-400">
@@ -608,7 +908,7 @@
           </div>
           <h2 class="text-xl sm:text-2xl font-black">Inspect Website Metadata via URL</h2>
           <p class="text-xs sm:text-sm text-blue-100">
-            Fetch real meta titles, descriptions, canonical links, OpenGraph cards, and favicons from any live URL.
+            Fetch real meta titles, descriptions, canonical links, OpenGraph cards (including vector SVGs), and favicons from any live URL.
           </p>
 
           <!-- Input Bar (Clean & Empty by default) -->
@@ -816,10 +1116,10 @@
   </div>
 
   <!-- ========================================================================= -->
-  <!-- JAVASCRIPT LOGIC & SVG RENDERING ENGINE                                   -->
+  <!-- JAVASCRIPT APPLICATION STATE & SVG RENDERING LOGIC                        -->
   <!-- ========================================================================= -->
   <script>
-    /* Application State */
+    /* Global Application State */
     const app = {
       theme: 'light',
       cardTheme: 'dark',
@@ -832,7 +1132,30 @@
       logoBgCustom: null,
       serpMode: 'desktop',
       extractedPalette: null,
-      lastFetchedData: null
+      lastFetchedData: null,
+
+      // Section Spacing State Values (in pixels)
+      spacing: {
+        top: 75,
+        headerToTitle: 48,
+        titleToSub: 32,
+        subToPills: 44
+      },
+      
+      // Dynamic Capsule Pills Array
+      pills: [
+        { id: 1, text: '⚡ Interactive BOM Builder', visible: true },
+        { id: 2, text: '📊 AV ROI Calculator', visible: true },
+        { id: 3, text: '🛡️ 100% Certified Gear', visible: true }
+      ],
+
+      // Active text style toggles
+      activeStyles: {
+        'comp-italic': false,
+        'comp-underline': false,
+        'title-italic': false,
+        'title-underline': false
+      }
     };
 
     /* Lifecycle Init */
@@ -842,7 +1165,7 @@
       const savedTheme = localStorage.getItem('metaog_theme') || 'light';
       setAppTheme(savedTheme);
 
-      // Render initial canvas
+      renderPillsListUI();
       renderOGCanvas();
       runSEOChecker();
     });
@@ -968,7 +1291,135 @@
       renderOGCanvas();
     }
 
-    /* Slider Helper */
+    /* Section Spacing Controls Helpers */
+    function updateSpacingSlider(key, val) {
+      const num = parseInt(val, 10);
+      if (key === 'top') {
+        app.spacing.top = num;
+        document.getElementById('lbl-gap-top').textContent = `${num}px`;
+      } else if (key === 'header-title') {
+        app.spacing.headerToTitle = num;
+        document.getElementById('lbl-gap-header-title').textContent = `${num}px`;
+      } else if (key === 'title-sub') {
+        app.spacing.titleToSub = num;
+        document.getElementById('lbl-gap-title-sub').textContent = `${num}px`;
+      } else if (key === 'sub-pills') {
+        app.spacing.subToPills = num;
+        document.getElementById('lbl-gap-sub-pills').textContent = `${num}px`;
+      }
+      renderOGCanvas();
+    }
+
+    function resetSectionSpacings() {
+      app.spacing.top = 75;
+      app.spacing.headerToTitle = 48;
+      app.spacing.titleToSub = 32;
+      app.spacing.subToPills = 44;
+
+      document.getElementById('og-gap-top').value = 75;
+      document.getElementById('lbl-gap-top').textContent = '75px';
+
+      document.getElementById('og-gap-header-title').value = 48;
+      document.getElementById('lbl-gap-header-title').textContent = '48px';
+
+      document.getElementById('og-gap-title-sub').value = 32;
+      document.getElementById('lbl-gap-title-sub').textContent = '32px';
+
+      document.getElementById('og-gap-sub-pills').value = 44;
+      document.getElementById('lbl-gap-sub-pills').textContent = '44px';
+
+      renderOGCanvas();
+      showToast('Section spacings reset to defaults!');
+    }
+
+    /* ========================================================================= */
+    /* DYNAMIC CAPSULE PILLS MANAGER: ADD, EDIT, DELETE                          */
+    /* ========================================================================= */
+    function renderPillsListUI() {
+      const container = document.getElementById('pills-list-container');
+      const badge = document.getElementById('pill-count-badge');
+      
+      const activeCount = app.pills.filter(p => p.visible).length;
+      badge.textContent = `${activeCount} Active`;
+
+      if (app.pills.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-4 text-xs text-slate-400 border border-dashed border-slate-200 dark:border-slate-800 rounded-xl">
+            No capsule pills added. Click "Add Pill" above to insert.
+          </div>`;
+        return;
+      }
+
+      container.innerHTML = app.pills.map((pill, index) => `
+        <div class="flex items-center space-x-2 p-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 group transition-all">
+          <span class="text-[11px] font-mono text-slate-400 w-5 text-center font-bold">#${index + 1}</span>
+          
+          <input type="text" value="${escapeHtml(pill.text)}" oninput="updatePillText(${pill.id}, this.value)" placeholder="e.g. ⚡ Fast Speed" class="flex-1 text-xs rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 px-2.5 py-1.5 outline-none font-semibold text-slate-800 dark:text-slate-100">
+          
+          <label class="flex items-center space-x-1 cursor-pointer" title="Toggle Pill Visibility">
+            <input type="checkbox" ${pill.visible ? 'checked' : ''} onchange="togglePillVisibility(${pill.id}, this.checked)" class="rounded text-blue-600 h-3.5 w-3.5">
+          </label>
+
+          <button type="button" onclick="deletePill(${pill.id})" class="p-1.5 rounded-lg text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-950/60 transition" title="Delete Pill">
+            <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+      `).join('');
+
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function addNewPill() {
+      const newId = Date.now();
+      const defaultIcons = ['⚡', '🛡️', '📊', '🚀', '🔥', '✨', '💎'];
+      const randomIcon = defaultIcons[app.pills.length % defaultIcons.length];
+      app.pills.push({
+        id: newId,
+        text: `${randomIcon} Feature Highlight`,
+        visible: true
+      });
+      renderPillsListUI();
+      renderOGCanvas();
+      showToast('New capsule pill added!');
+    }
+
+    function updatePillText(id, val) {
+      const pill = app.pills.find(p => p.id === id);
+      if (pill) {
+        pill.text = val;
+        renderOGCanvas();
+      }
+    }
+
+    function togglePillVisibility(id, isVisible) {
+      const pill = app.pills.find(p => p.id === id);
+      if (pill) {
+        pill.visible = isVisible;
+        const badge = document.getElementById('pill-count-badge');
+        badge.textContent = `${app.pills.filter(p => p.visible).length} Active`;
+        renderOGCanvas();
+      }
+    }
+
+    function deletePill(id) {
+      app.pills = app.pills.filter(p => p.id !== id);
+      renderPillsListUI();
+      renderOGCanvas();
+      showToast('Capsule pill removed');
+    }
+
+    function toggleStyleBtn(btn, key) {
+      app.activeStyles[key] = !app.activeStyles[key];
+      if (app.activeStyles[key]) {
+        btn.classList.add('bg-blue-600', 'text-white', 'border-blue-600');
+        btn.classList.remove('border-slate-300', 'dark:border-slate-700');
+      } else {
+        btn.classList.remove('bg-blue-600', 'text-white', 'border-blue-600');
+        btn.classList.add('border-slate-300', 'dark:border-slate-700');
+      }
+    }
+
+    /* Slider & Form Helpers */
     function updateLogoSlider(key, val) {
       if (key === 'size') document.getElementById('lbl-logo-size').textContent = `${val}px`;
       if (key === 'radius') document.getElementById('lbl-logo-radius').textContent = `${val}px`;
@@ -1108,7 +1559,7 @@
       document.getElementById('logo-url-input').value = '';
       document.getElementById('apply-extracted-btn').classList.add('hidden');
       renderOGCanvas();
-      showToast('Logo cleared; initial badge active');
+      showToast('Logo cleared; fallback initials active');
     }
 
     /* Color Palette Extraction */
@@ -1184,35 +1635,96 @@
       }).join('');
     }
 
+    /* Helper for text transforms */
+    function applyTextTransform(str, transform) {
+      if (!str) return '';
+      if (transform === 'uppercase') return str.toUpperCase();
+      if (transform === 'lowercase') return str.toLowerCase();
+      if (transform === 'capitalize') {
+        return str.replace(/\b\w/g, l => l.toUpperCase());
+      }
+      return str;
+    }
+
+    function escapeHtml(str) {
+      return String(str || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
     /* ======================================================================= */
-    /* DYNAMIC SVG BUILDER (LANDSCAPE 1200x630 & SQUARE 1080x1080 OPTIMIZED)   */
+    /* DYNAMIC SVG BUILDER (WITH SECTION SPACING & SQUARE OPTIMIZATION)        */
     /* ======================================================================= */
     function buildSVGString(width, height) {
       const isSquare = (width === height);
       const isLight = (app.cardTheme === 'light');
 
-      // User values
-      const company = escapeXml(document.getElementById('og-company-name').value);
+      // Company Name Typography
+      const rawCompany = document.getElementById('og-company-name').value;
+      const compTransform = document.getElementById('og-comp-transform').value;
+      const company = escapeXml(applyTextTransform(rawCompany, compTransform));
       const companyColor = document.getElementById('og-company-color').value;
+      const compFont = document.getElementById('og-comp-font').value;
+      const compWeight = document.getElementById('og-comp-weight').value;
+      const baseCompSize = parseInt(document.getElementById('og-comp-size').value, 10);
+      const compSize = isSquare ? Math.round(baseCompSize * 1.18) : baseCompSize;
+      const compTracking = (parseFloat(document.getElementById('og-comp-spacing').value) / 100) + 'em';
+      const isCompItalic = app.activeStyles['comp-italic'];
+      const isCompUnderline = app.activeStyles['comp-underline'];
+
+      // Tagline Typography
       const companySub = escapeXml(document.getElementById('og-company-sub').value);
+      const subFont = document.getElementById('og-sub-font').value;
+      const subWeight = document.getElementById('og-sub-weight').value;
+      const baseSubSize = parseInt(document.getElementById('og-sub-size').value, 10);
+      const subSize = isSquare ? Math.round(baseSubSize * 1.15) : baseSubSize;
+      const subColor = document.getElementById('og-sub-color').value;
+      const subTracking = (parseFloat(document.getElementById('og-sub-spacing').value) / 100) + 'em';
       
-      const titleLine1 = escapeXml(document.getElementById('og-title-line1').value);
-      const titleLine2 = escapeXml(document.getElementById('og-title-line2').value);
+      // Headline Typography
+      const titleTransform = document.getElementById('og-title-transform').value;
+      const rawTitle1 = document.getElementById('og-title-line1').value;
+      const rawTitle2 = document.getElementById('og-title-line2').value;
+      const titleLine1 = escapeXml(applyTextTransform(rawTitle1, titleTransform));
+      const titleLine2 = escapeXml(applyTextTransform(rawTitle2, titleTransform));
+      
       const colTitle1 = document.getElementById('col-title1').value;
+      const accent = document.getElementById('col-accent').value;
+      const title1Font = document.getElementById('og-title1-font').value;
+      const title1Weight = document.getElementById('og-title1-weight').value;
+      const title2Font = document.getElementById('og-title2-font').value;
+      const title2Weight = document.getElementById('og-title2-weight').value;
+
+      const baseTitleSize = parseInt(document.getElementById('og-title-size').value, 10);
+      const titleFontSize = isSquare ? Math.round(baseTitleSize * 1.18) : baseTitleSize;
+      const titleLhMult = parseFloat(document.getElementById('og-title-lh').value) / 100;
+      const titleLineHeight = titleFontSize * titleLhMult;
+      const titleTracking = (parseFloat(document.getElementById('og-title-spacing').value) / 100) + 'em';
+      const isTitleItalic = app.activeStyles['title-italic'];
+      const isTitleUnderline = app.activeStyles['title-underline'];
+
+      // Services Subtitle Typography
       const services = escapeXml(document.getElementById('og-services-string').value);
+      const servicesFont = document.getElementById('og-services-font').value;
+      const servicesWeight = document.getElementById('og-services-weight').value;
+      const baseServicesSize = parseInt(document.getElementById('og-services-size').value, 10);
+      const servicesSize = isSquare ? Math.round(baseServicesSize * 1.15) : baseServicesSize;
 
-      const pill1 = escapeXml(document.getElementById('og-pill-1').value);
-      const pill2 = escapeXml(document.getElementById('og-pill-2').value);
-      const pill3 = escapeXml(document.getElementById('og-pill-3').value);
+      // Pills Global Formatting
       const showPills = document.getElementById('og-toggle-pills').checked;
+      const pillsFont = document.getElementById('og-pills-font').value;
+      const pillsWeight = document.getElementById('og-pills-weight').value;
+      const pillsTransform = document.getElementById('og-pills-transform').value;
 
+      // Frame & Atmospheric Controls
       const footerLine = escapeXml(document.getElementById('og-footer-line').value);
+      const footerFont = document.getElementById('og-footer-font').value;
+      const footerColor = document.getElementById('og-footer-color').value;
+      const footerSize = parseInt(document.getElementById('og-footer-size').value, 10);
 
       const bg = document.getElementById('col-bg').value;
-      const accent = document.getElementById('col-accent').value;
-      const font = document.getElementById('og-font-select').value;
-      const titleWeight = document.getElementById('og-title-weight').value || '900';
-
       const showGrid = document.getElementById('og-toggle-grid').checked;
       const showFrame = document.getElementById('og-toggle-frame').checked;
       const showGlow = document.getElementById('og-toggle-glow').checked;
@@ -1239,22 +1751,16 @@
       if (borderStyle === 'dotted') strokeDash = '2,3';
 
       // Contrast definitions
-      const secondaryTextColor = isLight ? 'rgba(51, 65, 85, 0.85)' : 'rgba(255, 255, 255, 0.65)';
       const servicesTextColor = isLight ? 'rgba(30, 41, 59, 0.94)' : 'rgba(241, 245, 249, 0.90)';
-      const footerTextColor = isLight ? 'rgba(100, 116, 139, 0.85)' : 'rgba(148, 163, 184, 0.75)';
-
-      const pillBg = isLight ? 'rgba(255, 255, 255, 0.92)' : 'rgba(30, 41, 59, 0.65)';
+      const pillBg = isLight ? 'rgba(255, 255, 255, 0.94)' : 'rgba(30, 41, 59, 0.65)';
       const pillTextColor = isLight ? '#0f172a' : '#f8fafc';
       const pillBorder = isLight ? 'rgba(203, 213, 225, 0.9)' : accent;
 
       const gridStrokeColor = isLight ? '#94a3b8' : accent;
       const gridOpacity = isLight ? '0.14' : '0.08';
 
-      // =======================================================================
-      // DYNAMIC LAYOUT REDISTRIBUTION FOR SQUARE (1080x1080) VS LANDSCAPE (1200x630)
-      // =======================================================================
-      const padX = isSquare ? 80 : 80;
-      const padY = isSquare ? 90 : 75;
+      // Dimensions & Insets
+      const padX = 80;
       const frameInset = isSquare ? 40 : 36;
       const frameW = width - (frameInset * 2);
       const frameH = height - (frameInset * 2);
@@ -1262,23 +1768,41 @@
       // Logo Scale in Square mode
       const logoSize = isSquare ? Math.round(baseLogoSize * 1.25) : baseLogoSize;
 
-      // Base user font size
-      const baseTitleSize = parseInt(document.getElementById('og-title-size').value, 10);
-      const titleFontSize = isSquare ? Math.round(baseTitleSize * 1.16) : baseTitleSize;
-      const titleLineHeight = titleFontSize * 1.20;
+      // =======================================================================
+      // DYNAMIC SECTION SPACING CALCULATIONS (CASCADE COORDINATES)
+      // =======================================================================
+      const scaleFactor = isSquare ? 1.15 : 1.0;
+      const topPad = Math.round(app.spacing.top * scaleFactor);
+      const gapHeaderToTitle = Math.round(app.spacing.headerToTitle * scaleFactor);
+      const gapTitleToSub = Math.round(app.spacing.titleToSub * scaleFactor);
+      const gapSubToPills = Math.round(app.spacing.subToPills * scaleFactor);
 
-      // Vertical coordinates
-      const headerY = padY;
-      const heroStartY = isSquare 
-        ? headerY + logoSize + 85 
-        : headerY + logoSize + 48;
-      
-      const servicesY = heroStartY + (titleLineHeight * 2) + (isSquare ? 40 : 22);
+      // 1. Header Y Position
+      const headerY = topPad;
 
-      // Footer position
+      // Calculate Header Visual Height based on alignment
+      let headerBlockHeight = logoSize;
+      if (app.headerAlign === 'center') {
+        headerBlockHeight = logoSize + (isSquare ? 28 : 22) + (isSquare ? 26 : 20) + 12;
+      }
+
+      // 2. Headline Y Position
+      const heroStartY = headerY + headerBlockHeight + gapHeaderToTitle;
+
+      // 3. Capabilities Subtitle Y Position
+      const servicesY = heroStartY + (titleLineHeight * 2) + gapTitleToSub;
+
+      // Determine height consumed by Subtitle text (1 line or 2 lines in square mode)
+      const isSubtitleTwoLines = (isSquare && services.length > 50);
+      const subtitleVisualHeight = isSubtitleTwoLines ? (servicesSize * 2) + 12 : servicesSize;
+
+      // 4. Feature Capsule Pills Y Position
+      const pillsY = servicesY + subtitleVisualHeight + gapSubToPills;
+
+      // 5. Footer Y Position
       const footerY = isSquare ? height - 90 : height - 70;
 
-      // Horizontal Alignment Anchors
+      // Alignment Anchors
       let headerX = padX;
       let textAnchor = "start";
       let contentX = padX;
@@ -1297,106 +1821,101 @@
         contentAnchor = "middle";
       }
 
-      // Break services line if in square mode for clean wrapping
+      // Break services line cleanly in square mode
       let servicesSvgNodes = '';
-      if (isSquare && services.length > 50) {
+      if (isSubtitleTwoLines) {
         const midPoint = services.lastIndexOf('•', Math.floor(services.length * 0.55));
         const line1 = midPoint !== -1 ? services.slice(0, midPoint).trim() : services.slice(0, 50).trim();
         const line2 = midPoint !== -1 ? services.slice(midPoint + 1).trim() : services.slice(50).trim();
         servicesSvgNodes = `
-          <text x="0" y="0" font-family="${font}, sans-serif" font-size="22" font-weight="500" text-anchor="${contentAnchor}" fill="${servicesTextColor}">
+          <text x="0" y="0" font-family="${servicesFont}, sans-serif" font-size="${servicesSize}" font-weight="${servicesWeight}" text-anchor="${contentAnchor}" fill="${servicesTextColor}">
             ${line1}
           </text>
-          <text x="0" y="34" font-family="${font}, sans-serif" font-size="22" font-weight="500" text-anchor="${contentAnchor}" fill="${servicesTextColor}">
+          <text x="0" y="34" font-family="${servicesFont}, sans-serif" font-size="${servicesSize}" font-weight="${servicesWeight}" text-anchor="${contentAnchor}" fill="${servicesTextColor}">
             ${line2}
           </text>
         `;
       } else {
         servicesSvgNodes = `
-          <text x="0" y="0" font-family="${font}, sans-serif" font-size="${isSquare ? 23 : 20}" font-weight="500" text-anchor="${contentAnchor}" fill="${servicesTextColor}">
+          <text x="0" y="0" font-family="${servicesFont}, sans-serif" font-size="${servicesSize}" font-weight="${servicesWeight}" text-anchor="${contentAnchor}" fill="${servicesTextColor}">
             ${services}
           </text>
         `;
       }
 
-      // Feature Capsule Pills Layout (Horizontal Row in Landscape vs 2-Tier Stack in Square)
+      // =======================================================================
+      // DYNAMIC CAPSULE PILLS MARKUP GENERATION (ADAPTIVE TO PILL COUNT & Y-GAP)
+      // =======================================================================
       let pillsSvgMarkup = '';
-      if (showPills) {
+      const activePills = app.pills.filter(p => p.visible && p.text.trim().length > 0);
+
+      if (showPills && activePills.length > 0) {
         if (isSquare) {
-          // In square mode: Pill 1 & Pill 2 on row 1, Pill 3 centered below
-          const pillGridY = height - 260;
+          // In square mode: 2-tier stacked grid positioned using pillsY
           const pW = 420;
           const pH = 52;
           const pGap = 20;
 
+          const renderedNodes = activePills.map((p, idx) => {
+            const formattedText = escapeXml(applyTextTransform(p.text, pillsTransform));
+            let posX = 0;
+            let posY = 0;
+
+            if (idx === 0) {
+              posX = 0;
+              posY = 0;
+            } else if (idx === 1) {
+              posX = pW + pGap;
+              posY = 0;
+            } else if (idx === 2) {
+              posX = (pW * 2 + pGap - 460) / 2;
+              posY = pH + 18;
+            } else {
+              // 4th+ pills cascade gracefully
+              posX = ((idx % 2) === 0 ? 0 : pW + pGap);
+              posY = (pH + 18) * Math.floor(idx / 2);
+            }
+
+            const currentW = (idx === 2 && activePills.length === 3) ? 460 : pW;
+
+            return `
+              <g transform="translate(${posX}, ${posY})">
+                <rect width="${currentW}" height="${pH}" rx="${pH / 2}" fill="${pillBg}" stroke="${pillBorder}" stroke-opacity="${isLight ? '0.8' : '0.35'}" stroke-width="1.3"/>
+                <text x="${currentW / 2}" y="32" font-family="${pillsFont}, sans-serif" font-size="16.5" font-weight="${pillsWeight}" fill="${pillTextColor}" text-anchor="middle">
+                  ${formattedText}
+                </text>
+              </g>
+            `;
+          }).join('');
+
           pillsSvgMarkup = `
-          <g transform="translate(${contentAnchor === 'middle' ? (width - (pW * 2 + pGap)) / 2 : padX}, ${pillGridY})" filter="url(#pillGlow)">
-            <!-- Row 1: Pill 1 & Pill 2 -->
-            ${pill1 ? `
-            <g transform="translate(0, 0)">
-              <rect width="${pW}" height="${pH}" rx="${pH / 2}" fill="${pillBg}" stroke="${pillBorder}" stroke-opacity="${isLight ? '0.8' : '0.35'}" stroke-width="1.3"/>
-              <text x="${pW / 2}" y="32" font-family="${font}, sans-serif" font-size="16.5" font-weight="700" fill="${pillTextColor}" text-anchor="middle">
-                ${pill1}
-              </text>
+            <g transform="translate(${contentAnchor === 'middle' ? (width - (pW * 2 + pGap)) / 2 : padX}, ${pillsY})" filter="url(#pillGlow)">
+              ${renderedNodes}
             </g>
-            ` : ''}
-
-            ${pill2 ? `
-            <g transform="translate(${pW + pGap}, 0)">
-              <rect width="${pW}" height="${pH}" rx="${pH / 2}" fill="${pillBg}" stroke="${pillBorder}" stroke-opacity="${isLight ? '0.8' : '0.35'}" stroke-width="1.3"/>
-              <text x="${pW / 2}" y="32" font-family="${font}, sans-serif" font-size="16.5" font-weight="700" fill="${pillTextColor}" text-anchor="middle">
-                ${pill2}
-              </text>
-            </g>
-            ` : ''}
-
-            <!-- Row 2: Pill 3 centered -->
-            ${pill3 ? `
-            <g transform="translate(${(pW * 2 + pGap - 460) / 2}, ${pH + 18})">
-              <rect width="460" height="${pH}" rx="${pH / 2}" fill="${pillBg}" stroke="${pillBorder}" stroke-opacity="${isLight ? '0.8' : '0.35'}" stroke-width="1.3"/>
-              <text x="230" y="32" font-family="${font}, sans-serif" font-size="16.5" font-weight="700" fill="${pillTextColor}" text-anchor="middle">
-                ${pill3}
-              </text>
-            </g>
-            ` : ''}
-          </g>
           `;
         } else {
-          // In landscape mode: 3 Pills along a single horizontal row
-          const pillsLandscapeY = height - 165;
-          const pW = 215;
+          // In landscape mode: Horizontal row distribution positioned dynamically using pillsY
+          const pW = activePills.length > 3 ? 180 : 215;
           const pH = 44;
-          const pGap = 20;
+          const pGap = 16;
+          const totalRowW = (activePills.length * pW) + ((activePills.length - 1) * pGap);
+
+          const renderedNodes = activePills.map((p, idx) => {
+            const formattedText = escapeXml(applyTextTransform(p.text, pillsTransform));
+            return `
+              <g transform="translate(${idx * (pW + pGap)}, 0)">
+                <rect width="${pW}" height="${pH}" rx="${pH / 2}" fill="${pillBg}" stroke="${pillBorder}" stroke-opacity="${isLight ? '0.8' : '0.35'}" stroke-width="1.2"/>
+                <text x="${pW / 2}" y="27" font-family="${pillsFont}, sans-serif" font-size="13.5" font-weight="${pillsWeight}" fill="${pillTextColor}" text-anchor="middle">
+                  ${formattedText}
+                </text>
+              </g>
+            `;
+          }).join('');
 
           pillsSvgMarkup = `
-          <g transform="translate(${contentAnchor === 'middle' ? (width - ((pW * 3) + (pGap * 2))) / 2 : padX}, ${pillsLandscapeY})" filter="url(#pillGlow)">
-            ${pill1 ? `
-            <g transform="translate(0, 0)">
-              <rect width="${pW}" height="${pH}" rx="${pH / 2}" fill="${pillBg}" stroke="${pillBorder}" stroke-opacity="${isLight ? '0.8' : '0.35'}" stroke-width="1.2"/>
-              <text x="${pW / 2}" y="27" font-family="${font}, sans-serif" font-size="13.5" font-weight="700" fill="${pillTextColor}" text-anchor="middle">
-                ${pill1}
-              </text>
+            <g transform="translate(${contentAnchor === 'middle' ? (width - totalRowW) / 2 : padX}, ${pillsY})" filter="url(#pillGlow)">
+              ${renderedNodes}
             </g>
-            ` : ''}
-
-            ${pill2 ? `
-            <g transform="translate(${pW + pGap}, 0)">
-              <rect width="${pW}" height="${pH}" rx="${pH / 2}" fill="${pillBg}" stroke="${pillBorder}" stroke-opacity="${isLight ? '0.8' : '0.35'}" stroke-width="1.2"/>
-              <text x="${pW / 2}" y="27" font-family="${font}, sans-serif" font-size="13.5" font-weight="700" fill="${pillTextColor}" text-anchor="middle">
-                ${pill2}
-              </text>
-            </g>
-            ` : ''}
-
-            ${pill3 ? `
-            <g transform="translate(${(pW + pGap) * 2}, 0)">
-              <rect width="${pW}" height="${pH}" rx="${pH / 2}" fill="${pillBg}" stroke="${pillBorder}" stroke-opacity="${isLight ? '0.8' : '0.35'}" stroke-width="1.2"/>
-              <text x="${pW / 2}" y="27" font-family="${font}, sans-serif" font-size="13.5" font-weight="700" fill="${pillTextColor}" text-anchor="middle">
-                ${pill3}
-              </text>
-            </g>
-            ` : ''}
-          </g>
           `;
         }
       }
@@ -1464,7 +1983,7 @@
                      preserveAspectRatio="xMidYMid meet"/>
             ` : `
               <text x="${logoSize / 2}" y="${(logoSize / 2) + (logoSize * 0.14)}" 
-                    font-family="${font}, sans-serif" font-size="${Math.round(logoSize * 0.38)}" font-weight="900" 
+                    font-family="${compFont}, sans-serif" font-size="${Math.round(logoSize * 0.38)}" font-weight="900" 
                     fill="${isTransparentBg ? accent : '#ffffff'}" text-anchor="middle">
                 ${initials}
               </text>
@@ -1474,13 +1993,15 @@
           <!-- Text Labels -->
           <g transform="translate(${app.headerAlign === 'left' ? logoSize + (isSquare ? 22 : 18) : (app.headerAlign === 'right' ? -(logoSize + (isSquare ? 22 : 18)) : 0)}, ${app.headerAlign === 'center' ? logoSize + (isSquare ? 28 : 22) : 0})">
             <text x="0" y="${app.headerAlign === 'center' ? 0 : (isSquare ? 32 : 28)}" 
-                  font-family="${font}, sans-serif" font-size="${isSquare ? 27 : 23}" font-weight="800" 
-                  fill="${companyColor}" text-anchor="${textAnchor}" letter-spacing="-0.01em">
+                  font-family="${compFont}, sans-serif" font-size="${compSize}" font-weight="${compWeight}" 
+                  fill="${companyColor}" text-anchor="${textAnchor}" letter-spacing="${compTracking}"
+                  font-style="${isCompItalic ? 'italic' : 'normal'}"
+                  text-decoration="${isCompUnderline ? 'underline' : 'none'}">
               ${company}
             </text>
             <text x="0" y="${app.headerAlign === 'center' ? (isSquare ? 26 : 20) : (isSquare ? 58 : 50)}" 
-                  font-family="${font}, monospace" font-size="${isSquare ? 13.5 : 12}" font-weight="600" 
-                  fill="${secondaryTextColor}" text-anchor="${textAnchor}" letter-spacing="0.08em">
+                  font-family="${subFont}, monospace" font-size="${subSize}" font-weight="${subWeight}" 
+                  fill="${subColor}" text-anchor="${textAnchor}" letter-spacing="${subTracking}">
               ${companySub}
             </text>
           </g>
@@ -1491,23 +2012,27 @@
         <!-- ================================================================= -->
         <g transform="translate(${contentX}, ${heroStartY})">
           <text x="0" y="0" 
-                font-family="${font}, sans-serif" 
+                font-family="${title1Font}, sans-serif" 
                 font-size="${titleFontSize}" 
-                font-weight="${titleWeight}" 
+                font-weight="${title1Weight}" 
                 fill="${colTitle1}" 
                 text-anchor="${contentAnchor}"
-                letter-spacing="-0.03em"
+                letter-spacing="${titleTracking}"
+                font-style="${isTitleItalic ? 'italic' : 'normal'}"
+                text-decoration="${isTitleUnderline ? 'underline' : 'none'}"
                 style="${isLight ? '' : 'text-shadow: 0 4px 20px rgba(0,0,0,0.4);'}">
             ${titleLine1}
           </text>
 
           <text x="0" y="${titleLineHeight}" 
-                font-family="${font}, sans-serif" 
+                font-family="${title2Font}, sans-serif" 
                 font-size="${titleFontSize}" 
-                font-weight="${titleWeight}" 
+                font-weight="${title2Weight}" 
                 fill="${accent}" 
                 text-anchor="${contentAnchor}"
-                letter-spacing="-0.03em"
+                letter-spacing="${titleTracking}"
+                font-style="${isTitleItalic ? 'italic' : 'normal'}"
+                text-decoration="${isTitleUnderline ? 'underline' : 'none'}"
                 style="${isLight ? '' : `text-shadow: 0 4px 25px ${accent}40;`}">
             ${titleLine2}
           </text>
@@ -1526,11 +2051,11 @@
         <!-- ================================================================= -->
         <g transform="translate(${contentX}, ${footerY})">
           <text x="0" y="0" 
-                font-family="${font}, monospace" 
-                font-size="${isSquare ? 14 : 13}" 
+                font-family="${footerFont}, monospace" 
+                font-size="${isSquare ? footerSize + 1 : footerSize}" 
                 font-weight="500" 
                 text-anchor="${contentAnchor}"
-                fill="${footerTextColor}">
+                fill="${footerColor}">
             ${footerLine}
           </text>
         </g>
