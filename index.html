@@ -1,0 +1,1537 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OG Studio & SEO Meta Tag Generator</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            outfit: ['Outfit', 'sans-serif'],
+            poppins: ['Poppins', 'sans-serif'],
+            playfair: ['Playfair Display', 'serif'],
+            mono: ['JetBrains Mono', 'Roboto Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts & Lucide Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,600;0,800;1,400&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* Custom scrollbars and styling */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(156, 163, 175, 0.5); border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(107, 114, 128, 0.7); }
+    .checker-grid {
+      background-image: radial-gradient(rgba(156, 163, 175, 0.25) 1px, transparent 1px);
+      background-size: 16px 16px;
+    }
+    .dark .checker-grid {
+      background-image: radial-gradient(rgba(75, 85, 99, 0.3) 1px, transparent 1px);
+    }
+  </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 min-h-screen font-sans antialiased transition-colors duration-200 selection:bg-indigo-500 selection:text-white">
+
+  <!-- Top Navigation Bar -->
+  <header class="sticky top-0 z-40 w-full border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      
+      <!-- Brand Logo & Title -->
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 via-purple-600 to-pink-500 flex items-center justify-center text-white shadow-lg shadow-indigo-500/20">
+          <i data-lucide="sparkles" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <span class="text-lg font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-300">MetaOG Studio</span>
+          <span class="hidden sm:inline-block ml-2 px-2 py-0.5 text-xs font-medium rounded-full bg-indigo-100 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800/60">SEO & Graphic Suite</span>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs Switcher -->
+      <div class="flex items-center bg-slate-100 dark:bg-slate-800 p-1 rounded-xl border border-slate-200/80 dark:border-slate-700/60">
+        <button id="tab-btn-og" onclick="switchAppTab('og')" class="flex items-center space-x-2 px-3 sm:px-4 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-150 bg-white dark:bg-slate-700 shadow-sm text-indigo-600 dark:text-white">
+          <i data-lucide="image" class="w-4 h-4"></i>
+          <span>OG Generator</span>
+        </button>
+        <button id="tab-btn-seo" onclick="switchAppTab('seo')" class="flex items-center space-x-2 px-3 sm:px-4 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-150 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
+          <i data-lucide="search" class="w-4 h-4"></i>
+          <span>SEO & Meta Checker</span>
+        </button>
+      </div>
+
+      <!-- Actions (Theme Toggle & Github) -->
+      <div class="flex items-center space-x-2 sm:space-x-3">
+        <button id="theme-toggle-btn" onclick="toggleTheme()" class="p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700 transition" title="Toggle Light/Dark Theme">
+          <i id="theme-icon" data-lucide="moon" class="w-4 h-4"></i>
+        </button>
+        <a href="https://github.com" target="_blank" rel="noreferrer" class="p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700 transition" title="View Source on GitHub">
+          <i data-lucide="github" class="w-4 h-4"></i>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+    <!-- ========================================================================= -->
+    <!-- TAB 1: OG IMAGE GENERATOR SECTION                                         -->
+    <!-- ========================================================================= -->
+    <div id="tab-content-og" class="block">
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
+        <div>
+          <h1 class="text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight">OpenGraph Image Creator</h1>
+          <p class="text-sm text-slate-500 dark:text-slate-400">Design high-impact social preview cards in landscape or square ratio with automatic logo color matching.</p>
+        </div>
+        
+        <!-- Shape / Aspect Ratio Switches & Quick Exports -->
+        <div class="flex flex-wrap items-center gap-2">
+          <!-- Ratio Switches -->
+          <div class="bg-slate-200 dark:bg-slate-800 p-1 rounded-xl flex items-center border border-slate-300 dark:border-slate-700">
+            <button id="ratio-btn-landscape" onclick="setRatio('landscape')" class="px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center space-x-1.5 bg-white dark:bg-slate-700 text-indigo-600 dark:text-white shadow-sm transition">
+              <i data-lucide="rectangle-horizontal" class="w-4 h-4"></i>
+              <span>1200 × 630 (Large)</span>
+            </button>
+            <button id="ratio-btn-square" onclick="setRatio('square')" class="px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center space-x-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">
+              <i data-lucide="square" class="w-4 h-4"></i>
+              <span>1080 × 1080 (Square)</span>
+            </button>
+          </div>
+
+          <!-- Export Buttons -->
+          <div class="flex items-center space-x-2">
+            <button onclick="exportPNG()" class="px-3.5 py-1.5 bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white text-xs font-semibold rounded-xl shadow-md shadow-indigo-500/20 flex items-center space-x-1.5 transition">
+              <i data-lucide="download" class="w-3.5 h-3.5"></i>
+              <span>Export PNG</span>
+            </button>
+            <button onclick="exportSVG()" class="px-3.5 py-1.5 bg-slate-800 hover:bg-slate-900 dark:bg-slate-700 dark:hover:bg-slate-600 active:scale-95 text-white text-xs font-semibold rounded-xl border border-slate-700 transition flex items-center space-x-1.5">
+              <i data-lucide="code" class="w-3.5 h-3.5"></i>
+              <span>Export SVG</span>
+            </button>
+            <button onclick="copySVGCode()" class="p-2 bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded-xl transition" title="Copy SVG Code">
+              <i data-lucide="copy" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main OG Workspace (Grid of Controls + Preview) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        <!-- Left Panel: Controls (5 columns on desktop) -->
+        <div class="lg:col-span-5 space-y-6">
+          
+          <!-- Logo Upload & Auto Color Extraction Card -->
+          <div class="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-2">
+                <i data-lucide="palette" class="w-4 h-4 text-indigo-500"></i>
+                <h2 class="text-sm font-bold text-slate-800 dark:text-slate-200">Brand Logo & Auto Palette</h2>
+              </div>
+              <span id="palette-status-badge" class="text-[11px] text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded-full border border-emerald-200 dark:border-emerald-800 hidden font-medium">Palette Synced</span>
+            </div>
+
+            <!-- Upload Box -->
+            <div class="border-2 border-dashed border-slate-300 dark:border-slate-700 hover:border-indigo-500 rounded-xl p-4 text-center cursor-pointer transition relative group">
+              <input type="file" id="logo-file-input" accept="image/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" onchange="handleLogoUpload(event)">
+              <div class="flex flex-col items-center space-y-2 pointer-events-none">
+                <div class="w-10 h-10 rounded-full bg-indigo-50 dark:bg-slate-800 flex items-center justify-center text-indigo-600 dark:text-indigo-400 group-hover:scale-110 transition">
+                  <i data-lucide="upload-cloud" class="w-5 h-5"></i>
+                </div>
+                <div class="text-xs text-slate-600 dark:text-slate-400">
+                  <span class="font-semibold text-indigo-600 dark:text-indigo-400">Click to upload logo</span> or drag and drop
+                </div>
+                <p class="text-[10px] text-slate-400">PNG, SVG, or JPG (Auto-samples dominant colors)</p>
+              </div>
+            </div>
+
+            <!-- Logo Configuration (if active) -->
+            <div id="logo-controls-panel" class="hidden pt-3 border-t border-slate-100 dark:border-slate-800 grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-[11px] font-medium text-slate-500 mb-1">Logo Placement</label>
+                <select id="logo-position-select" onchange="updateDesign()" class="w-full text-xs rounded-lg bg-slate-50 dark:bg-slate-800 border-slate-300 dark:border-slate-700 py-1.5 px-2">
+                  <option value="top-left">Top Left</option>
+                  <option value="top-right">Top Right</option>
+                  <option value="center">Center / Above Title</option>
+                  <option value="bottom-left">Bottom Left</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-[11px] font-medium text-slate-500 mb-1">Logo Size: <span id="logo-size-val">64px</span></label>
+                <input type="range" id="logo-size-slider" min="32" max="140" value="64" class="w-full accent-indigo-600" oninput="updateLogoSize(this.value)">
+              </div>
+              <div class="col-span-2 flex items-center justify-between">
+                <div class="flex items-center space-x-2" id="extracted-swatches">
+                  <!-- Injected auto swatches -->
+                </div>
+                <button onclick="removeLogo()" class="text-xs text-rose-500 hover:text-rose-600 font-medium flex items-center space-x-1">
+                  <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                  <span>Remove Logo</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Text & Content Inputs -->
+          <div class="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+            <div class="flex items-center space-x-2">
+              <i data-lucide="type" class="w-4 h-4 text-indigo-500"></i>
+              <h2 class="text-sm font-bold text-slate-800 dark:text-slate-200">Text & Content</h2>
+            </div>
+
+            <div class="space-y-3">
+              <div>
+                <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Badge / Tagline</label>
+                <input type="text" id="og-badge" value="🔥 NEW RELEASE" oninput="updateDesign()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2 focus:ring-2 focus:ring-indigo-500 outline-none">
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Main Heading / Title</label>
+                <textarea id="og-title" rows="2" oninput="updateDesign()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2 focus:ring-2 focus:ring-indigo-500 outline-none">Build Stunning OpenGraph Images In Seconds with MetaOG</textarea>
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Description / Subtitle</label>
+                <textarea id="og-subtitle" rows="2" oninput="updateDesign()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2 focus:ring-2 focus:ring-indigo-500 outline-none">Automated color matching from your brand logo, crisp vector exports, and real-time social card simulators.</textarea>
+              </div>
+
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Author / Brand</label>
+                  <input type="text" id="og-author" value="Alex Rivera" oninput="updateDesign()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2 focus:ring-2 focus:ring-indigo-500 outline-none">
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Domain / Website</label>
+                  <input type="text" id="og-domain" value="yourcompany.io" oninput="updateDesign()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2 focus:ring-2 focus:ring-indigo-500 outline-none">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Visual Style, Colors & Presets -->
+          <div class="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-2">
+                <i data-lucide="sliders" class="w-4 h-4 text-indigo-500"></i>
+                <h2 class="text-sm font-bold text-slate-800 dark:text-slate-200">Style, Font & Theme</h2>
+              </div>
+            </div>
+
+            <!-- Presets Grid -->
+            <div>
+              <label class="block text-[11px] font-semibold text-slate-500 uppercase tracking-wider mb-2">Preset Themes</label>
+              <div class="grid grid-cols-3 gap-2">
+                <button onclick="applyPreset('aurora')" class="px-2 py-1.5 rounded-lg text-[11px] font-medium border border-slate-200 dark:border-slate-700 hover:border-indigo-500 flex items-center justify-center space-x-1 transition bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-slate-800 dark:to-slate-800">
+                  <span class="w-2.5 h-2.5 rounded-full bg-gradient-to-tr from-indigo-600 to-purple-500"></span>
+                  <span>Aurora</span>
+                </button>
+                <button onclick="applyPreset('minimalist')" class="px-2 py-1.5 rounded-lg text-[11px] font-medium border border-slate-200 dark:border-slate-700 hover:border-indigo-500 flex items-center justify-center space-x-1 transition bg-white dark:bg-slate-800">
+                  <span class="w-2.5 h-2.5 rounded-full bg-slate-900 dark:bg-white border"></span>
+                  <span>Minimal</span>
+                </button>
+                <button onclick="applyPreset('cyberpunk')" class="px-2 py-1.5 rounded-lg text-[11px] font-medium border border-slate-200 dark:border-slate-700 hover:border-indigo-500 flex items-center justify-center space-x-1 transition bg-slate-900 text-pink-400">
+                  <span class="w-2.5 h-2.5 rounded-full bg-gradient-to-tr from-pink-500 to-cyan-400"></span>
+                  <span>Cyber</span>
+                </button>
+                <button onclick="applyPreset('emerald')" class="px-2 py-1.5 rounded-lg text-[11px] font-medium border border-slate-200 dark:border-slate-700 hover:border-indigo-500 flex items-center justify-center space-x-1 transition bg-emerald-50 dark:bg-slate-800">
+                  <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                  <span>Emerald</span>
+                </button>
+                <button onclick="applyPreset('sunset')" class="px-2 py-1.5 rounded-lg text-[11px] font-medium border border-slate-200 dark:border-slate-700 hover:border-indigo-500 flex items-center justify-center space-x-1 transition bg-orange-50 dark:bg-slate-800">
+                  <span class="w-2.5 h-2.5 rounded-full bg-gradient-to-tr from-amber-500 to-rose-500"></span>
+                  <span>Sunset</span>
+                </button>
+                <button onclick="applyPreset('midnight')" class="px-2 py-1.5 rounded-lg text-[11px] font-medium border border-slate-200 dark:border-slate-700 hover:border-indigo-500 flex items-center justify-center space-x-1 transition bg-slate-950 text-slate-300">
+                  <span class="w-2.5 h-2.5 rounded-full bg-indigo-400"></span>
+                  <span>Midnight</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Font Family and Text Alignment -->
+            <div class="grid grid-cols-2 gap-3 pt-2">
+              <div>
+                <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Typography</label>
+                <select id="og-font-family" onchange="updateDesign()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-2 py-2">
+                  <option value="Inter">Inter (Clean)</option>
+                  <option value="Outfit">Outfit (Modern)</option>
+                  <option value="Poppins">Poppins (Friendly)</option>
+                  <option value="Playfair Display">Playfair (Editorial)</option>
+                  <option value="JetBrains Mono">Mono (Tech)</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Text Align</label>
+                <div class="flex rounded-xl bg-slate-100 dark:bg-slate-800 p-1 border border-slate-200 dark:border-slate-700">
+                  <button type="button" onclick="setTextAlign('left')" id="btn-align-left" class="flex-1 py-1 rounded-lg text-xs font-medium bg-white dark:bg-slate-700 text-indigo-600 shadow-sm flex justify-center">
+                    <i data-lucide="align-left" class="w-3.5 h-3.5"></i>
+                  </button>
+                  <button type="button" onclick="setTextAlign('center')" id="btn-align-center" class="flex-1 py-1 rounded-lg text-xs font-medium text-slate-500 hover:text-slate-900 flex justify-center">
+                    <i data-lucide="align-center" class="w-3.5 h-3.5"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Custom Colors -->
+            <div class="grid grid-cols-3 gap-2 pt-2">
+              <div>
+                <label class="block text-[11px] text-slate-500 mb-1">Primary Color</label>
+                <div class="flex items-center space-x-1.5">
+                  <input type="color" id="og-col-primary" value="#4f46e5" oninput="updateDesign()" class="w-7 h-7 rounded border-0 cursor-pointer bg-transparent">
+                  <span id="hex-label-primary" class="text-[10px] font-mono text-slate-500">#4F46E5</span>
+                </div>
+              </div>
+              <div>
+                <label class="block text-[11px] text-slate-500 mb-1">Accent/Gradient</label>
+                <div class="flex items-center space-x-1.5">
+                  <input type="color" id="og-col-secondary" value="#9333ea" oninput="updateDesign()" class="w-7 h-7 rounded border-0 cursor-pointer bg-transparent">
+                  <span id="hex-label-secondary" class="text-[10px] font-mono text-slate-500">#9333EA</span>
+                </div>
+              </div>
+              <div>
+                <label class="block text-[11px] text-slate-500 mb-1">Card Background</label>
+                <div class="flex items-center space-x-1.5">
+                  <input type="color" id="og-col-bg" value="#0f172a" oninput="updateDesign()" class="w-7 h-7 rounded border-0 cursor-pointer bg-transparent">
+                  <span id="hex-label-bg" class="text-[10px] font-mono text-slate-500">#0F172A</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pattern and Mesh Switch -->
+            <div class="flex items-center justify-between pt-1">
+              <label class="text-xs text-slate-600 dark:text-slate-300 font-medium flex items-center space-x-2">
+                <input type="checkbox" id="og-show-grid" checked onchange="updateDesign()" class="rounded text-indigo-600 focus:ring-indigo-500 h-4 w-4">
+                <span>Show Geometric Mesh / Grid</span>
+              </label>
+              <label class="text-xs text-slate-600 dark:text-slate-300 font-medium flex items-center space-x-2">
+                <input type="checkbox" id="og-glass-effect" checked onchange="updateDesign()" class="rounded text-indigo-600 focus:ring-indigo-500 h-4 w-4">
+                <span>Glassmorphism Card</span>
+              </label>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Right Panel: Real-Time Preview Area (7 columns) -->
+        <div class="lg:col-span-7 flex flex-col items-center">
+          
+          <div class="w-full bg-slate-100 dark:bg-slate-900/50 p-4 sm:p-6 rounded-3xl border border-slate-200 dark:border-slate-800 checker-grid flex flex-col items-center justify-center relative min-h-[480px]">
+            
+            <div class="w-full flex items-center justify-between mb-3 text-xs text-slate-500 dark:text-slate-400">
+              <span class="font-medium flex items-center space-x-1.5">
+                <i data-lucide="eye" class="w-3.5 h-3.5"></i>
+                <span id="canvas-dim-indicator">Preview (1200 × 630px)</span>
+              </span>
+              <span class="text-[11px] bg-white/70 dark:bg-slate-800/70 px-2 py-0.5 rounded-md border border-slate-200 dark:border-slate-700">Scales automatically for preview</span>
+            </div>
+
+            <!-- Responsive Wrapper for Preview -->
+            <div id="preview-stage" class="w-full flex items-center justify-center transition-all duration-300">
+              <!-- SVG Output Element (Render Target) -->
+              <div id="svg-container" class="w-full rounded-2xl overflow-hidden shadow-2xl transition-all duration-300 border border-slate-300/40 dark:border-slate-700/60 max-w-full">
+                <!-- Dynamically generated SVG will go here -->
+              </div>
+            </div>
+
+            <!-- Quick Action Toolbar Under Preview -->
+            <div class="mt-4 w-full flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-slate-200 dark:border-slate-800/60">
+              <div class="flex items-center space-x-2">
+                <button onclick="randomizePalette()" class="px-3 py-1.5 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-semibold rounded-lg border border-slate-200 dark:border-slate-700 flex items-center space-x-1.5 shadow-sm transition">
+                  <i data-lucide="shuffle" class="w-3.5 h-3.5"></i>
+                  <span>Shuffle Colors</span>
+                </button>
+                <button onclick="copyPNGToClipboard()" class="px-3 py-1.5 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-semibold rounded-lg border border-slate-200 dark:border-slate-700 flex items-center space-x-1.5 shadow-sm transition">
+                  <i data-lucide="clipboard" class="w-3.5 h-3.5"></i>
+                  <span>Copy PNG to Clipboard</span>
+                </button>
+              </div>
+              <span class="text-[11px] text-slate-400">High-res (Retina 2x Crisp Canvas)</span>
+            </div>
+
+          </div>
+
+          <!-- Quick Tips Card -->
+          <div class="mt-4 w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4 rounded-2xl flex items-start space-x-3 text-xs text-slate-600 dark:text-slate-400">
+            <i data-lucide="info" class="w-4 h-4 text-indigo-500 shrink-0 mt-0.5"></i>
+            <div>
+              <span class="font-semibold text-slate-800 dark:text-slate-200">Recommended Dimensions:</span>
+              Use <strong>1200×630px</strong> for standard OpenGraph (Facebook, Twitter large summary card, LinkedIn, Slack) and <strong>1080×1080px (Square)</strong> for Instagram, Discord embeds, or mobile apps.
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 2: SEO META TAGS GENERATOR & LIVE CHECKER                             -->
+    <!-- ========================================================================= -->
+    <div id="tab-content-seo" class="hidden">
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
+        <div>
+          <h1 class="text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight">SEO Meta Tag Generator & Quality Inspector</h1>
+          <p class="text-sm text-slate-500 dark:text-slate-400">Validate title & description lengths against modern Google SERP and OpenGraph guidelines with live health scoring.</p>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button onclick="copyGeneratedMetaTags()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white text-xs font-semibold rounded-xl shadow-md shadow-indigo-500/20 flex items-center space-x-1.5 transition">
+            <i data-lucide="copy-check" class="w-4 h-4"></i>
+            <span>Copy Meta Tags HTML</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        <!-- Left Panel: SEO Form Inputs (5 cols) -->
+        <div class="lg:col-span-5 space-y-6">
+
+          <!-- Core Page Information Form -->
+          <div class="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-2">
+                <i data-lucide="file-text" class="w-4 h-4 text-indigo-500"></i>
+                <h2 class="text-sm font-bold text-slate-800 dark:text-slate-200">Page Identity</h2>
+              </div>
+              <button onclick="loadSEOSampleData()" class="text-[11px] text-indigo-600 dark:text-indigo-400 hover:underline">Load Sample</button>
+            </div>
+
+            <!-- Meta Title with exact 60 char indicator -->
+            <div>
+              <div class="flex items-center justify-between mb-1">
+                <label class="text-xs font-semibold text-slate-700 dark:text-slate-300">Meta Title</label>
+                <span id="title-counter-badge" class="text-[11px] font-mono font-medium px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-400">
+                  <span id="title-char-count">0</span> / 60 chars
+                </span>
+              </div>
+              <input type="text" id="seo-meta-title" value="OpenGraph Image & Meta Tag Generator — Boost Click Rates" oninput="handleSEOInput()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2.5 focus:ring-2 focus:ring-indigo-500 outline-none">
+              <!-- Title Progress Bar -->
+              <div class="w-full bg-slate-200 dark:bg-slate-700 h-1.5 rounded-full mt-2 overflow-hidden">
+                <div id="title-progress-bar" class="h-full bg-emerald-500 transition-all duration-200" style="width: 80%;"></div>
+              </div>
+              <p id="title-feedback" class="text-[11px] text-slate-400 mt-1">Recommended target: 50-60 characters to avoid truncation in Google SERP.</p>
+            </div>
+
+            <!-- Meta Description with exact 131 char benchmark -->
+            <div>
+              <div class="flex items-center justify-between mb-1">
+                <label class="text-xs font-semibold text-slate-700 dark:text-slate-300">Meta Description</label>
+                <span id="desc-counter-badge" class="text-[11px] font-mono font-medium px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-700 dark:bg-indigo-950/60 dark:text-indigo-400">
+                  <span id="desc-char-count">0</span> / 131 chars (Optimal: 120–160)
+                </span>
+              </div>
+              <textarea id="seo-meta-desc" rows="3" oninput="handleSEOInput()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2.5 focus:ring-2 focus:ring-indigo-500 outline-none">Create customized social preview cards with automated color palettes from brand logos and export production-ready SEO meta tags.</textarea>
+              <!-- Description Progress Bar -->
+              <div class="w-full bg-slate-200 dark:bg-slate-700 h-1.5 rounded-full mt-2 overflow-hidden">
+                <div id="desc-progress-bar" class="h-full bg-indigo-500 transition-all duration-200" style="width: 85%;"></div>
+              </div>
+              <p id="desc-feedback" class="text-[11px] text-slate-400 mt-1">Target 131 characters for optimal mobile & desktop visibility without truncation.</p>
+            </div>
+
+            <!-- Canonical URL & Site Name -->
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Canonical URL</label>
+                <input type="url" id="seo-canonical-url" value="https://mysite.com/tools/og-generator" oninput="handleSEOInput()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2 outline-none">
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Site / Brand Name</label>
+                <input type="text" id="seo-site-name" value="MetaOG Studio" oninput="handleSEOInput()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2 outline-none">
+              </div>
+            </div>
+
+            <!-- Author & Keywords -->
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Author Name</label>
+                <input type="text" id="seo-author" value="Alex Rivera" oninput="handleSEOInput()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2 outline-none">
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Keywords (Comma separated)</label>
+                <input type="text" id="seo-keywords" value="opengraph, meta tags, seo generator, twitter cards" oninput="handleSEOInput()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2 outline-none">
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Crawling & Social Directives -->
+          <div class="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+            <div class="flex items-center space-x-2">
+              <i data-lucide="bot" class="w-4 h-4 text-indigo-500"></i>
+              <h2 class="text-sm font-bold text-slate-800 dark:text-slate-200">Robots & Social Tags</h2>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Robots Indexing</label>
+                <select id="seo-robots-index" onchange="handleSEOInput()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-2 py-2">
+                  <option value="index, follow">index, follow (Standard)</option>
+                  <option value="noindex, follow">noindex, follow</option>
+                  <option value="index, nofollow">index, nofollow</option>
+                  <option value="noindex, nofollow">noindex, nofollow</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">OG Type</label>
+                <select id="seo-og-type" onchange="handleSEOInput()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-2 py-2">
+                  <option value="website">website</option>
+                  <option value="article">article</option>
+                  <option value="product">product</option>
+                  <option value="profile">profile</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Twitter Card</label>
+                <select id="seo-twitter-card" onchange="handleSEOInput()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-2 py-2">
+                  <option value="summary_large_image">summary_large_image</option>
+                  <option value="summary">summary (square thumbnail)</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Twitter @Handle</label>
+                <input type="text" id="seo-twitter-handle" value="@alexrivera_dev" oninput="handleSEOInput()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2 outline-none">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">OG Image URL</label>
+              <input type="url" id="seo-og-image-url" value="https://mysite.com/assets/og-cover.png" oninput="handleSEOInput()" class="w-full text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2 outline-none">
+            </div>
+          </div>
+
+          <!-- Live Automated SEO Health Score Card -->
+          <div class="bg-gradient-to-br from-indigo-500/10 via-purple-500/10 to-pink-500/10 dark:bg-slate-900 border border-indigo-200 dark:border-slate-800 p-5 rounded-2xl">
+            <div class="flex items-center justify-between mb-3">
+              <div class="flex items-center space-x-2">
+                <i data-lucide="shield-check" class="w-5 h-5 text-indigo-600 dark:text-indigo-400"></i>
+                <h3 class="text-sm font-bold text-slate-900 dark:text-white">SEO Health Grade</h3>
+              </div>
+              <span id="seo-score-badge" class="text-sm font-extrabold px-3 py-1 rounded-xl bg-emerald-500 text-white shadow-sm">100%</span>
+            </div>
+            
+            <div class="space-y-2 text-xs" id="seo-audit-checklist">
+              <!-- Dynamically populated checklist -->
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Panel: SERP Preview & Formatted HTML Output (7 cols) -->
+        <div class="lg:col-span-7 space-y-6">
+
+          <!-- Google SERP Simulation -->
+          <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center space-x-2">
+                <i data-lucide="globe" class="w-4 h-4 text-emerald-500"></i>
+                <h3 class="text-sm font-bold text-slate-800 dark:text-slate-200">Google SERP Preview</h3>
+              </div>
+              <div class="flex items-center space-x-1 bg-slate-100 dark:bg-slate-800 p-1 rounded-lg border border-slate-200 dark:border-slate-700">
+                <button id="serp-view-desktop" onclick="setSERPView('desktop')" class="px-2.5 py-1 text-xs rounded-md font-semibold bg-white dark:bg-slate-700 shadow-sm text-indigo-600 dark:text-white">Desktop</button>
+                <button id="serp-view-mobile" onclick="setSERPView('mobile')" class="px-2.5 py-1 text-xs rounded-md font-semibold text-slate-500 hover:text-slate-900 dark:hover:text-white">Mobile</button>
+              </div>
+            </div>
+
+            <!-- SERP Result Container -->
+            <div id="serp-box" class="p-4 rounded-xl bg-white dark:bg-slate-950 border border-slate-100 dark:border-slate-800/80 transition-all font-sans max-w-xl">
+              <!-- Site attribution row -->
+              <div class="flex items-center space-x-2 mb-1.5">
+                <div class="w-5 h-5 rounded-full bg-slate-100 dark:bg-slate-800 border flex items-center justify-center text-[10px] font-bold text-indigo-600">
+                  <span id="serp-favicon-letter">M</span>
+                </div>
+                <div class="leading-none">
+                  <div id="serp-brand-display" class="text-xs font-medium text-slate-800 dark:text-slate-300">MetaOG Studio</div>
+                  <div id="serp-url-display" class="text-[11px] text-slate-500 truncate max-w-sm">https://mysite.com > tools > og-generator</div>
+                </div>
+              </div>
+              <!-- Title Link -->
+              <h4 id="serp-title-display" class="text-base sm:text-lg font-medium text-blue-700 dark:text-blue-400 hover:underline cursor-pointer leading-snug">
+                OpenGraph Image & Meta Tag Generator — Boost Click Rates
+              </h4>
+              <!-- Description Text -->
+              <p id="serp-desc-display" class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-1 line-clamp-2 leading-relaxed">
+                Create customized social preview cards with automated color palettes from brand logos and export production-ready SEO meta tags.
+              </p>
+            </div>
+          </div>
+
+          <!-- Social Share Card Simulation (Twitter / Facebook) -->
+          <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center space-x-2">
+                <i data-lucide="share-2" class="w-4 h-4 text-sky-500"></i>
+                <h3 class="text-sm font-bold text-slate-800 dark:text-slate-200">Social Card Simulation (Twitter / X & LinkedIn)</h3>
+              </div>
+              <span class="text-xs text-slate-400">Large Image Card</span>
+            </div>
+
+            <div class="max-w-md mx-auto border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden bg-white dark:bg-slate-950 shadow-sm">
+              <!-- Card Image -->
+              <div id="social-card-img" class="w-full h-44 bg-gradient-to-r from-indigo-500 to-purple-600 flex items-center justify-center text-white text-center p-4">
+                <span class="font-bold text-sm tracking-wide bg-black/30 backdrop-blur px-3 py-1.5 rounded-lg border border-white/20">OpenGraph 1200 × 630 Preview</span>
+              </div>
+              <!-- Card Meta Body -->
+              <div class="p-3.5 space-y-1">
+                <span id="social-card-domain" class="text-[11px] text-slate-400 uppercase tracking-wider block">mysite.com</span>
+                <h5 id="social-card-title" class="text-xs font-bold text-slate-800 dark:text-slate-200 truncate">OpenGraph Image & Meta Tag Generator</h5>
+                <p id="social-card-desc" class="text-[11px] text-slate-500 dark:text-slate-400 line-clamp-2">Create customized social preview cards with automated color palettes.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Formatted HTML Meta Tags Output with 1-Click Copy -->
+          <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between mb-3">
+              <div class="flex items-center space-x-2">
+                <i data-lucide="terminal" class="w-4 h-4 text-emerald-500"></i>
+                <h3 class="text-sm font-bold text-slate-800 dark:text-slate-200">Generated HTML Header Snippet</h3>
+              </div>
+              <button onclick="copyGeneratedMetaTags()" class="text-xs px-3 py-1 bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-indigo-950/60 hover:text-indigo-600 text-slate-700 dark:text-slate-300 font-semibold rounded-lg border border-slate-200 dark:border-slate-700 transition flex items-center space-x-1">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                <span>Copy Code</span>
+              </button>
+            </div>
+            
+            <pre class="w-full p-4 rounded-xl bg-slate-950 text-slate-200 font-mono text-xs overflow-x-auto border border-slate-800 max-h-72 leading-relaxed selection:bg-indigo-600"><code id="seo-code-output"><!-- Code generated in JavaScript --></code></pre>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Toast Notification Container -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 pointer-events-none transition-all duration-300 flex items-center space-x-3 px-4 py-3 bg-slate-900 text-white dark:bg-white dark:text-slate-900 rounded-2xl shadow-xl text-xs font-semibold">
+    <div id="toast-icon-wrapper" class="w-5 h-5 rounded-full bg-emerald-500 text-white flex items-center justify-center">
+      <i data-lucide="check" class="w-3 h-3"></i>
+    </div>
+    <span id="toast-message">Action successful!</span>
+  </div>
+
+  <!-- Offscreen Canvas for Rendering Full Resolution PNG -->
+  <canvas id="export-canvas" style="display: none;"></canvas>
+
+  <script>
+    /* State Management */
+    const state = {
+      theme: 'light',
+      activeTab: 'og',
+      ratio: 'landscape', // 'landscape' (1200x630) or 'square' (1080x1080)
+      textAlign: 'left',
+      logoSrc: null,
+      logoSize: 64,
+      logoPosition: 'top-left',
+      dominantColors: [],
+      serpView: 'desktop'
+    };
+
+    /* Initialize on DOM Ready */
+    window.addEventListener('DOMContentLoaded', () => {
+      // Initialize icons
+      if (window.lucide) lucide.createIcons();
+
+      // Setup theme (Default is Light mode as requested)
+      const savedTheme = localStorage.getItem('metaog_theme') || 'light';
+      applyTheme(savedTheme);
+
+      // Render initial OG design
+      updateDesign();
+
+      // Render initial SEO metrics
+      handleSEOInput();
+    });
+
+    /* Theme Management */
+    function toggleTheme() {
+      const newTheme = state.theme === 'light' ? 'dark' : 'light';
+      applyTheme(newTheme);
+    }
+
+    function applyTheme(theme) {
+      state.theme = theme;
+      localStorage.setItem('metaog_theme', theme);
+      const root = document.documentElement;
+      const themeIcon = document.getElementById('theme-icon');
+
+      if (theme === 'dark') {
+        root.classList.add('dark');
+        root.classList.remove('light');
+        if (themeIcon) themeIcon.setAttribute('data-lucide', 'sun');
+      } else {
+        root.classList.add('light');
+        root.classList.remove('dark');
+        if (themeIcon) themeIcon.setAttribute('data-lucide', 'moon');
+      }
+      if (window.lucide) lucide.createIcons();
+    }
+
+    /* Tab Switching */
+    function switchAppTab(tabName) {
+      state.activeTab = tabName;
+      const ogSection = document.getElementById('tab-content-og');
+      const seoSection = document.getElementById('tab-content-seo');
+      const btnOg = document.getElementById('tab-btn-og');
+      const btnSeo = document.getElementById('tab-btn-seo');
+
+      if (tabName === 'og') {
+        ogSection.classList.remove('hidden');
+        seoSection.classList.add('hidden');
+        btnOg.className = "flex items-center space-x-2 px-3 sm:px-4 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-150 bg-white dark:bg-slate-700 shadow-sm text-indigo-600 dark:text-white";
+        btnSeo.className = "flex items-center space-x-2 px-3 sm:px-4 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-150 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white";
+      } else {
+        ogSection.classList.add('hidden');
+        seoSection.classList.remove('hidden');
+        btnSeo.className = "flex items-center space-x-2 px-3 sm:px-4 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-150 bg-white dark:bg-slate-700 shadow-sm text-indigo-600 dark:text-white";
+        btnOg.className = "flex items-center space-x-2 px-3 sm:px-4 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-150 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white";
+        handleSEOInput();
+      }
+    }
+
+    /* Ratio Switching */
+    function setRatio(ratio) {
+      state.ratio = ratio;
+      const btnLandscape = document.getElementById('ratio-btn-landscape');
+      const btnSquare = document.getElementById('ratio-btn-square');
+      const indicator = document.getElementById('canvas-dim-indicator');
+
+      if (ratio === 'landscape') {
+        btnLandscape.className = "px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center space-x-1.5 bg-white dark:bg-slate-700 text-indigo-600 dark:text-white shadow-sm transition";
+        btnSquare.className = "px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center space-x-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition";
+        indicator.textContent = "Preview (1200 × 630px)";
+      } else {
+        btnSquare.className = "px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center space-x-1.5 bg-white dark:bg-slate-700 text-indigo-600 dark:text-white shadow-sm transition";
+        btnLandscape.className = "px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center space-x-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition";
+        indicator.textContent = "Preview (1080 × 1080px)";
+      }
+      updateDesign();
+    }
+
+    /* Text Alignment */
+    function setTextAlign(align) {
+      state.textAlign = align;
+      const btnLeft = document.getElementById('btn-align-left');
+      const btnCenter = document.getElementById('btn-align-center');
+      if (align === 'left') {
+        btnLeft.className = "flex-1 py-1 rounded-lg text-xs font-medium bg-white dark:bg-slate-700 text-indigo-600 shadow-sm flex justify-center";
+        btnCenter.className = "flex-1 py-1 rounded-lg text-xs font-medium text-slate-500 hover:text-slate-900 flex justify-center";
+      } else {
+        btnCenter.className = "flex-1 py-1 rounded-lg text-xs font-medium bg-white dark:bg-slate-700 text-indigo-600 shadow-sm flex justify-center";
+        btnLeft.className = "flex-1 py-1 rounded-lg text-xs font-medium text-slate-500 hover:text-slate-900 flex justify-center";
+      }
+      updateDesign();
+    }
+
+    /* Preset Themes */
+    function applyPreset(preset) {
+      const primaryInput = document.getElementById('og-col-primary');
+      const secInput = document.getElementById('og-col-secondary');
+      const bgInput = document.getElementById('og-col-bg');
+
+      if (preset === 'aurora') {
+        primaryInput.value = '#6366f1';
+        secInput.value = '#ec4899';
+        bgInput.value = '#0f172a';
+      } else if (preset === 'minimalist') {
+        primaryInput.value = '#1e293b';
+        secInput.value = '#64748b';
+        bgInput.value = '#f8fafc';
+      } else if (preset === 'cyberpunk') {
+        primaryInput.value = '#f43f5e';
+        secInput.value = '#06b6d4';
+        bgInput.value = '#05050d';
+      } else if (preset === 'emerald') {
+        primaryInput.value = '#10b981';
+        secInput.value = '#065f46';
+        bgInput.value = '#022c22';
+      } else if (preset === 'sunset') {
+        primaryInput.value = '#f97316';
+        secInput.value = '#e11d48';
+        bgInput.value = '#180728';
+      } else if (preset === 'midnight') {
+        primaryInput.value = '#38bdf8';
+        secInput.value = '#818cf8';
+        bgInput.value = '#030712';
+      }
+      syncColorLabels();
+      updateDesign();
+      showToast(`Applied "${preset}" preset`);
+    }
+
+    function syncColorLabels() {
+      document.getElementById('hex-label-primary').textContent = document.getElementById('og-col-primary').value.toUpperCase();
+      document.getElementById('hex-label-secondary').textContent = document.getElementById('og-col-secondary').value.toUpperCase();
+      document.getElementById('hex-label-bg').textContent = document.getElementById('og-col-bg').value.toUpperCase();
+    }
+
+    function randomizePalette() {
+      const colors = ['#4f46e5', '#9333ea', '#ec4899', '#06b6d4', '#10b981', '#f59e0b', '#ef4444', '#3b82f6'];
+      const bgColors = ['#0f172a', '#030712', '#18181b', '#1e1b4b', '#06202a', '#1a0b2e'];
+      const c1 = colors[Math.floor(Math.random() * colors.length)];
+      let c2 = colors[Math.floor(Math.random() * colors.length)];
+      while(c2 === c1) c2 = colors[Math.floor(Math.random() * colors.length)];
+      const bg = bgColors[Math.floor(Math.random() * bgColors.length)];
+
+      document.getElementById('og-col-primary').value = c1;
+      document.getElementById('og-col-secondary').value = c2;
+      document.getElementById('og-col-bg').value = bg;
+      syncColorLabels();
+      updateDesign();
+      showToast('Generated fresh color scheme');
+    }
+
+    /* Logo File Upload & Dominant Color Extraction */
+    function handleLogoUpload(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        state.logoSrc = e.target.result;
+        
+        // Display logo controls panel
+        document.getElementById('logo-controls-panel').classList.remove('hidden');
+
+        // Extract dominant colors from logo using hidden canvas pixel analysis
+        extractPaletteFromImage(e.target.result);
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function extractPaletteFromImage(imageSrc) {
+      const img = new Image();
+      img.crossOrigin = "Anonymous";
+      img.onload = function() {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        const width = 100;
+        const height = Math.floor(100 * (img.height / img.width));
+        canvas.width = width;
+        canvas.height = height;
+        ctx.drawImage(img, 0, 0, width, height);
+
+        const imgData = ctx.getImageData(0, 0, width, height).data;
+        const colorBuckets = {};
+
+        for (let i = 0; i < imgData.length; i += 16) { // Sample every 4th pixel
+          const r = imgData[i];
+          const g = imgData[i + 1];
+          const b = imgData[i + 2];
+          const a = imgData[i + 3];
+
+          // Discard near-transparent or pure white/black pixels for better dominant color detection
+          if (a < 128) continue;
+          const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+          if (brightness > 245 || brightness < 15) continue;
+
+          // Bucket to reduce variations (quantum step 24)
+          const qr = Math.round(r / 24) * 24;
+          const qg = Math.round(g / 24) * 24;
+          const qb = Math.round(b / 24) * 24;
+          const key = `${qr},${qg},${qb}`;
+
+          colorBuckets[key] = (colorBuckets[key] || 0) + 1;
+        }
+
+        // Sort colors by frequency
+        const sortedColors = Object.entries(colorBuckets)
+          .sort((a, b) => b[1] - a[1])
+          .map(([key]) => {
+            const [r, g, b] = key.split(',').map(Number);
+            return rgbToHex(r, g, b);
+          });
+
+        if (sortedColors.length >= 1) {
+          const primaryAuto = sortedColors[0];
+          const secondaryAuto = sortedColors[1] || adjustHue(primaryAuto, 35);
+          
+          // Auto update theme palette
+          document.getElementById('og-col-primary').value = primaryAuto;
+          document.getElementById('og-col-secondary').value = secondaryAuto;
+          
+          // If extracted color is bright, use modern dark card background, else clean light
+          document.getElementById('og-col-bg').value = '#0f172a';
+          syncColorLabels();
+
+          // Render swatch preview badges
+          const swatchContainer = document.getElementById('extracted-swatches');
+          swatchContainer.innerHTML = `
+            <span class="text-[10px] text-slate-400">Extracted:</span>
+            <div class="w-4 h-4 rounded-full border border-white/40 shadow-sm" style="background:${primaryAuto}" title="${primaryAuto}"></div>
+            <div class="w-4 h-4 rounded-full border border-white/40 shadow-sm" style="background:${secondaryAuto}" title="${secondaryAuto}"></div>
+          `;
+
+          document.getElementById('palette-status-badge').classList.remove('hidden');
+          showToast('Theme auto-matched to logo colors!');
+        }
+
+        updateDesign();
+      };
+      img.src = imageSrc;
+    }
+
+    function removeLogo() {
+      state.logoSrc = null;
+      document.getElementById('logo-file-input').value = "";
+      document.getElementById('logo-controls-panel').classList.add('hidden');
+      document.getElementById('palette-status-badge').classList.add('hidden');
+      document.getElementById('extracted-swatches').innerHTML = "";
+      updateDesign();
+      showToast('Logo removed');
+    }
+
+    function updateLogoSize(val) {
+      state.logoSize = parseInt(val);
+      document.getElementById('logo-size-val').textContent = `${val}px`;
+      updateDesign();
+    }
+
+    /* Helper color conversion utilities */
+    function rgbToHex(r, g, b) {
+      return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+    }
+
+    function adjustHue(hex, degree) {
+      // Simple color shift fallback
+      return hex;
+    }
+
+    /* Core SVG Generator: Generates standalone vector markup for previews & exports */
+    function generateSVGString(width, height) {
+      const badge = escapeHtml(document.getElementById('og-badge').value);
+      const title = escapeHtml(document.getElementById('og-title').value);
+      const subtitle = escapeHtml(document.getElementById('og-subtitle').value);
+      const author = escapeHtml(document.getElementById('og-author').value);
+      const domain = escapeHtml(document.getElementById('og-domain').value);
+      const fontFamily = document.getElementById('og-font-family').value;
+      const primaryCol = document.getElementById('og-col-primary').value;
+      const secondaryCol = document.getElementById('og-col-secondary').value;
+      const bgCol = document.getElementById('og-col-bg').value;
+      const showGrid = document.getElementById('og-show-grid').checked;
+      const glass = document.getElementById('og-glass-effect').checked;
+      const position = document.getElementById('logo-position-select').value;
+      const isSquare = (width === height);
+
+      // Dynamic text sizing based on canvas shape & content length
+      const titleFontSize = isSquare ? (title.length > 50 ? 44 : 54) : (title.length > 60 ? 46 : 58);
+      const subFontSize = isSquare ? 24 : 26;
+      const textAnchor = state.textAlign === 'center' ? 'middle' : 'start';
+      const contentX = state.textAlign === 'center' ? width / 2 : (isSquare ? 80 : 100);
+
+      // Logo coordinates
+      let logoX = 100;
+      let logoY = 90;
+      const logoW = state.logoSize;
+      const logoH = state.logoSize;
+
+      if (position === 'top-right') {
+        logoX = width - logoW - (isSquare ? 80 : 100);
+      } else if (position === 'center') {
+        logoX = (width - logoW) / 2;
+        logoY = isSquare ? 110 : 80;
+      } else if (position === 'bottom-left') {
+        logoY = height - logoH - (isSquare ? 80 : 90);
+      }
+
+      // Word-wrap title for SVG
+      const titleLines = wrapSvgText(title, isSquare ? 26 : 38);
+      const subLines = wrapSvgText(subtitle, isSquare ? 45 : 58);
+
+      // Content vertical anchors
+      const contentStartY = isSquare 
+        ? (state.logoSrc && position === 'center' ? logoY + logoH + 60 : 280)
+        : (state.logoSrc && position === 'center' ? 240 : 230);
+
+      return `
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" width="${width}" height="${height}">
+        <defs>
+          <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="${bgCol}"/>
+            <stop offset="100%" stop-color="${blendColor(bgCol, '#000000', 0.4)}"/>
+          </linearGradient>
+
+          <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="${primaryCol}"/>
+            <stop offset="100%" stop-color="${secondaryCol}"/>
+          </linearGradient>
+
+          <radialGradient id="meshGrad1" cx="10%" cy="15%" r="65%">
+            <stop offset="0%" stop-color="${primaryCol}" stop-opacity="0.38"/>
+            <stop offset="100%" stop-color="${primaryCol}" stop-opacity="0"/>
+          </radialGradient>
+
+          <radialGradient id="meshGrad2" cx="85%" cy="85%" r="60%">
+            <stop offset="0%" stop-color="${secondaryCol}" stop-opacity="0.35"/>
+            <stop offset="100%" stop-color="${secondaryCol}" stop-opacity="0"/>
+          </radialGradient>
+
+          ${showGrid ? `
+          <pattern id="gridPattern" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+          </pattern>` : ''}
+          
+          <filter id="shadowFilter" x="-10%" y="-10%" width="120%" height="120%">
+            <feDropShadow dx="0" dy="16" stdDeviation="24" flood-color="#000000" flood-opacity="0.35"/>
+          </filter>
+        </defs>
+
+        <!-- Base Background -->
+        <rect width="${width}" height="${height}" fill="url(#bgGrad)"/>
+        <rect width="${width}" height="${height}" fill="url(#meshGrad1)"/>
+        <rect width="${width}" height="${height}" fill="url(#meshGrad2)"/>
+        ${showGrid ? `<rect width="${width}" height="${height}" fill="url(#gridPattern)"/>` : ''}
+
+        <!-- Optional Glassmorphism Card Frame -->
+        ${glass ? `
+        <rect x="${isSquare ? 40 : 50}" y="${isSquare ? 40 : 45}" 
+              width="${width - (isSquare ? 80 : 100)}" height="${height - (isSquare ? 80 : 90)}" 
+              rx="28" fill="rgba(255, 255, 255, 0.03)" 
+              stroke="rgba(255, 255, 255, 0.12)" stroke-width="1.5" 
+              filter="url(#shadowFilter)"/>` : ''}
+
+        <!-- Logo Layer (if uploaded) -->
+        ${state.logoSrc ? `
+        <g transform="translate(${logoX}, ${logoY})">
+          <image href="${state.logoSrc}" width="${logoW}" height="${logoH}" preserveAspectRatio="xMidYMid meet"/>
+        </g>` : ''}
+
+        <!-- Top Badge -->
+        ${badge ? `
+        <g transform="translate(${state.textAlign === 'center' ? width/2 : (isSquare ? 80 : 100)}, ${isSquare ? 170 : 130})">
+          <rect x="${state.textAlign === 'center' ? -((badge.length * 8.5) / 2) - 16 : 0}" y="-22" 
+                width="${(badge.length * 8.5) + 32}" height="32" rx="16" 
+                fill="url(#primaryGrad)" fill-opacity="0.18" 
+                stroke="${primaryCol}" stroke-opacity="0.4" stroke-width="1.2"/>
+          <text x="${state.textAlign === 'center' ? 0 : 16}" y="0" 
+                fill="#ffffff" font-family="${fontFamily}, sans-serif" 
+                font-size="13" font-weight="700" letter-spacing="1" 
+                text-anchor="${state.textAlign === 'center' ? 'middle' : 'start'}">
+            ${badge}
+          </text>
+        </g>` : ''}
+
+        <!-- Title Heading -->
+        <g transform="translate(${contentX}, ${contentStartY})">
+          ${titleLines.map((line, idx) => `
+            <text x="0" y="${idx * (titleFontSize + 12)}" 
+                  fill="#ffffff" 
+                  font-family="${fontFamily}, sans-serif" 
+                  font-size="${titleFontSize}" 
+                  font-weight="800" 
+                  letter-spacing="-0.5" 
+                  text-anchor="${textAnchor}" 
+                  style="text-shadow: 0 4px 18px rgba(0,0,0,0.4);">
+              ${line}
+            </text>
+          `).join('')}
+        </g>
+
+        <!-- Subtitle -->
+        ${subtitle ? `
+        <g transform="translate(${contentX}, ${contentStartY + (titleLines.length * (titleFontSize + 12)) + 24})">
+          ${subLines.slice(0, 3).map((line, idx) => `
+            <text x="0" y="${idx * (subFontSize + 8)}" 
+                  fill="rgba(241, 245, 249, 0.82)" 
+                  font-family="${fontFamily}, sans-serif" 
+                  font-size="${subFontSize}" 
+                  font-weight="400" 
+                  text-anchor="${textAnchor}">
+              ${line}
+            </text>
+          `).join('')}
+        </g>` : ''}
+
+        <!-- Bottom Footer (Author, Avatar & Domain) -->
+        <g transform="translate(${isSquare ? 80 : 100}, ${height - (isSquare ? 90 : 85)})">
+          <!-- Author Avatar Circle -->
+          <circle cx="20" cy="0" r="18" fill="url(#primaryGrad)"/>
+          <text x="20" y="6" fill="#ffffff" font-family="${fontFamily}, sans-serif" font-size="14" font-weight="bold" text-anchor="middle">
+            ${(author || 'A').charAt(0).toUpperCase()}
+          </text>
+
+          <!-- Author Name -->
+          <text x="50" y="5" fill="#f8fafc" font-family="${fontFamily}, sans-serif" font-size="16" font-weight="600">
+            ${author}
+          </text>
+
+          <!-- Domain -->
+          <text x="${width - (isSquare ? 160 : 200)}" y="5" fill="${primaryCol}" font-family="${fontFamily}, monospace" font-size="15" font-weight="600" text-anchor="end">
+            ${domain}
+          </text>
+        </g>
+      </svg>
+      `;
+    }
+
+    /* Helper: Break text into clean wrapping lines */
+    function wrapSvgText(text, maxChars) {
+      if (!text) return [];
+      const words = text.split(' ');
+      const lines = [];
+      let currentLine = '';
+
+      words.forEach(word => {
+        if ((currentLine + word).length <= maxChars) {
+          currentLine += (currentLine === '' ? '' : ' ') + word;
+        } else {
+          if (currentLine) lines.push(currentLine);
+          currentLine = word;
+        }
+      });
+      if (currentLine) lines.push(currentLine);
+      return lines;
+    }
+
+    function escapeHtml(string) {
+      return String(string).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    function blendColor(col1, col2, factor) {
+      return col1; // Simple fallback
+    }
+
+    /* Updates the live preview whenever an input changes */
+    function updateDesign() {
+      syncColorLabels();
+      const isSquare = (state.ratio === 'square');
+      const w = isSquare ? 1080 : 1200;
+      const h = isSquare ? 1080 : 630;
+
+      const svgString = generateSVGString(w, h);
+      const container = document.getElementById('svg-container');
+      container.innerHTML = svgString;
+
+      // Adjust aspect ratio styling
+      container.style.aspectRatio = isSquare ? "1 / 1" : "1200 / 630";
+      container.style.maxWidth = isSquare ? "460px" : "100%";
+
+      // Also mirror to Social Card Preview
+      const cardTitle = document.getElementById('og-title').value;
+      const cardSub = document.getElementById('og-subtitle').value;
+      const cardDomain = document.getElementById('og-domain').value;
+      
+      const socialImg = document.getElementById('social-card-img');
+      if (socialImg) {
+        socialImg.style.background = `linear-gradient(135deg, ${document.getElementById('og-col-primary').value}, ${document.getElementById('og-col-secondary').value})`;
+      }
+      const st = document.getElementById('social-card-title');
+      if (st) st.textContent = cardTitle;
+      const sd = document.getElementById('social-card-desc');
+      if (sd) sd.textContent = cardSub;
+      const sdom = document.getElementById('social-card-domain');
+      if (sdom) sdom.textContent = cardDomain;
+    }
+
+    /* Export Standalone SVG File */
+    function exportSVG() {
+      const isSquare = (state.ratio === 'square');
+      const w = isSquare ? 1080 : 1200;
+      const h = isSquare ? 1080 : 630;
+      const svgData = generateSVGString(w, h);
+      
+      const blob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `opengraph-${state.ratio}-${Date.now()}.svg`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+
+      showToast('SVG exported successfully!');
+    }
+
+    /* Copy SVG String to Clipboard */
+    function copySVGCode() {
+      const isSquare = (state.ratio === 'square');
+      const w = isSquare ? 1080 : 1200;
+      const h = isSquare ? 1080 : 630;
+      const svgData = generateSVGString(w, h);
+      
+      copyToClipboardFallback(svgData);
+      showToast('SVG Code copied to clipboard!');
+    }
+
+    /* High-Resolution PNG Export (1200x630 or 1080x1080 native raster) */
+    function exportPNG() {
+      const isSquare = (state.ratio === 'square');
+      const width = isSquare ? 1080 : 1200;
+      const height = isSquare ? 1080 : 630;
+      const svgString = generateSVGString(width, height);
+
+      const canvas = document.getElementById('export-canvas');
+      canvas.width = width;
+      canvas.height = height;
+      const ctx = canvas.getContext('2d');
+
+      const img = new Image();
+      const svgBlob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
+      const URLObj = window.URL || window.webkitURL || window;
+      const blobURL = URLObj.createObjectURL(svgBlob);
+
+      img.onload = function() {
+        ctx.clearRect(0, 0, width, height);
+        ctx.drawImage(img, 0, 0, width, height);
+        URLObj.revokeObjectURL(blobURL);
+
+        const pngUrl = canvas.toDataURL('image/png', 1.0);
+        const link = document.createElement('a');
+        link.href = pngUrl;
+        link.download = `og-image-${state.ratio}-${width}x${height}.png`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        showToast(`Exported ${width}x${height} PNG!`);
+      };
+      img.src = blobURL;
+    }
+
+    /* Copy PNG blob directly to clipboard */
+    function copyPNGToClipboard() {
+      const isSquare = (state.ratio === 'square');
+      const width = isSquare ? 1080 : 1200;
+      const height = isSquare ? 1080 : 630;
+      const svgString = generateSVGString(width, height);
+
+      const canvas = document.getElementById('export-canvas');
+      canvas.width = width;
+      canvas.height = height;
+      const ctx = canvas.getContext('2d');
+
+      const img = new Image();
+      const svgBlob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
+      const URLObj = window.URL || window.webkitURL || window;
+      const blobURL = URLObj.createObjectURL(svgBlob);
+
+      img.onload = function() {
+        ctx.clearRect(0, 0, width, height);
+        ctx.drawImage(img, 0, 0, width, height);
+        URLObj.revokeObjectURL(blobURL);
+
+        canvas.toBlob(blob => {
+          if (navigator.clipboard && navigator.clipboard.write) {
+            try {
+              navigator.clipboard.write([
+                new ClipboardItem({ 'image/png': blob })
+              ]).then(() => {
+                showToast('PNG copied to clipboard!');
+              }).catch(() => {
+                showToast('Clipboard write restricted, downloaded instead');
+                exportPNG();
+              });
+            } catch (err) {
+              exportPNG();
+            }
+          } else {
+            exportPNG();
+          }
+        }, 'image/png');
+      };
+      img.src = blobURL;
+    }
+
+    /* SEO Meta Checker & SERP Simulator Logic */
+    function handleSEOInput() {
+      const title = document.getElementById('seo-meta-title').value.trim();
+      const desc = document.getElementById('seo-meta-desc').value.trim();
+      const canonical = document.getElementById('seo-canonical-url').value.trim();
+      const siteName = document.getElementById('seo-site-name').value.trim();
+      const author = document.getElementById('seo-author').value.trim();
+      const keywords = document.getElementById('seo-keywords').value.trim();
+      const robots = document.getElementById('seo-robots-index').value;
+      const ogType = document.getElementById('seo-og-type').value;
+      const twitterCard = document.getElementById('seo-twitter-card').value;
+      const twitterHandle = document.getElementById('seo-twitter-handle').value.trim();
+      const ogImage = document.getElementById('seo-og-image-url').value.trim();
+
+      // Title metric (Target: ~50-60 characters)
+      const titleLen = title.length;
+      document.getElementById('title-char-count').textContent = titleLen;
+      const titleBar = document.getElementById('title-progress-bar');
+      const titleBadge = document.getElementById('title-counter-badge');
+      const titleFeedback = document.getElementById('title-feedback');
+
+      let titleScore = 0;
+      if (titleLen === 0) {
+        titleBar.style.width = '0%';
+        titleFeedback.textContent = '❌ Title is empty. Add a page title.';
+        titleFeedback.className = 'text-[11px] text-rose-500 mt-1';
+        titleBadge.className = 'text-[11px] font-mono font-medium px-2 py-0.5 rounded-full bg-rose-100 text-rose-700 dark:bg-rose-950/60 dark:text-rose-400';
+      } else if (titleLen <= 60 && titleLen >= 40) {
+        titleBar.style.width = `${Math.min(100, (titleLen / 60) * 100)}%`;
+        titleBar.className = 'h-full bg-emerald-500 transition-all duration-200';
+        titleFeedback.textContent = `✅ Perfect! ${titleLen} / 60 characters. Maximum readability on Google.`;
+        titleFeedback.className = 'text-[11px] text-emerald-600 dark:text-emerald-400 mt-1 font-medium';
+        titleBadge.className = 'text-[11px] font-mono font-medium px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-400';
+        titleScore = 100;
+      } else if (titleLen > 60) {
+        titleBar.style.width = '100%';
+        titleBar.className = 'h-full bg-amber-500 transition-all duration-200';
+        titleFeedback.textContent = `⚠️ Warning: ${titleLen} characters exceeds recommended 60 chars. Google may truncate with '...'`;
+        titleFeedback.className = 'text-[11px] text-amber-600 dark:text-amber-400 mt-1 font-medium';
+        titleBadge.className = 'text-[11px] font-mono font-medium px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 dark:bg-amber-950/60 dark:text-amber-400';
+        titleScore = 65;
+      } else {
+        titleBar.style.width = `${(titleLen / 60) * 100}%`;
+        titleBar.className = 'h-full bg-sky-500 transition-all duration-200';
+        titleFeedback.textContent = `ℹ️ Title is brief (${titleLen} chars). Expand up to 60 characters to target primary keywords.`;
+        titleFeedback.className = 'text-[11px] text-sky-600 dark:text-sky-400 mt-1';
+        titleBadge.className = 'text-[11px] font-mono font-medium px-2 py-0.5 rounded-full bg-sky-100 text-sky-700 dark:bg-sky-950/60 dark:text-sky-400';
+        titleScore = 75;
+      }
+
+      // Description metric (Target: ~131 characters benchmark, optimal 120-160)
+      const descLen = desc.length;
+      document.getElementById('desc-char-count').textContent = descLen;
+      const descBar = document.getElementById('desc-progress-bar');
+      const descBadge = document.getElementById('desc-counter-badge');
+      const descFeedback = document.getElementById('desc-feedback');
+
+      let descScore = 0;
+      if (descLen === 0) {
+        descBar.style.width = '0%';
+        descFeedback.textContent = '❌ Description is empty. Search engines will generate automated excerpts.';
+        descFeedback.className = 'text-[11px] text-rose-500 mt-1';
+        descBadge.className = 'text-[11px] font-mono font-medium px-2 py-0.5 rounded-full bg-rose-100 text-rose-700 dark:bg-rose-950/60 dark:text-rose-400';
+      } else if (descLen >= 120 && descLen <= 155) {
+        descBar.style.width = `${Math.min(100, (descLen / 160) * 100)}%`;
+        descBar.className = 'h-full bg-emerald-500 transition-all duration-200';
+        descFeedback.textContent = `✅ Ideal length! ${descLen} chars (near the 131 sweet spot). Visible across desktop & mobile.`;
+        descFeedback.className = 'text-[11px] text-emerald-600 dark:text-emerald-400 mt-1 font-medium';
+        descBadge.className = 'text-[11px] font-mono font-medium px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-400';
+        descScore = 100;
+      } else if (descLen > 160) {
+        descBar.style.width = '100%';
+        descBar.className = 'h-full bg-amber-500 transition-all duration-200';
+        descFeedback.textContent = `⚠️ Too long (${descLen} chars). Search snippets on mobile truncate past ~130–155 chars.`;
+        descFeedback.className = 'text-[11px] text-amber-600 dark:text-amber-400 mt-1 font-medium';
+        descBadge.className = 'text-[11px] font-mono font-medium px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 dark:bg-amber-950/60 dark:text-amber-400';
+        descScore = 60;
+      } else {
+        descBar.style.width = `${(descLen / 160) * 100}%`;
+        descBar.className = 'h-full bg-sky-500 transition-all duration-200';
+        descFeedback.textContent = `ℹ️ ${descLen} chars. Target ~131 characters to provide comprehensive context.`;
+        descFeedback.className = 'text-[11px] text-sky-600 dark:text-sky-400 mt-1';
+        descBadge.className = 'text-[11px] font-mono font-medium px-2 py-0.5 rounded-full bg-sky-100 text-sky-700 dark:bg-sky-950/60 dark:text-sky-400';
+        descScore = 70;
+      }
+
+      // Update SERP Simulation
+      document.getElementById('serp-favicon-letter').textContent = (siteName || 'M').charAt(0).toUpperCase();
+      document.getElementById('serp-brand-display').textContent = siteName || 'Website Name';
+      document.getElementById('serp-url-display').textContent = canonical ? canonical.replace(/^https?:\/\//, '').replace(/\/$/, '') : 'mysite.com';
+      document.getElementById('serp-title-display').textContent = title || 'Your Page Title';
+      document.getElementById('serp-desc-display').textContent = desc || 'Your page meta description will be displayed here in search engine previews.';
+
+      // Generate Raw Meta Code Snippet
+      const codeSnippet = generateMetaSnippet({
+        title, desc, canonical, siteName, author, keywords, robots, ogType, twitterCard, twitterHandle, ogImage
+      });
+      document.getElementById('seo-code-output').textContent = codeSnippet;
+
+      // Update SEO Health Checklist & Score
+      updateHealthScore(titleScore, descScore, canonical, ogImage, keywords);
+    }
+
+    /* Generate Formatted HTML Meta Tags */
+    function generateMetaSnippet(data) {
+      return `<!-- Primary Meta Tags -->
+<title>${data.title}</title>
+<meta name="title" content="${data.title}">
+<meta name="description" content="${data.desc}">
+${data.keywords ? `<meta name="keywords" content="${data.keywords}">` : ''}
+${data.author ? `<meta name="author" content="${data.author}">` : ''}
+<meta name="robots" content="${data.robots}">
+${data.canonical ? `<link rel="canonical" href="${data.canonical}">` : ''}
+
+<!-- Open Graph / Facebook / LinkedIn -->
+<meta property="og:type" content="${data.ogType}">
+${data.canonical ? `<meta property="og:url" content="${data.canonical}">` : ''}
+<meta property="og:title" content="${data.title}">
+<meta property="og:description" content="${data.desc}">
+${data.ogImage ? `<meta property="og:image" content="${data.ogImage}">` : ''}
+${data.siteName ? `<meta property="og:site_name" content="${data.siteName}">` : ''}
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="${data.twitterCard}">
+${data.twitterHandle ? `<meta name="twitter:creator" content="${data.twitterHandle}">` : ''}
+<meta name="twitter:title" content="${data.title}">
+<meta name="twitter:description" content="${data.desc}">
+${data.ogImage ? `<meta name="twitter:image" content="${data.ogImage}">` : ''}`;
+    }
+
+    /* SEO Health Checklist Calculator */
+    function updateHealthScore(tScore, dScore, canonical, ogImage, keywords) {
+      let total = 0;
+      const items = [];
+
+      // Check title
+      if (tScore === 100) {
+        total += 25;
+        items.push({ text: 'Title length is precisely optimized (50-60 chars)', ok: true });
+      } else {
+        total += (tScore * 0.25);
+        items.push({ text: 'Title length can be optimized closer to 60 characters', ok: false });
+      }
+
+      // Check description
+      if (dScore === 100) {
+        total += 25;
+        items.push({ text: 'Meta description length matches 131 character benchmark', ok: true });
+      } else {
+        total += (dScore * 0.25);
+        items.push({ text: 'Adjust description length to recommended 120–160 chars', ok: false });
+      }
+
+      // Canonical link check
+      if (canonical && canonical.startsWith('http')) {
+        total += 20;
+        items.push({ text: 'Valid canonical URL present', ok: true });
+      } else {
+        items.push({ text: 'Canonical URL should include https://', ok: false });
+      }
+
+      // Open Graph Image check
+      if (ogImage && ogImage.startsWith('http')) {
+        total += 20;
+        items.push({ text: 'Valid og:image URL included for social previews', ok: true });
+      } else {
+        items.push({ text: 'Provide a valid og:image URL (use exported OG graphic)', ok: false });
+      }
+
+      // Keywords
+      if (keywords && keywords.split(',').length >= 2) {
+        total += 10;
+        items.push({ text: 'Rich SEO keywords assigned', ok: true });
+      } else {
+        items.push({ text: 'Add 2+ target keywords', ok: false });
+      }
+
+      const finalScore = Math.round(total);
+      const scoreBadge = document.getElementById('seo-score-badge');
+      scoreBadge.textContent = `${finalScore}%`;
+
+      if (finalScore >= 85) {
+        scoreBadge.className = "text-sm font-extrabold px-3 py-1 rounded-xl bg-emerald-500 text-white shadow-sm";
+      } else if (finalScore >= 60) {
+        scoreBadge.className = "text-sm font-extrabold px-3 py-1 rounded-xl bg-amber-500 text-white shadow-sm";
+      } else {
+        scoreBadge.className = "text-sm font-extrabold px-3 py-1 rounded-xl bg-rose-500 text-white shadow-sm";
+      }
+
+      // Render checklist items
+      const checklistContainer = document.getElementById('seo-audit-checklist');
+      checklistContainer.innerHTML = items.map(item => `
+        <div class="flex items-center space-x-2">
+          <i data-lucide="${item.ok ? 'check-circle' : 'alert-circle'}" class="w-4 h-4 ${item.ok ? 'text-emerald-500' : 'text-amber-500'} shrink-0"></i>
+          <span class="${item.ok ? 'text-slate-700 dark:text-slate-300' : 'text-slate-500 dark:text-slate-400'}">${item.text}</span>
+        </div>
+      `).join('');
+
+      if (window.lucide) lucide.createIcons();
+    }
+
+    /* SERP View Mode (Desktop vs Mobile simulation) */
+    function setSERPView(view) {
+      state.serpView = view;
+      const desktopBtn = document.getElementById('serp-view-desktop');
+      const mobileBtn = document.getElementById('serp-view-mobile');
+      const serpBox = document.getElementById('serp-box');
+
+      if (view === 'desktop') {
+        desktopBtn.className = "px-2.5 py-1 text-xs rounded-md font-semibold bg-white dark:bg-slate-700 shadow-sm text-indigo-600 dark:text-white";
+        mobileBtn.className = "px-2.5 py-1 text-xs rounded-md font-semibold text-slate-500 hover:text-slate-900 dark:hover:text-white";
+        serpBox.className = "p-4 rounded-xl bg-white dark:bg-slate-950 border border-slate-100 dark:border-slate-800/80 transition-all font-sans max-w-xl";
+      } else {
+        mobileBtn.className = "px-2.5 py-1 text-xs rounded-md font-semibold bg-white dark:bg-slate-700 shadow-sm text-indigo-600 dark:text-white";
+        desktopBtn.className = "px-2.5 py-1 text-xs rounded-md font-semibold text-slate-500 hover:text-slate-900 dark:hover:text-white";
+        serpBox.className = "p-4 rounded-xl bg-white dark:bg-slate-950 border border-slate-100 dark:border-slate-800/80 transition-all font-sans max-w-xs mx-auto shadow-md";
+      }
+    }
+
+    /* Copy Meta tags with fallback */
+    function copyGeneratedMetaTags() {
+      const code = document.getElementById('seo-code-output').textContent;
+      copyToClipboardFallback(code);
+      showToast('Meta tags copied to clipboard!');
+    }
+
+    /* Load Preset SEO sample */
+    function loadSEOSampleData() {
+      document.getElementById('seo-meta-title').value = "OpenGraph Image & Meta Tag Generator — Boost Click Rates";
+      document.getElementById('seo-meta-desc').value = "Create customized social preview cards with automated color palettes from brand logos and export production-ready SEO meta tags.";
+      document.getElementById('seo-canonical-url').value = "https://mysite.com/tools/og-generator";
+      document.getElementById('seo-site-name').value = "MetaOG Studio";
+      document.getElementById('seo-author').value = "Alex Rivera";
+      document.getElementById('seo-keywords').value = "opengraph, meta tags, seo generator, twitter cards";
+      handleSEOInput();
+      showToast('Sample SEO data loaded');
+    }
+
+    /* Safe Clipboard Utility using fallback */
+    function copyToClipboardFallback(text) {
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      try {
+        document.execCommand('copy');
+      } catch (err) {
+        console.error('Copy fallback failed', err);
+      }
+      document.body.removeChild(textarea);
+    }
+
+    /* Toast Notification Banner */
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toast-message');
+      toastMsg.textContent = msg;
+
+      toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+        toast.classList.remove('translate-y-0', 'opacity-100');
+      }, 3200);
+    }
+  </script>
+</body>
+</html>
