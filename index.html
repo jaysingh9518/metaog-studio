@@ -241,7 +241,7 @@
                   <span>Logo Size</span>
                   <span id="lbl-logo-size" class="font-mono">64px</span>
                 </div>
-                <input type="range" id="logo-size" min="36" max="140" value="64" oninput="updateLogoSlider('size', this.value)" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg cursor-pointer">
+                <input type="range" id="logo-size" min="32" max="160" value="64" oninput="updateLogoSlider('size', this.value)" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg cursor-pointer">
               </div>
 
               <!-- Radius Slider -->
@@ -250,7 +250,7 @@
                   <span>Border Radius</span>
                   <span id="lbl-logo-radius" class="font-mono">14px</span>
                 </div>
-                <input type="range" id="logo-radius" min="0" max="70" value="14" oninput="updateLogoSlider('radius', this.value)" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg cursor-pointer">
+                <input type="range" id="logo-radius" min="0" max="80" value="14" oninput="updateLogoSlider('radius', this.value)" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg cursor-pointer">
               </div>
 
               <!-- Padding Slider -->
@@ -259,7 +259,39 @@
                   <span>Inner Padding</span>
                   <span id="lbl-logo-padding" class="font-mono">4px</span>
                 </div>
-                <input type="range" id="logo-padding" min="0" max="24" value="4" oninput="updateLogoSlider('padding', this.value)" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg cursor-pointer">
+                <input type="range" id="logo-padding" min="0" max="30" value="4" oninput="updateLogoSlider('padding', this.value)" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg cursor-pointer">
+              </div>
+
+              <!-- Logo Background & Transparency Suite -->
+              <div class="pt-2 border-t border-slate-200 dark:border-slate-700/60 space-y-2.5">
+                <div class="flex items-center justify-between">
+                  <label class="flex items-center space-x-1.5 font-bold text-slate-700 dark:text-slate-300 cursor-pointer">
+                    <input type="checkbox" id="logo-bg-transparent-toggle" onchange="toggleLogoTransparent(this.checked)" class="rounded text-blue-600 focus:ring-blue-500">
+                    <span>Transparent Background</span>
+                  </label>
+                  <span id="logo-bg-status-badge" class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-slate-500">Solid</span>
+                </div>
+
+                <!-- Background Color Picker & Hex -->
+                <div id="logo-bg-color-wrapper" class="grid grid-cols-2 gap-2 items-center transition-opacity duration-150">
+                  <div>
+                    <label class="block text-[10px] text-slate-500 mb-1 font-bold">Tile Background</label>
+                    <div class="flex items-center space-x-1.5">
+                      <input type="color" id="logo-bg-color" value="#0284c7" oninput="updateLogoBgFromColor(this.value)" class="w-6 h-6 rounded border-0 cursor-pointer bg-transparent">
+                      <input type="text" id="logo-bg-color-hex" value="#0284c7" onchange="syncHexToColor('logo-bg-color', this.value); updateLogoBgFromColor(this.value);" class="w-full text-[11px] font-mono p-1 rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 uppercase">
+                    </div>
+                  </div>
+                  <div>
+                    <label class="block text-[10px] text-slate-500 mb-1 font-bold">Quick Presets</label>
+                    <div class="flex flex-wrap gap-1">
+                      <button type="button" onclick="setLogoBgPreset('transparent')" class="px-1.5 py-0.5 text-[10px] font-bold rounded border border-slate-300 dark:border-slate-600 bg-slate-100 dark:bg-slate-700 hover:border-blue-500 transition">Transp.</button>
+                      <button type="button" onclick="setLogoBgPreset('primary')" class="px-1.5 py-0.5 text-[10px] font-bold rounded border border-slate-300 dark:border-slate-600 bg-blue-600 text-white hover:opacity-90 transition">Brand</button>
+                      <button type="button" onclick="setLogoBgPreset('navy')" class="px-1.5 py-0.5 text-[10px] font-bold rounded border border-slate-300 dark:border-slate-600 bg-slate-900 text-white hover:opacity-90 transition">Navy</button>
+                      <button type="button" onclick="setLogoBgPreset('white')" class="px-1.5 py-0.5 text-[10px] font-bold rounded border border-slate-300 dark:border-slate-600 bg-white text-slate-900 hover:opacity-90 transition">White</button>
+                      <button type="button" onclick="setLogoBgPreset('glass')" class="px-1.5 py-0.5 text-[10px] font-bold rounded border border-slate-300 dark:border-slate-600 bg-slate-200/60 dark:bg-slate-700/60 hover:border-blue-500 transition">Glass</button>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <!-- Border Controls -->
@@ -284,16 +316,6 @@
                     </div>
                   </div>
                   <div>
-                    <label class="block text-[10px] text-slate-500 mb-1 font-bold">Tile Background</label>
-                    <div class="flex items-center space-x-1.5">
-                      <input type="color" id="logo-bg-color" value="#0284c7" oninput="renderOGCanvas()" class="w-6 h-6 rounded border-0 cursor-pointer bg-transparent">
-                      <input type="text" id="logo-bg-color-hex" value="#0284c7" onchange="syncHexToColor('logo-bg-color', this.value)" class="w-full text-[11px] font-mono p-1 rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 uppercase">
-                    </div>
-                  </div>
-                </div>
-
-                <div class="grid grid-cols-2 gap-2">
-                  <div>
                     <label class="block text-[10px] text-slate-500 mb-1 font-bold">Border Style</label>
                     <select id="logo-border-style" onchange="renderOGCanvas()" class="w-full text-xs rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-1.5">
                       <option value="solid">Solid Line</option>
@@ -302,10 +324,11 @@
                       <option value="double">Double</option>
                     </select>
                   </div>
-                  <div>
-                    <label class="block text-[10px] text-slate-500 mb-1 font-bold">Fallback Initials</label>
-                    <input type="text" id="og-badge-initials" value="VS" maxlength="3" oninput="renderOGCanvas()" class="w-full text-xs rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-1.5 font-mono uppercase font-bold text-center">
-                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-[10px] text-slate-500 mb-1 font-bold">Fallback Initials</label>
+                  <input type="text" id="og-badge-initials" value="VS" maxlength="3" oninput="renderOGCanvas()" class="w-full text-xs rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-1.5 font-mono uppercase font-bold text-center">
                 </div>
               </div>
             </div>
@@ -723,6 +746,7 @@
       headerAlign: 'left',
       contentAlign: 'left',
       logoDataUrl: null,
+      logoBgCustom: null,
       serpMode: 'desktop',
       extractedPalette: null,
       lastFetchedData: null
@@ -848,6 +872,73 @@
       if (key === 'padding') document.getElementById('lbl-logo-padding').textContent = `${val}px`;
       if (key === 'border-width') document.getElementById('lbl-logo-border-w').textContent = `${val}px`;
       renderOGCanvas();
+    }
+
+    /* Logo Background Transparency & Preset Logic */
+    function toggleLogoTransparent(isTransparent) {
+      const colorWrapper = document.getElementById('logo-bg-color-wrapper');
+      const badge = document.getElementById('logo-bg-status-badge');
+      if (isTransparent) {
+        colorWrapper.classList.add('opacity-40');
+        badge.textContent = 'Transparent';
+        badge.className = 'text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-100 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-400 font-bold';
+        app.logoBgCustom = 'none';
+      } else {
+        colorWrapper.classList.remove('opacity-40');
+        badge.textContent = 'Solid';
+        badge.className = 'text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-slate-500';
+        app.logoBgCustom = document.getElementById('logo-bg-color').value;
+      }
+      renderOGCanvas();
+    }
+
+    function updateLogoBgFromColor(colorVal) {
+      const transToggle = document.getElementById('logo-bg-transparent-toggle');
+      if (transToggle.checked) {
+        transToggle.checked = false;
+        toggleLogoTransparent(false);
+      } else {
+        app.logoBgCustom = colorVal;
+        renderOGCanvas();
+      }
+    }
+
+    function setLogoBgPreset(preset) {
+      const transToggle = document.getElementById('logo-bg-transparent-toggle');
+      const colInput = document.getElementById('logo-bg-color');
+      const hexInput = document.getElementById('logo-bg-color-hex');
+
+      if (preset === 'transparent') {
+        transToggle.checked = true;
+        toggleLogoTransparent(true);
+        showToast('Logo background set to transparent');
+        return;
+      }
+
+      transToggle.checked = false;
+      toggleLogoTransparent(false);
+
+      let targetColor = '#0284c7';
+      if (preset === 'primary') {
+        targetColor = document.getElementById('col-accent').value || '#38bdf8';
+      } else if (preset === 'navy') {
+        targetColor = '#0f172a';
+      } else if (preset === 'white') {
+        targetColor = '#ffffff';
+      } else if (preset === 'glass') {
+        targetColor = app.cardTheme === 'dark' ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.05)';
+      }
+
+      if (targetColor.startsWith('#')) {
+        colInput.value = targetColor;
+        hexInput.value = targetColor.toUpperCase();
+        app.logoBgCustom = targetColor;
+      } else {
+        app.logoBgCustom = targetColor;
+      }
+
+      renderOGCanvas();
+      showToast(`Logo background preset '${preset}' applied`);
     }
 
     function updateTitleSize(val) {
@@ -1022,7 +1113,14 @@
       const enableBorder = document.getElementById('logo-border-toggle').checked;
       const borderWidth = enableBorder ? parseFloat(document.getElementById('logo-border-width').value) : 0;
       const borderColor = document.getElementById('logo-border-color').value;
-      const logoBg = document.getElementById('logo-bg-color').value;
+
+      // Determine Logo Background Fill (Transparent or Solid/Glass)
+      const isTransparentBg = document.getElementById('logo-bg-transparent-toggle').checked;
+      let logoBg = 'none';
+      if (!isTransparentBg) {
+        logoBg = app.logoBgCustom || document.getElementById('logo-bg-color').value || '#0284c7';
+      }
+
       const borderStyle = document.getElementById('logo-border-style').value;
       const initials = escapeXml(document.getElementById('og-badge-initials').value || 'VS');
 
@@ -1130,7 +1228,7 @@
           <g transform="translate(${app.headerAlign === 'center' ? -logoSize / 2 : (app.headerAlign === 'right' ? -logoSize : 0)}, 0)">
             <rect width="${logoSize}" height="${logoSize}" rx="${logoRadius}" 
                   fill="${logoBg}" 
-                  stroke="${borderColor}" 
+                  stroke="${enableBorder ? borderColor : 'none'}" 
                   stroke-width="${borderWidth}" 
                   stroke-dasharray="${strokeDash}"/>
             
@@ -1144,7 +1242,7 @@
             ` : `
               <text x="${logoSize / 2}" y="${(logoSize / 2) + (logoSize * 0.14)}" 
                     font-family="${font}, sans-serif" font-size="${Math.round(logoSize * 0.36)}" font-weight="900" 
-                    fill="#ffffff" text-anchor="middle">
+                    fill="${isTransparentBg ? accent : '#ffffff'}" text-anchor="middle">
                 ${initials}
               </text>
             `}
