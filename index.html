@@ -254,7 +254,7 @@
               <div class="flex items-center justify-between">
                 <h3 class="text-xs font-black uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
                   <i data-lucide="image" class="w-3.5 h-3.5 text-blue-500"></i>
-                  Brand Logo & Header Alignment
+                  Brand Logo & Spatial Alignment
                 </h3>
                 <button id="apply-extracted-btn" onclick="applyExtractedPalette()" class="hidden text-[10px] font-bold px-2 py-0.5 rounded-full bg-indigo-100 dark:bg-indigo-950/70 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 hover:scale-105 transition">
                   ⚡ Sync Palette from Logo
@@ -277,21 +277,101 @@
                 </div>
               </div>
 
-              <!-- Logo Sizing, Radius & Alignment Controls -->
+              <!-- NEW: HEADER ALIGNMENT & SPATIAL RELATIONSHIPS SUITE -->
+              <div class="bg-blue-50/50 dark:bg-slate-800/60 p-3.5 rounded-xl space-y-3.5 border border-blue-100 dark:border-slate-700">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
+                    <i data-lucide="align-horizontal-distribute-center" class="w-3.5 h-3.5 text-blue-600 dark:text-blue-400"></i>
+                    Logo & Text Layout Relationships
+                  </span>
+                  <button type="button" onclick="resetHeaderSpatial()" class="text-[10px] font-bold text-blue-600 hover:underline" title="Reset to standard horizontal layout">Reset</button>
+                </div>
+
+                <!-- Orientation: Horizontal vs Stacked -->
+                <div class="grid grid-cols-2 gap-2 text-xs">
+                  <div>
+                    <label class="block text-[10px] text-slate-500 mb-1 font-bold">Layout Mode</label>
+                    <div class="grid grid-cols-2 gap-1 bg-white dark:bg-slate-700 p-0.5 rounded-lg border border-slate-200 dark:border-slate-600">
+                      <button type="button" id="hdr-mode-row" onclick="setHeaderLayoutMode('row')" class="py-1 text-[11px] font-bold rounded bg-blue-50 dark:bg-blue-900/40 text-blue-600">Row (Side)</button>
+                      <button type="button" id="hdr-mode-col" onclick="setHeaderLayoutMode('col')" class="py-1 text-[11px] font-bold rounded text-slate-400 hover:text-slate-600">Stacked</button>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label class="block text-[10px] text-slate-500 mb-1 font-bold">Vertical Alignment</label>
+                    <div class="grid grid-cols-3 gap-0.5 bg-white dark:bg-slate-700 p-0.5 rounded-lg border border-slate-200 dark:border-slate-600">
+                      <button type="button" id="hdr-valign-top" onclick="setHeaderVAlign('top')" class="py-1 text-[10px] font-bold rounded text-slate-400 hover:text-slate-600" title="Align to Top">Top</button>
+                      <button type="button" id="hdr-valign-middle" onclick="setHeaderVAlign('middle')" class="py-1 text-[10px] font-bold rounded bg-blue-50 dark:bg-blue-900/40 text-blue-600" title="Align to Center">Mid</button>
+                      <button type="button" id="hdr-valign-bottom" onclick="setHeaderVAlign('bottom')" class="py-1 text-[10px] font-bold rounded text-slate-400 hover:text-slate-600" title="Align to Bottom">Bot</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Horizontal Gap Between Logo and Text Block -->
+                <div class="space-y-1">
+                  <div class="flex justify-between text-[11px] text-slate-600 dark:text-slate-400">
+                    <span>Logo ↔ Text Gap</span>
+                    <span id="lbl-hdr-gap-x" class="font-mono text-blue-600 dark:text-blue-400 font-bold">20px</span>
+                  </div>
+                  <input type="range" id="hdr-gap-x" min="0" max="80" value="20" oninput="updateHeaderSpatial('gapX', this.value)" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg cursor-pointer">
+                </div>
+
+                <!-- Spacing Between Company Name and Tagline -->
+                <div class="space-y-1">
+                  <div class="flex justify-between text-[11px] text-slate-600 dark:text-slate-400">
+                    <span>Company ↕ Tagline Gap</span>
+                    <span id="lbl-hdr-gap-tagline" class="font-mono text-blue-600 dark:text-blue-400 font-bold">8px</span>
+                  </div>
+                  <input type="range" id="hdr-gap-tagline" min="0" max="36" value="8" oninput="updateHeaderSpatial('gapTagline', this.value)" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg cursor-pointer">
+                </div>
+
+                <!-- Text Block Micro Baseline Offset -->
+                <div class="space-y-1">
+                  <div class="flex justify-between text-[11px] text-slate-600 dark:text-slate-400">
+                    <span>Text Group Baseline Offset</span>
+                    <span id="lbl-hdr-offset-y" class="font-mono text-blue-600 dark:text-blue-400 font-bold">0px</span>
+                  </div>
+                  <input type="range" id="hdr-offset-y" min="-30" max="30" value="0" oninput="updateHeaderSpatial('offsetY', this.value)" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg cursor-pointer">
+                </div>
+
+                <!-- Header Canvas Placement & Internal Alignment -->
+                <div class="pt-2 border-t border-slate-200 dark:border-slate-700/60 grid grid-cols-2 gap-2 text-xs">
+                  <div>
+                    <label class="block text-[10px] text-slate-500 mb-1 font-bold">Canvas Placement</label>
+                    <div class="flex items-center space-x-1 bg-white dark:bg-slate-700 p-0.5 rounded-lg border border-slate-200 dark:border-slate-600">
+                      <button type="button" onclick="setHeaderAlign('left')" id="align-btn-left" class="p-1 rounded bg-blue-50 dark:bg-blue-900/40 text-blue-600 flex-1 flex justify-center" title="Align Header Left">
+                        <i data-lucide="align-left" class="w-3.5 h-3.5"></i>
+                      </button>
+                      <button type="button" onclick="setHeaderAlign('center')" id="align-btn-center" class="p-1 rounded text-slate-400 hover:text-slate-600 flex-1 flex justify-center" title="Align Header Center">
+                        <i data-lucide="align-center" class="w-3.5 h-3.5"></i>
+                      </button>
+                      <button type="button" onclick="setHeaderAlign('right')" id="align-btn-right" class="p-1 rounded text-slate-400 hover:text-slate-600 flex-1 flex justify-center" title="Align Header Right">
+                        <i data-lucide="align-right" class="w-3.5 h-3.5"></i>
+                      </button>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label class="block text-[10px] text-slate-500 mb-1 font-bold">Text Block Alignment</label>
+                    <div class="flex items-center space-x-1 bg-white dark:bg-slate-700 p-0.5 rounded-lg border border-slate-200 dark:border-slate-600">
+                      <button type="button" onclick="setHeaderTextAlign('left')" id="hdr-text-align-left" class="p-1 rounded bg-blue-50 dark:bg-blue-900/40 text-blue-600 flex-1 flex justify-center" title="Align Text Left">
+                        <i data-lucide="align-left" class="w-3.5 h-3.5"></i>
+                      </button>
+                      <button type="button" onclick="setHeaderTextAlign('center')" id="hdr-text-align-center" class="p-1 rounded text-slate-400 hover:text-slate-600 flex-1 flex justify-center" title="Align Text Center">
+                        <i data-lucide="align-center" class="w-3.5 h-3.5"></i>
+                      </button>
+                      <button type="button" onclick="setHeaderTextAlign('right')" id="hdr-text-align-right" class="p-1 rounded text-slate-400 hover:text-slate-600 flex-1 flex justify-center" title="Align Text Right">
+                        <i data-lucide="align-right" class="w-3.5 h-3.5"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Logo Sizing, Radius & Shape Controls -->
               <div class="bg-slate-50 dark:bg-slate-800/50 p-3.5 rounded-xl space-y-3 text-xs border border-slate-100 dark:border-slate-800">
                 <div class="flex items-center justify-between font-bold text-slate-700 dark:text-slate-300">
                   <span>Logo Dimensions & Shape</span>
-                  <div class="flex items-center space-x-1 bg-white dark:bg-slate-700 p-0.5 rounded-lg border border-slate-200 dark:border-slate-600">
-                    <button type="button" onclick="setHeaderAlign('left')" id="align-btn-left" class="p-1 rounded bg-blue-50 dark:bg-blue-900/40 text-blue-600" title="Align Left">
-                      <i data-lucide="align-left" class="w-3.5 h-3.5"></i>
-                    </button>
-                    <button type="button" onclick="setHeaderAlign('center')" id="align-btn-center" class="p-1 rounded text-slate-400 hover:text-slate-600" title="Align Center">
-                      <i data-lucide="align-center" class="w-3.5 h-3.5"></i>
-                    </button>
-                    <button type="button" onclick="setHeaderAlign('right')" id="align-btn-right" class="p-1 rounded text-slate-400 hover:text-slate-600" title="Align Right">
-                      <i data-lucide="align-right" class="w-3.5 h-3.5"></i>
-                    </button>
-                  </div>
                 </div>
 
                 <!-- Size Slider -->
@@ -1201,7 +1281,7 @@
       lastFetchedData: null,
 
       // Preview Floating / Stacked Mode State
-      previewLayout: 'stacked', // 'stacked' or 'floating'
+      previewLayout: 'stacked',
       isMinimized: false,
       floatWidth: 520,
 
@@ -1211,6 +1291,16 @@
         headerToTitle: 48,
         titleToSub: 32,
         subToPills: 44
+      },
+
+      // NEW: Header Spatial & Alignment State
+      headerSpatial: {
+        mode: 'row',        // 'row' (side-by-side) or 'col' (stacked)
+        vAlign: 'middle',   // 'top', 'middle', 'bottom'
+        gapX: 20,           // gap between logo and text block (px)
+        gapTagline: 8,      // gap between company name and tagline (px)
+        offsetY: 0,         // fine-tuning vertical offset of text block (px)
+        textAlign: 'left'   // 'left', 'center', 'right'
       },
       
       // Dynamic Capsule Pills Array
@@ -1731,12 +1821,92 @@
       ['left', 'center', 'right'].forEach(a => {
         const btn = document.getElementById(`align-btn-${a}`);
         if (a === align) {
-          btn.className = "p-1 rounded bg-blue-50 dark:bg-blue-900/40 text-blue-600";
+          btn.className = "p-1 rounded bg-blue-50 dark:bg-blue-900/40 text-blue-600 flex-1 flex justify-center";
         } else {
-          btn.className = "p-1 rounded text-slate-400 hover:text-slate-600";
+          btn.className = "p-1 rounded text-slate-400 hover:text-slate-600 flex-1 flex justify-center";
         }
       });
       renderOGCanvas();
+    }
+
+    /* Header Spatial & Alignment Helper Functions */
+    function setHeaderLayoutMode(mode) {
+      app.headerSpatial.mode = mode;
+      const btnRow = document.getElementById('hdr-mode-row');
+      const btnCol = document.getElementById('hdr-mode-col');
+      if (mode === 'row') {
+        btnRow.className = "py-1 text-[11px] font-bold rounded bg-blue-50 dark:bg-blue-900/40 text-blue-600";
+        btnCol.className = "py-1 text-[11px] font-bold rounded text-slate-400 hover:text-slate-600";
+      } else {
+        btnCol.className = "py-1 text-[11px] font-bold rounded bg-blue-50 dark:bg-blue-900/40 text-blue-600";
+        btnRow.className = "py-1 text-[11px] font-bold rounded text-slate-400 hover:text-slate-600";
+      }
+      renderOGCanvas();
+    }
+
+    function setHeaderVAlign(valign) {
+      app.headerSpatial.vAlign = valign;
+      ['top', 'middle', 'bottom'].forEach(v => {
+        const btn = document.getElementById(`hdr-valign-${v}`);
+        if (v === valign) {
+          btn.className = "py-1 text-[10px] font-bold rounded bg-blue-50 dark:bg-blue-900/40 text-blue-600";
+        } else {
+          btn.className = "py-1 text-[10px] font-bold rounded text-slate-400 hover:text-slate-600";
+        }
+      });
+      renderOGCanvas();
+    }
+
+    function setHeaderTextAlign(align) {
+      app.headerSpatial.textAlign = align;
+      ['left', 'center', 'right'].forEach(a => {
+        const btn = document.getElementById(`hdr-text-align-${a}`);
+        if (a === align) {
+          btn.className = "p-1 rounded bg-blue-50 dark:bg-blue-900/40 text-blue-600 flex-1 flex justify-center";
+        } else {
+          btn.className = "p-1 rounded text-slate-400 hover:text-slate-600 flex-1 flex justify-center";
+        }
+      });
+      renderOGCanvas();
+    }
+
+    function updateHeaderSpatial(key, val) {
+      const num = parseInt(val, 10);
+      if (key === 'gapX') {
+        app.headerSpatial.gapX = num;
+        document.getElementById('lbl-hdr-gap-x').textContent = `${num}px`;
+      } else if (key === 'gapTagline') {
+        app.headerSpatial.gapTagline = num;
+        document.getElementById('lbl-hdr-gap-tagline').textContent = `${num}px`;
+      } else if (key === 'offsetY') {
+        app.headerSpatial.offsetY = num;
+        document.getElementById('lbl-hdr-offset-y').textContent = `${num}px`;
+      }
+      renderOGCanvas();
+    }
+
+    function resetHeaderSpatial() {
+      app.headerSpatial.mode = 'row';
+      app.headerSpatial.vAlign = 'middle';
+      app.headerSpatial.gapX = 20;
+      app.headerSpatial.gapTagline = 8;
+      app.headerSpatial.offsetY = 0;
+      app.headerSpatial.textAlign = 'left';
+
+      document.getElementById('hdr-gap-x').value = 20;
+      document.getElementById('lbl-hdr-gap-x').textContent = '20px';
+
+      document.getElementById('hdr-gap-tagline').value = 8;
+      document.getElementById('lbl-hdr-gap-tagline').textContent = '8px';
+
+      document.getElementById('hdr-offset-y').value = 0;
+      document.getElementById('lbl-hdr-offset-y').textContent = '0px';
+
+      setHeaderLayoutMode('row');
+      setHeaderVAlign('middle');
+      setHeaderTextAlign('left');
+      renderOGCanvas();
+      showToast('Header alignment & gaps reset!');
     }
 
     function setContentAlign(align) {
@@ -1997,14 +2167,27 @@
       const gapTitleToSub = Math.round(app.spacing.titleToSub * scaleFactor);
       const gapSubToPills = Math.round(app.spacing.subToPills * scaleFactor);
 
+      // Header Spatial Parameters
+      const isRowMode = (app.headerSpatial.mode === 'row');
+      const hdrGapX = Math.round(app.headerSpatial.gapX * (isSquare ? 1.15 : 1.0));
+      const hdrGapTagline = Math.round(app.headerSpatial.gapTagline * (isSquare ? 1.15 : 1.0));
+      const hdrOffsetY = Math.round(app.headerSpatial.offsetY * (isSquare ? 1.15 : 1.0));
+      const textGroupAnchor = app.headerSpatial.textAlign === 'center' ? 'middle' : (app.headerSpatial.textAlign === 'right' ? 'end' : 'start');
+
+      // Calculate Text Cluster Dimensions
+      const textBlockHeight = compSize + hdrGapTagline + subSize;
+      
+      // Calculate Header Total Block Height
+      let headerBlockHeight = logoSize;
+      if (!isRowMode) {
+        // Stacked mode
+        headerBlockHeight = logoSize + (isSquare ? 16 : 12) + textBlockHeight;
+      } else {
+        headerBlockHeight = Math.max(logoSize, textBlockHeight);
+      }
+
       // 1. Header Y Position
       const headerY = topPad;
-
-      // Calculate Header Visual Height based on alignment
-      let headerBlockHeight = logoSize;
-      if (app.headerAlign === 'center') {
-        headerBlockHeight = logoSize + (isSquare ? 28 : 22) + (isSquare ? 26 : 20) + 12;
-      }
 
       // 2. Headline Y Position
       const heroStartY = headerY + headerBlockHeight + gapHeaderToTitle;
@@ -2022,20 +2205,21 @@
       // 5. Footer Y Position
       const footerY = isSquare ? height - 90 : height - 70;
 
-      // Alignment Anchors
+      // Header Canvas Placement (Left, Center, Right)
       let headerX = padX;
-      let textAnchor = "start";
-      let contentX = padX;
-      let contentAnchor = "start";
+      let headerCanvasAnchor = "start";
 
       if (app.headerAlign === 'center') {
         headerX = width / 2;
-        textAnchor = "middle";
+        headerCanvasAnchor = "middle";
       } else if (app.headerAlign === 'right') {
         headerX = width - padX;
-        textAnchor = "end";
+        headerCanvasAnchor = "end";
       }
 
+      // Content Alignment
+      let contentX = padX;
+      let contentAnchor = "start";
       if (app.contentAlign === 'center') {
         contentX = width / 2;
         contentAnchor = "middle";
@@ -2060,6 +2244,142 @@
           <text x="0" y="0" font-family="${servicesFont}, sans-serif" font-size="${servicesSize}" font-weight="${servicesWeight}" text-anchor="${contentAnchor}" fill="${servicesTextColor}">
             ${services}
           </text>
+        `;
+      }
+
+      // =======================================================================
+      // HEADER NODE GENERATION WITH PRECISE SPATIAL MATH
+      // =======================================================================
+      let headerNodes = '';
+
+      // Text baseline relative positions inside text group
+      const compBaselineY = compSize * 0.85;
+      const subBaselineY = compBaselineY + hdrGapTagline + (subSize * 0.9);
+
+      if (isRowMode) {
+        // SIDE-BY-SIDE / ROW MODE
+        let textYStart = 0;
+        if (app.headerSpatial.vAlign === 'top') {
+          textYStart = 0;
+        } else if (app.headerSpatial.vAlign === 'bottom') {
+          textYStart = logoSize - textBlockHeight;
+        } else {
+          // middle / center vertical alignment
+          textYStart = (logoSize - textBlockHeight) / 2;
+        }
+        textYStart += hdrOffsetY;
+
+        // Alignment offsets for horizontal group
+        let logoTranslateX = 0;
+        let textTranslateX = logoSize + hdrGapX;
+
+        if (headerCanvasAnchor === 'middle') {
+          // Center entire combined width
+          const estimatedTextW = Math.max(company.length * compSize * 0.6, companySub.length * subSize * 0.55);
+          const totalHeaderW = logoSize + hdrGapX + estimatedTextW;
+          logoTranslateX = -totalHeaderW / 2;
+          textTranslateX = logoTranslateX + logoSize + hdrGapX;
+        } else if (headerCanvasAnchor === 'end') {
+          logoTranslateX = -(logoSize + hdrGapX + 300);
+          textTranslateX = -300;
+        }
+
+        headerNodes = `
+          <!-- Logo Tile -->
+          <g transform="translate(${logoTranslateX}, 0)">
+            <rect width="${logoSize}" height="${logoSize}" rx="${logoRadius}" 
+                  fill="${logoBg}" 
+                  stroke="${enableBorder ? borderColor : 'none'}" 
+                  stroke-width="${borderWidth}" 
+                  stroke-dasharray="${strokeDash}"/>
+            
+            ${app.logoDataUrl ? `
+              <image href="${app.logoDataUrl}" 
+                     x="${logoPadding + (borderWidth / 2)}" 
+                     y="${logoPadding + (borderWidth / 2)}" 
+                     width="${Math.max(10, logoSize - (logoPadding * 2) - borderWidth)}" 
+                     height="${Math.max(10, logoSize - (logoPadding * 2) - borderWidth)}" 
+                     preserveAspectRatio="xMidYMid meet"/>
+            ` : `
+              <text x="${logoSize / 2}" y="${(logoSize / 2) + (logoSize * 0.14)}" 
+                    font-family="${compFont}, sans-serif" font-size="${Math.round(logoSize * 0.38)}" font-weight="900" 
+                    fill="${isTransparentBg ? accent : '#ffffff'}" text-anchor="middle">
+                ${initials}
+              </text>
+            `}
+          </g>
+
+          <!-- Text Block Beside Logo -->
+          <g transform="translate(${textTranslateX}, ${textYStart})">
+            <text x="0" y="${compBaselineY}" 
+                  font-family="${compFont}, sans-serif" font-size="${compSize}" font-weight="${compWeight}" 
+                  fill="${companyColor}" text-anchor="${textGroupAnchor}" letter-spacing="${compTracking}"
+                  font-style="${isCompItalic ? 'italic' : 'normal'}"
+                  text-decoration="${isCompUnderline ? 'underline' : 'none'}">
+              ${company}
+            </text>
+            <text x="0" y="${subBaselineY}" 
+                  font-family="${subFont}, monospace" font-size="${subSize}" font-weight="${subWeight}" 
+                  fill="${subColor}" text-anchor="${textGroupAnchor}" letter-spacing="${subTracking}">
+              ${companySub}
+            </text>
+          </g>
+        `;
+      } else {
+        // STACKED / COLUMN MODE (Logo Above Text)
+        let logoX = 0;
+        let textX = 0;
+
+        if (headerCanvasAnchor === 'middle') {
+          logoX = -logoSize / 2;
+          textX = 0;
+        } else if (headerCanvasAnchor === 'end') {
+          logoX = -logoSize;
+          textX = 0;
+        }
+
+        const textY = logoSize + hdrGapX + hdrOffsetY;
+
+        headerNodes = `
+          <!-- Logo Tile Stacked -->
+          <g transform="translate(${logoX}, 0)">
+            <rect width="${logoSize}" height="${logoSize}" rx="${logoRadius}" 
+                  fill="${logoBg}" 
+                  stroke="${enableBorder ? borderColor : 'none'}" 
+                  stroke-width="${borderWidth}" 
+                  stroke-dasharray="${strokeDash}"/>
+            
+            ${app.logoDataUrl ? `
+              <image href="${app.logoDataUrl}" 
+                     x="${logoPadding + (borderWidth / 2)}" 
+                     y="${logoPadding + (borderWidth / 2)}" 
+                     width="${Math.max(10, logoSize - (logoPadding * 2) - borderWidth)}" 
+                     height="${Math.max(10, logoSize - (logoPadding * 2) - borderWidth)}" 
+                     preserveAspectRatio="xMidYMid meet"/>
+            ` : `
+              <text x="${logoSize / 2}" y="${(logoSize / 2) + (logoSize * 0.14)}" 
+                    font-family="${compFont}, sans-serif" font-size="${Math.round(logoSize * 0.38)}" font-weight="900" 
+                    fill="${isTransparentBg ? accent : '#ffffff'}" text-anchor="middle">
+                ${initials}
+              </text>
+            `}
+          </g>
+
+          <!-- Text Block Below Logo -->
+          <g transform="translate(${textX}, ${textY})">
+            <text x="0" y="${compBaselineY}" 
+                  font-family="${compFont}, sans-serif" font-size="${compSize}" font-weight="${compWeight}" 
+                  fill="${companyColor}" text-anchor="${textGroupAnchor}" letter-spacing="${compTracking}"
+                  font-style="${isCompItalic ? 'italic' : 'normal'}"
+                  text-decoration="${isCompUnderline ? 'underline' : 'none'}">
+              ${company}
+            </text>
+            <text x="0" y="${subBaselineY}" 
+                  font-family="${subFont}, monospace" font-size="${subSize}" font-weight="${subWeight}" 
+                  fill="${subColor}" text-anchor="${textGroupAnchor}" letter-spacing="${subTracking}">
+              ${companySub}
+            </text>
+          </g>
         `;
       }
 
@@ -2185,46 +2505,7 @@
         <!-- ZONE 1: HEADER & LOGO                                             -->
         <!-- ================================================================= -->
         <g transform="translate(${headerX}, ${headerY})">
-          
-          <!-- Logo Tile -->
-          <g transform="translate(${app.headerAlign === 'center' ? -logoSize / 2 : (app.headerAlign === 'right' ? -logoSize : 0)}, 0)">
-            <rect width="${logoSize}" height="${logoSize}" rx="${logoRadius}" 
-                  fill="${logoBg}" 
-                  stroke="${enableBorder ? borderColor : 'none'}" 
-                  stroke-width="${borderWidth}" 
-                  stroke-dasharray="${strokeDash}"/>
-            
-            ${app.logoDataUrl ? `
-              <image href="${app.logoDataUrl}" 
-                     x="${logoPadding + (borderWidth / 2)}" 
-                     y="${logoPadding + (borderWidth / 2)}" 
-                     width="${Math.max(10, logoSize - (logoPadding * 2) - borderWidth)}" 
-                     height="${Math.max(10, logoSize - (logoPadding * 2) - borderWidth)}" 
-                     preserveAspectRatio="xMidYMid meet"/>
-            ` : `
-              <text x="${logoSize / 2}" y="${(logoSize / 2) + (logoSize * 0.14)}" 
-                    font-family="${compFont}, sans-serif" font-size="${Math.round(logoSize * 0.38)}" font-weight="900" 
-                    fill="${isTransparentBg ? accent : '#ffffff'}" text-anchor="middle">
-                ${initials}
-              </text>
-            `}
-          </g>
-
-          <!-- Text Labels -->
-          <g transform="translate(${app.headerAlign === 'left' ? logoSize + (isSquare ? 22 : 18) : (app.headerAlign === 'right' ? -(logoSize + (isSquare ? 22 : 18)) : 0)}, ${app.headerAlign === 'center' ? logoSize + (isSquare ? 28 : 22) : 0})">
-            <text x="0" y="${app.headerAlign === 'center' ? 0 : (isSquare ? 32 : 28)}" 
-                  font-family="${compFont}, sans-serif" font-size="${compSize}" font-weight="${compWeight}" 
-                  fill="${companyColor}" text-anchor="${textAnchor}" letter-spacing="${compTracking}"
-                  font-style="${isCompItalic ? 'italic' : 'normal'}"
-                  text-decoration="${isCompUnderline ? 'underline' : 'none'}">
-              ${company}
-            </text>
-            <text x="0" y="${app.headerAlign === 'center' ? (isSquare ? 26 : 20) : (isSquare ? 58 : 50)}" 
-                  font-family="${subFont}, monospace" font-size="${subSize}" font-weight="${subWeight}" 
-                  fill="${subColor}" text-anchor="${textAnchor}" letter-spacing="${subTracking}">
-              ${companySub}
-            </text>
-          </g>
+          ${headerNodes}
         </g>
 
         <!-- ================================================================= -->
